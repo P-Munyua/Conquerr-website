@@ -4,45 +4,1138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conquerr Healthcare - Reliable Supply. Stronger Healthcare.</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-blue: #0052CC;
+            --light-blue: #1E90FF;
+            --sky-blue: #87CEEB;
+            --dark-navy: #001a4d;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .logo-img { height: 120px; width: auto; }
+
+        .logo-text { display: flex; flex-direction: column; line-height: 1; }
+        .main-text { font-size: 20px; font-weight: 700; color: #0e2263; letter-spacing: -0.5px; }
+        .sub-text { font-size: 18px; font-weight: 500; color: #42A1CE; margin-top: 2px; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active { color: var(--primary-blue); }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        .btn-quote {
+            background: var(--primary-blue);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-quote:hover { background: var(--dark-navy); transform: translateY(-2px); }
+
+        .dropdown { position: relative; }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-top: 10px;
+            padding: 10px 0;
+            z-index: 999;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-gray);
+            color: var(--primary-blue);
+            padding-left: 25px;
+        }
+
+        .dropdown:hover .dropdown-menu { display: block; }
+
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--primary-blue); border-radius: 3px; transition: all 0.3s ease; }
+
+        /* ====== HERO ====== */
+        .hero {
+            position: relative;
+            height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .hero-gradient-overlay {
+            position: absolute;
+            top: 0; right: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to left, transparent 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.8) 75%, rgba(255,255,255,1) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0; right: 0;
+            width: 58%; height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .hero-bike-image {
+            width: 80%; height: 100%;
+            object-fit: cover;
+            object-position: right center;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-15px) translateX(10px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 50%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-text-wrapper { max-width: 600px; }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--dark-navy);
+            margin-bottom: 25px;
+        }
+
+        .hero-title .highlight { color: var(--primary-blue); }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+            padding-bottom: 35px;
+            border-bottom: 2px solid rgba(0,82,204,0.2);
+        }
+
+        .feature-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .feature-item i { font-size: 24px; color: var(--primary-blue); transition: all 0.3s ease; }
+        .feature-item:hover i { transform: scale(1.2); color: var(--dark-navy); }
+        .feature-item span { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
+
+        .hero-buttons { display: flex; gap: 20px; }
+
+        /* ====== BUTTONS ====== */
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary { background: var(--primary-blue); color: var(--white); }
+        .btn-primary:hover { background: var(--dark-navy); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,82,204,0.3); }
+
+        .btn-secondary { background: transparent; color: var(--primary-blue); border: 2px solid var(--primary-blue); }
+        .btn-secondary:hover { background: var(--primary-blue); color: var(--white); transform: translateY(-2px); }
+
+        .btn-secondary-light { background: var(--white); color: var(--primary-blue); border: 2px solid transparent; }
+        .btn-secondary-light:hover { background: var(--light-gray); transform: translateY(-2px); }
+
+        .btn-secondary-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-secondary-outline:hover { background: var(--white); color: var(--primary-blue); transform: translateY(-2px); }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation { to { transform: scale(4); opacity: 0; } }
+
+        /* ====== SECTION HEADERS ====== */
+        .section-header { text-align: center; margin-bottom: 50px; }
+
+        .section-label {
+            display: inline-block;
+            color: var(--light-blue);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 { font-size: 36px; font-weight: 800; color: var(--dark-navy); margin-bottom: 15px; line-height: 1.3; }
+        .section-header h2 .highlight { color: var(--primary-blue); }
+        .section-header p { font-size: 15px; color: var(--text-light); max-width: 700px; margin: 0 auto; line-height: 1.6; }
+
+        /* ====== PRODUCTS SECTION ====== */
+        .products-section { padding: 80px 20px; background: #ffffff; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,82,204,0.15); }
+
+        .product-image {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(30,144,255,0.08);
+            border-radius: 8px;
+        }
+
+        .product-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .product-card h3 { font-size: 16px; font-weight: 700; color: var(--dark-navy); margin-bottom: 15px; line-height: 1.4; }
+
+        .view-products {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .view-products:hover { gap: 10px; color: var(--dark-navy); }
+
+        /* ====== WHY PARTNER ====== */
+        .why-partner { padding: 90px 20px; background-color: #f8f9fc; }
+
+        .why-partner .section-header { margin-bottom: 60px; }
+
+        .why-partner .section-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #4a67c7;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .why-partner .section-header h2 { font-size: 42px; font-weight: 700; color: #0f2b73; line-height: 1.2; }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border-top: 1px solid #edf1f7;
+            border-bottom: 1px solid #edf1f7;
+            background: #ffffff;
+        }
+
+        .partner-card {
+            text-align: center;
+            padding: 45px 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 25px; right: 0;
+            width: 1px; height: 75%;
+            background: #edf1f7;
+        }
+
+        .partner-card:hover { transform: translateY(-4px); }
+
+        .partner-icon {
+            width: 72px; height: 72px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f8ff;
+        }
+
+        .partner-icon i { font-size: 34px; color: #4a67c7; }
+        .partner-card h3 { font-size: 20px; font-weight: 700; color: #18367d; margin-bottom: 14px; }
+        .partner-card p { font-size: 15px; line-height: 1.7; color: #6b7280; max-width: 220px; margin: 0 auto; }
+
+        /* ====== ABOUT SECTION ====== */
+        .about-section { padding: 80px 20px; background: #ffffff; }
+
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+
+        .about-text .section-label { display: block; margin-bottom: 15px; }
+
+        .about-text h2 { font-size: 36px; font-weight: 800; color: var(--dark-navy); margin-bottom: 15px; line-height: 1.3; }
+        .about-text h2 .highlight { color: var(--primary-blue); }
+        .about-text p { font-size: 15px; color: var(--text-light); margin-bottom: 20px; line-height: 1.7; }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .stat-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,82,204,0.15); }
+
+        .stat-icon { font-size: 36px; color: var(--primary-blue); margin-bottom: 12px; }
+        .stat-number { font-size: 32px; font-weight: 800; color: var(--primary-blue); margin-bottom: 8px; }
+        .stat-label { font-size: 14px; font-weight: 600; color: var(--text-dark); line-height: 1.5; }
+
+        /* ====== CTA SECTION ====== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-content h2 { font-size: 36px; font-weight: 800; color: var(--white); margin-bottom: 15px; }
+        .cta-content p { font-size: 18px; color: rgba(255,255,255,0.9); margin-bottom: 35px; }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; }
+
+        /* ====== FOOTER - UPDATED WITH BOLDER TEXT ====== */
+.footer {
+    background: #f8f9fc;
+    padding: 70px 20px 25px;
+    color: #1a1a2e;
+    border-top: 1px solid #e5e7eb;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.footer-logo {
+    margin-bottom: 18px;
+}
+
+.logo-img-footer {
+    width: 180px;
+    height: auto;
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #1a1a2e;
+    font-weight: 500;
+    margin-bottom: 25px;
+    max-width: 300px;
+}
+
+.footer-section h4 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #0e2263;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #1a1a2e;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-blue);
+    padding-left: 5px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #1a1a2e;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.contact-info i {
+    color: var(--primary-blue);
+    margin-top: 4px;
+    font-weight: 700;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #dbe3f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0e2263;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: var(--primary-blue);
+    color: #fff;
+    transform: translateY(-3px);
+    border-color: var(--primary-blue);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #1a1a2e;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-blue);
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+        /* ====== FOOTER ====== */
+        .footer {
+            background: #f8f9fc;
+            padding: 70px 20px 25px;
+            color: #1e293b;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .footer-logo { margin-bottom: 18px; }
+        .logo-img-footer { width: 180px; height: auto; }
+
+        .footer-section p { font-size: 14px; line-height: 1.8; color: #64748b; margin-bottom: 25px; max-width: 300px; }
+        .footer-section h4 { font-size: 17px; font-weight: 700; color: #2563eb; margin-bottom: 22px; }
+        .footer-section ul { list-style: none; padding: 0; margin: 0; }
+        .footer-section ul li { margin-bottom: 12px; }
+        .footer-section ul li a { text-decoration: none; color: #475569; font-size: 14px; transition: 0.3s ease; }
+        .footer-section ul li a:hover { color: #2563eb; padding-left: 3px; }
+
+        .contact-info li { display: flex; align-items: flex-start; gap: 12px; color: #475569; font-size: 14px; line-height: 1.6; }
+        .contact-info i { color: #2563eb; margin-top: 4px; }
+
+        .social-links { display: flex; gap: 12px; margin-top: 10px; }
+
+        .social-links a {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #dbe3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover { background: #2563eb; color: #fff; transform: translateY(-3px); }
+
+        .footer-bottom {
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .footer-links { display: flex; gap: 25px; }
+        .footer-links a { text-decoration: none; color: #64748b; transition: 0.3s ease; }
+        .footer-links a:hover { color: #2563eb; }
+
+        /* ====== SCROLL TO TOP ====== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 45px; height: 45px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.3);
+            z-index: 999;
+        }
+
+        .scroll-to-top:hover { background: var(--dark-navy); transform: translateY(-3px); }
+        .scroll-to-top.show { display: flex; }
+
+        /* ====== QUOTE MODAL ====== */
+        .quote-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,26,77,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .quote-modal-overlay.active { display: flex; }
+
+        .quote-modal {
+            background: #fff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,26,77,0.25);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .quote-modal-header {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 24px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .quote-modal-header h2 { font-size: 22px; font-weight: 700; }
+        .quote-modal-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+        .close-modal-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .close-modal-btn:hover { background: rgba(255,255,255,0.35); }
+
+        .quote-modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .quote-left {
+            padding: 25px 20px 25px 30px;
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+
+        .quote-right {
+            padding: 25px 30px 25px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quote-left h3, .quote-right h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef2ff;
+        }
+
+        /* Category & Product selector */
+        .category-select, .product-search-input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-dark);
+            background: #fff;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .category-select:focus, .product-search-input:focus { border-color: var(--primary-blue); }
+
+        .products-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .product-list-item {
+            padding: 9px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f4f8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.15s;
+        }
+
+        .product-list-item:last-child { border-bottom: none; }
+        .product-list-item:hover { background: #eef2ff; }
+        .product-list-item .sku { font-size: 11px; color: #94a3b8; }
+
+        .add-to-quote-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .add-to-quote-btn:hover { background: var(--dark-navy); }
+
+        /* Quote items list */
+        .quote-items-list { flex: 1; overflow-y: auto; margin-bottom: 15px; }
+
+        .quote-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8faff;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #e2eaff;
+        }
+
+        .quote-item-info { flex: 1; min-width: 0; }
+        .quote-item-info .name { font-size: 13px; font-weight: 600; color: var(--dark-navy); line-height: 1.3; }
+        .quote-item-info .sku { font-size: 11px; color: #94a3b8; }
+
+        .qty-control { display: flex; align-items: center; gap: 6px; }
+
+        .qty-btn {
+            width: 24px; height: 24px;
+            border: 1.5px solid #d1d9e6;
+            background: white;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            line-height: 1;
+        }
+
+        .qty-btn:hover { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+
+        .qty-input {
+            width: 40px;
+            text-align: center;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 4px;
+            font-size: 13px;
+            padding: 2px;
+            outline: none;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px 4px;
+            transition: color 0.15s;
+        }
+
+        .remove-item-btn:hover { color: #b91c1c; }
+
+        .quote-empty {
+            text-align: center;
+            padding: 30px 20px;
+            color: #94a3b8;
+        }
+
+        .quote-empty i { font-size: 36px; margin-bottom: 10px; display: block; }
+        .quote-empty p { font-size: 13px; }
+
+        /* Contact info fields */
+        .contact-fields { margin-bottom: 15px; }
+
+        .contact-field {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .contact-field:focus { border-color: var(--primary-blue); }
+
+        /* Send buttons */
+        .send-buttons { display: flex; gap: 10px; }
+
+        .send-btn {
+            flex: 1;
+            padding: 11px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            transition: all 0.2s;
+        }
+
+        .send-email-btn { background: var(--primary-blue); color: white; }
+        .send-email-btn:hover { background: var(--dark-navy); transform: translateY(-1px); }
+
+        .send-whatsapp-btn { background: #25D366; color: white; }
+        .send-whatsapp-btn:hover { background: #128C7E; transform: translateY(-1px); }
+
+        .quote-count-badge {
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px; height: 18px;
+            font-size: 10px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 4px;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .hero { height: 600px; }
+            .hero-title { font-size: 40px; }
+            .hero-background { width: 50%; }
+            .hero-content { width: 50%; }
+            .hero-features { grid-template-columns: repeat(2, 1fr); }
+            .partners-grid { grid-template-columns: repeat(2, 1fr); }
+            .partner-card:nth-child(2)::after { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px; left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--white);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                gap: 0;
+                z-index: 999;
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; text-align: center; }
+            .nav-menu li a { display: block; padding: 12px; }
+            .hamburger { display: flex; }
+            .hero { height: auto; display: block; padding: 40px 20px; }
+            .hero-background { position: relative; width: 100%; height: auto; min-height: 280px; margin-bottom: 20px; }
+            .hero-content { position: relative; z-index: 5; width: 100%; }
+            .hero-title { font-size: 32px; }
+            .hero-subtitle { font-size: 15px; }
+            .hero-features { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 25px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .section-header h2 { font-size: 28px; }
+            .products-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+            .partners-grid { grid-template-columns: 1fr; }
+            .partner-card::after { display: none; }
+            .partner-card { border-bottom: 1px solid #edf1f7; }
+            .about-content { grid-template-columns: 1fr; gap: 30px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+            .footer-content { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .scroll-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .quote-modal-body { grid-template-columns: 1fr; }
+            .quote-left { border-right: none; border-bottom: 1px solid #e5e7eb; max-height: 280px; }
+            .send-buttons { flex-direction: column; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { height: auto; padding: 30px 20px; }
+            .hero-background { min-height: 220px; }
+            .hero-title { font-size: 24px; margin-bottom: 15px; }
+            .hero-subtitle { font-size: 14px; margin-bottom: 20px; }
+            .hero-features { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; padding-bottom: 20px; }
+            .feature-item span { font-size: 11px; }
+            .section-header h2 { font-size: 22px; }
+            .section-header p { font-size: 13px; }
+            .products-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; }
+            .product-card { padding: 20px 15px; }
+            .product-image { height: 120px; }
+            .cta-content h2 { font-size: 22px; }
+            .cta-content p { font-size: 14px; }
+            .why-partner .section-header h2 { font-size: 32px; }
+        }
+        .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #dbe3f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-3px);
+    border-color: #2563eb;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #dbe3f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-3px);
+    border-color: #2563eb;
+}
+
+.footer-logo {
+    margin-bottom: 18px;
+}
+
+.logo-img-footer {
+    width: 180px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #475569;
+    font-size: 14px;
+}
+
+.contact-info i {
+    width: 20px;
+    color: #2563eb;
+}
+    </style>
 </head>
 <body>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <img src="logo.png" alt="Conquerr Healthcare Logo" class="logo-img">
                 <div class="logo-text">
-                <span class="main-text">Conquerr</span>
-                <span class="sub-text">Healthcare</span>
+                    <span class="main-text">Conquerr</span>
+                    <span class="sub-text">Healthcare</span>
+                </div>
             </div>
-            </div>
-            
             <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
-            
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About Us</a></li>
                 <li class="dropdown">
                     <a href="#products" class="nav-link">Products <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
-                        <a href="#syringes">Syringes and Needles</a>
-                        <a href="#bandages">Bandages, Tapes & Dressings</a>
-                        <a href="#gloves">Gloves</a>
-                        <a href="#sutures">Sutures and Blades</a>
-                        <a href="#linen">Hospital Linen</a>
+                        <a href="products.html?category=syringes">Syringes and Needles</a>
+                        <a href="products.html?category=bandages">Bandages, Tapes & Dressings</a>
+                        <a href="products.html?category=gloves">Gloves</a>
+                        <a href="products.html?category=sutures">Sutures and Blades</a>
+                        <a href="products.html?category=linen">Hospital Linen</a>
+                        <a href="products.html?category=catheters">Catheters and Airway Management</a>
+                        <a href="products.html?category=dialysis">Dialysis Products</a>
+                        <a href="products.html?category=vascular">Vascular Access</a>
+                        <a href="products.html?category=iv-fluids">IV Fluids</a>
+                        <a href="products.html?category=cleaning">Cleaning Appliances</a>
+                        <a href="products.html?category=appliances">Other Appliances</a>
+                        <a href="products.html?category=surgical">Surgical Instruments</a>
+                        <a href="products.html?category=consumables">General Consumables</a>
+                        <a href="products.html?category=equipment">Hospital Equipment</a>
+                        <a href="products.html?category=orthopedics">Orthopedics</a>
                     </div>
                 </li>
                 <li><a href="#manufacturing" class="nav-link">Manufacturing</a></li>
                 <li><a href="#quality" class="nav-link">Quality Assurance</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
                 <li><a href="#contact" class="nav-link">Contact Us</a></li>
-                <li><a href="#quote" class="btn-quote">Request a Quote</a></li>
+                <li><a href="#" onclick="document.getElementById('quoteModal').classList.add('active'); return false;" class="btn-quote">Request a Quote <span class="quote-count-badge" id="quoteBadge" style="display:none">0</span></a></li>
             </ul>
         </div>
     </nav>
@@ -51,41 +1144,21 @@
     <section class="hero" id="home">
         <div class="hero-background">
             <div class="hero-gradient-overlay"></div>
-            <img src="bike.png" alt="Delivery Bike" class="hero-bike-image">
+             <img src="bike.png" alt="Delivery Bike" class="hero-bike-image">
         </div>
-
         <div class="hero-content">
             <div class="hero-text-wrapper">
-                <h1 class="hero-title">
-                    Reliable Supply.<br>
-                    <span class="highlight">Stronger Healthcare.</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Your trusted partner in the wholesale and distribution of surgical and non-pharmaceutical consumables.
-                </p>
-                
+                <h1 class="hero-title">Reliable Supply.<br><span class="highlight">Stronger Healthcare.</span></h1>
+                <p class="hero-subtitle">Your trusted partner in the wholesale and distribution of surgical and non-pharmaceutical consumables.</p>
                 <div class="hero-features">
-                    <div class="feature-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Quality<br>You Can Trust</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-truck"></i>
-                        <span>Timely<br>Deliveries</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-box"></i>
-                        <span>Wide<br>Product Range</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-headset"></i>
-                        <span>Dedicated<br>Support</span>
-                    </div>
+                    <div class="feature-item"><i class="fas fa-shield-alt"></i><span>Quality<br>You Can Trust</span></div>
+                    <div class="feature-item"><i class="fas fa-truck"></i><span>Timely<br>Deliveries</span></div>
+                    <div class="feature-item"><i class="fas fa-box"></i><span>Wide<br>Product Range</span></div>
+                    <div class="feature-item"><i class="fas fa-headset"></i><span>Dedicated<br>Support</span></div>
                 </div>
-                
                 <div class="hero-buttons">
-                    <button class="btn btn-primary">Browse Our Products</button>
-                    <button class="btn btn-secondary">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    <button class="btn btn-primary" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})">Browse Our Products</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('quoteModal').classList.add('active');">Request a Quote <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -99,172 +1172,117 @@
                 <h2>Quality Medical Consumables for <span class="highlight">Every Need</span></h2>
                 <p>We supply a comprehensive range of high-quality medical consumables to hospitals, clinics, healthcare facilities, and distributors across the region.</p>
             </div>
-
             <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="syringes.png" alt="Syringes and Needles">
-                    </div>
-                    <h3>Syringes and Needles</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
+    <!-- 15 product cards with correct category names -->
+    <div class="product-card">
+        <div class="product-image"><img src="syringes.png" alt="Syringes and Needles" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-syringe\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Syringes and Needles</h3>
+        <a href="products.html?category=Syringes%20%26%20Needles" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="bandages.png" alt="Bandages" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-band-aid\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Bandages, Tapes and Dressings</h3>
+        <a href="products.html?category=Bandages%20%26%20Dressings" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="gloves.png" alt="Gloves" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-hand-paper\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Gloves</h3>
+        <a href="products.html?category=Gloves" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="sutures.png" alt="Sutures" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-cut\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Sutures and Blades</h3>
+        <a href="products.html?category=Sutures%20%26%20Blades" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="linen.png" alt="Hospital Linen" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-bed\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Hospital Linen</h3>
+        <a href="products.html?category=Hospital%20Linen" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="catheters.png" alt="Catheters" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-lungs\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Catheters and Airway Management</h3>
+        <a href="products.html?category=Catheters%20%26%20Airway" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="dialysis.png" alt="Dialysis" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-droplet\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Dialysis Products</h3>
+        <a href="products.html?category=Dialysis%20Products" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="vascular.png" alt="Vascular Access" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-heartbeat\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Vascular Access</h3>
+        <a href="products.html?category=Vascular%20Access" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="cannulas.png" alt="IV Fluids" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-flask\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>IV Fluids</h3>
+        <a href="products.html?category=IV%20Fluids" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="cleaning.png" alt="Cleaning Appliances" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-soap\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Cleaning Appliances</h3>
+        <a href="products.html?category=Cleaning%20Appliances" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="other.png" alt="Other Appliances" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-vial\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Other Appliances</h3>
+        <a href="products.html?category=Other%20Appliances" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="instruments.png" alt="Surgical Instruments" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-scalpel\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Surgical Instruments</h3>
+        <a href="products.html?category=Surgical%20Instruments" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="consumables.png" alt="General Consumables" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-boxes\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>General Consumables</h3>
+        <a href="products.html?category=General%20Consumables" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="hospital.png" alt="Hospital Equipment" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-microchip\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Hospital Equipment</h3>
+        <a href="products.html?category=Hospital%20Equipment" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="product-card">
+        <div class="product-image"><img src="othorpedics.png" alt="Orthopedics" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-wheelchair\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <h3>Orthopedics</h3>
+        <a href="products.html?category=Orthopedics" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+        </div>
+    </section>
 
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="bandages.png" alt="Bandages, Tapes & Dressings">
-                    </div>
-                    <h3>Bandages, Tapes and Dressings</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="gloves.png" alt="Gloves">
-                    </div>
-                    <h3>Gloves</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="sutures.png" alt="Sutures and Blades">
-                    </div>
-                    <h3>Sutures and Blades</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="linen.png" alt="Hospital Linen">
-                    </div>
-                    <h3>Hospital Linen</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="catheters.png" alt="Catheters and Airway Management">
-                    </div>
-                    <h3>Catheters and Airway Management</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="dialysis.png" alt="Dialysis Products">
-                    </div>
-                    <h3>Dialysis Products</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 8 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="vascular.png" alt="Vascular Access">
-                    </div>
-                    <h3>Vascular Access</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 9 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="cannulas.png" alt="IV Cannulas">
-                    </div>
-                    <h3>IV Cannulas</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Product 10 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="instruments.png" alt="Surgical Instruments">
-                    </div>
-                    <h3>Surgical Instruments</h3>
-                    <a href="#" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
-                </div>
+    <!-- Why Partner Section -->
+    <section class="why-partner" id="quality">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">WHY PARTNER WITH US</span>
+                <h2>More Than <span class="highlight">Just a Supplier</span></h2>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card"><div class="partner-icon"><i class="fas fa-shield-alt"></i></div><h3>Consistent Quality</h3><p>We source and supply only certified, high-quality products you can trust.</p></div>
+                <div class="partner-card"><div class="partner-icon"><i class="fas fa-truck"></i></div><h3>Reliable Logistics</h3><p>Our distribution network ensures timely and secure deliveries.</p></div>
+                <div class="partner-card"><div class="partner-icon"><i class="fas fa-box-open"></i></div><h3>Wide Availability</h3><p>A broad range of products ready to meet your immediate needs.</p></div>
+                <div class="partner-card"><div class="partner-icon"><i class="fas fa-users"></i></div><h3>Competitive Pricing</h3><p>Affordable solutions that support your operational efficiency.</p></div>
+                <div class="partner-card"><div class="partner-icon"><i class="fas fa-headset"></i></div><h3>Customer Focused</h3><p>We build lasting partnerships through service and support.</p></div>
             </div>
         </div>
     </section>
-    <br>
-
-    <!-- Why Partner Section -->
-<section class="why-partner" id="quality">
-    <div class="container">
-
-        <div class="section-header">
-            <span class="section-label">WHY PARTNER WITH US</span>
-            <h2>More Than <span class="highlight">Just a Supplier</span></h2>
-        </div>
-
-        <div class="partners-grid">
-
-            <div class="partner-card">
-                <div class="partner-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Consistent Quality</h3>
-                <p>
-                    We source and supply only certified,
-                    high-quality products you can trust.
-                </p>
-            </div>
-
-            <div class="partner-card">
-                <div class="partner-icon">
-                    <i class="fas fa-truck"></i>
-                </div>
-                <h3>Reliable Logistics</h3>
-                <p>
-                    Our distribution network ensures timely
-                    and secure deliveries.
-                </p>
-            </div>
-
-            <div class="partner-card">
-                <div class="partner-icon">
-                    <i class="fas fa-box-open"></i>
-                </div>
-                <h3>Wide Availability</h3>
-                <p>
-                    A broad range of products ready to meet
-                    your immediate needs.
-                </p>
-            </div>
-
-            <div class="partner-card">
-                <div class="partner-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Competitive Pricing</h3>
-                <p>
-                    Affordable solutions that support your
-                    operational efficiency.
-                </p>
-            </div>
-
-            <div class="partner-card">
-                <div class="partner-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3>Customer Focused</h3>
-                <p>
-                    We build lasting partnerships through
-                    service and support.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
 
     <!-- About Section -->
     <section class="about-section" id="about">
@@ -277,184 +1295,989 @@
                     <p>Our mission is to ensure that healthcare facilities across the region have access to high-quality medical consumables—backed by exceptional service, efficient logistics, and a commitment to excellence.</p>
                     <button class="btn btn-primary">Learn More About Us</button>
                 </div>
-
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-hospital"></i>
-                        </div>
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Healthcare Clients</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-box-open"></i>
-                        </div>
-                        <div class="stat-number">10,000+</div>
-                        <div class="stat-label">Products Supplied</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-number">99%</div>
-                        <div class="stat-label">On-Time Delivery</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="stat-label">Nationwide Distribution Network</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="stat-label">Quality Assured International Standards Compliant</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <div class="stat-label">Dedicated Support We're here when you need us</div>
-                    </div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-hospital"></i></div><div class="stat-number">500+</div><div class="stat-label">Healthcare Clients</div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-box-open"></i></div><div class="stat-number">10,000+</div><div class="stat-label">Products Supplied</div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div class="stat-number">99%</div><div class="stat-label">On-Time Delivery</div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div><div class="stat-label">Nationwide Distribution Network</div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-certificate"></i></div><div class="stat-label">Quality Assured International Standards Compliant</div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-headset"></i></div><div class="stat-label">Dedicated Support — We're here when you need us</div></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="contact">
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Partner With a Trusted Supplier?</h2>
                 <p>Let's power healthcare together.</p>
                 <div class="cta-buttons">
-                    <button class="btn btn-secondary-light">Request a Quote <i class="fas fa-arrow-right"></i></button>
-                    <button class="btn btn-secondary-outline">Contact Us</button>
+                    <button class="btn btn-secondary-light" onclick="document.getElementById('quoteModal').classList.add('active');">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    <button class="btn btn-secondary-outline" onclick="window.location.href='mailto:sales@conquerrhealthcare.com'">Contact Us</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-
+<!-- Footer -->
+<footer class="footer">
     <div class="container">
-
         <div class="footer-content">
-
-            <!-- Company -->
             <div class="footer-section">
-
                 <div class="footer-logo">
-                    <img src="logo1.png" alt="Logo" class="logo-img-footer">
+                    <img src="logo.png" alt="Logo" class="logo-img-footer" onerror="this.style.display='none'">
+                    <div style="font-size:22px;font-weight:800;color:#0e2263;">Conquerr <span style="color:#42A1CE;">Healthcare</span></div>
                 </div>
-
-                <p>
-                    Conquerr Healthcare is a trusted supplier
-                    of surgical and non-pharmaceutical consumables,
-                    committed to quality, reliability,
-                    and customer satisfaction.
-                </p>
-
+                <p>Conquerr Healthcare is a trusted supplier of surgical and non-pharmaceutical consumables, committed to quality, reliability, and customer satisfaction.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://twitter.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
                 </div>
-
             </div>
-
-            <!-- Quick Links -->
             <div class="footer-section">
-
                 <h4>Quick Links</h4>
-
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Quality Assurance</a></li>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#manufacturing">Manufacturing</a></li>
+                    <li><a href="index.html#quality">Quality Assurance</a></li>
+                    <li><a href="index.html#resources">Resources</a></li>
+                    <li><a href="index.html#contact">Contact Us</a></li>
                 </ul>
-
             </div>
-
-            <!-- Products -->
             <div class="footer-section">
-
                 <h4>Products</h4>
-
                 <ul>
-                    <li><a href="#">Syringes & Needles</a></li>
-                    <li><a href="#">Bandages & Dressings</a></li>
-                    <li><a href="#">Gloves</a></li>
-                    <li><a href="#">Sutures & Blades</a></li>
-                    <li><a href="#">Hospital Linen</a></li>
-                    <li><a href="#">Catheters & Airway</a></li>
-                    <li><a href="#">IV Cannulas</a></li>
-                    <li><a href="#">Surgical Instruments</a></li>
+                    <li><a href="products.html?category=Syringes%20%26%20Needles">Syringes & Needles</a></li>
+                    <li><a href="products.html?category=Bandages%20%26%20Dressings">Bandages & Dressings</a></li>
+                    <li><a href="products.html?category=Gloves">Gloves</a></li>
+                    <li><a href="products.html?category=Sutures%20%26%20Blades">Sutures & Blades</a></li>
+                    <li><a href="products.html?category=Hospital%20Linen">Hospital Linen</a></li>
+                    <li><a href="products.html?category=Catheters%20%26%20Airway">Catheters & Airway</a></li>
+                    <li><a href="products.html?category=Dialysis%20Products">Dialysis Products</a></li>
+                    <li><a href="products.html?category=Surgical%20Instruments">Surgical Instruments</a></li>
                 </ul>
-
             </div>
-
-            <!-- Contact -->
             <div class="footer-section">
-
                 <h4>Contact Us</h4>
-
                 <ul class="contact-info">
-
-                    <li>
-                        <i class="fas fa-phone-alt"></i>
-                        +254 700 123 456
-                    </li>
-
-                    <li>
-                        <i class="fas fa-envelope"></i>
-                        info@conquerrhealthcare.com
-                    </li>
-
-                    <li>
-                        <i class="fas fa-location-dot"></i>
-                        Nairobi, Kenya
-                    </li>
-
+                    <li><i class="fas fa-phone-alt"></i> +254 743 642 093</li>
+                    <li><i class="fas fa-envelope"></i> sales@conquerrhealthcare.com</li>
+                    <li><i class="fas fa-location-dot"></i> Nairobi, Kenya</li>
                 </ul>
-
             </div>
-
         </div>
-
-        <!-- Bottom -->
         <div class="footer-bottom">
-
-            <p>© 2024 Conquerr Healthcare. All Rights Reserved.</p>
-
+            <p>© 2025 Conquerr Healthcare. All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Use</a>
             </div>
-
         </div>
+    </div>
+</footer>
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop"><i class="fas fa-arrow-up"></i></button>
 
+    <!-- Quote Modal -->
+    <!-- Quote Modal - UPDATED VERSION -->
+<div class="quote-modal-overlay" id="quoteModal">
+    <div class="quote-modal">
+        <div class="quote-modal-header">
+            <div>
+                <h2><i class="fas fa-file-invoice" style="margin-right:8px"></i>Request a Quote</h2>
+                <p>Select products and send your quote via Email or WhatsApp</p>
+            </div>
+            <button class="close-modal-btn" id="closeModal"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="quote-modal-body">
+            <div class="quote-left">
+                <h3><i class="fas fa-search" style="margin-right:6px;color:var(--primary-blue)"></i>Browse &amp; Add Products</h3>
+                <select class="category-select" id="modalCategorySelect">
+                    <option value="">— Select a Category —</option>
+                </select>
+                <input type="text" class="product-search-input" id="productSearchInput" placeholder="Search products by name or SKU..." style="display:none">
+                <div class="products-list" id="modalProductsList">
+                    <div style="padding:20px;text-align:center;color:#94a3b8;font-size:13px">
+                        <i class="fas fa-list" style="font-size:28px;margin-bottom:8px;display:block"></i>
+                        Select a category to browse products
+                    </div>
+                </div>
+            </div>
+            <div class="quote-right">
+                <h3><i class="fas fa-clipboard-list" style="margin-right:6px;color:var(--primary-blue)"></i>Your Quote List <span id="quoteItemCount" style="font-size:12px;font-weight:400;color:#94a3b8"></span></h3>
+                <div class="quote-items-list" id="quoteItemsList">
+                    <div class="quote-empty">
+                        <i class="fas fa-cart-plus"></i>
+                        <p>No products added yet.<br>Browse and add products from the left panel.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="border-top:2px solid #eef2ff;padding-top:14px;margin-bottom:10px">
+                        <i class="fas fa-user" style="margin-right:6px;color:var(--primary-blue)"></i>Your Details 
+                        <span style="font-size:11px;font-weight:400;color:#94a3b8">(required for quote)</span>
+                    </h3>
+                    <div class="contact-fields">
+                        <input type="text" class="contact-field" id="quoteContactName" placeholder="Your Full Name *" required>
+                        <input type="email" class="contact-field" id="quoteContactEmail" placeholder="Your Email Address *" required>
+                        <input type="text" class="contact-field" id="quoteContactPhone" placeholder="Phone Number (for WhatsApp)">
+                        <textarea class="contact-field" id="quoteNotes" placeholder="Additional notes or requirements..." rows="2" style="resize:vertical"></textarea>
+                    </div>
+                    <div class="send-buttons">
+                        <button class="send-btn send-email-btn" id="sendEmailBtn">
+                            <i class="fas fa-envelope"></i> Send via Email
+                        </button>
+                        <button class="send-btn send-whatsapp-btn" id="sendWhatsappBtn">
+                            <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 
-</footer>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="script.js"></script>
+    <script>
+    // ========================
+    // UPDATED QUOTE MODAL FUNCTIONALITY WITH EMAIL FIELD
+    // ========================
+    (function() {
+        // EMAIL & WHATSAPP CONFIGURATION
+        const COMPANY_EMAIL = "sales@conquerrhealthcare.com";
+        const WHATSAPP_NUMBER = "254743642093"; // international format without '+'
+        
+        // Complete product database (all your products)
+        const productsDB = {
+    syringes: [
+        { name: "Disposable Needles 18G x 1.5\"", sku: "SYR-001", category: "syringes" },
+        { name: "Disposable Needles 21G x 1.5\"", sku: "SYR-002", category: "syringes" },
+        { name: "Disposable Needles 23G x 1\"", sku: "SYR-003", category: "syringes" },
+        { name: "Microfine Syringes 1ml Unibody with 29G/30G Needle", sku: "SYR-004", category: "syringes" },
+        { name: "Microfine Syringes 0.5ml Unibody with 29G/30G Needle", sku: "SYR-005", category: "syringes" },
+        { name: "Plastipak Syringe 1 ML", sku: "SYR-006", category: "syringes" },
+        { name: "Spinal Needle Quinckle 90mm 22G", sku: "SYR-007", category: "syringes" },
+        { name: "Spinal Needle Quinckle 90mm 25G", sku: "SYR-008", category: "syringes" },
+        { name: "Soloshot 0.05ml Syringes", sku: "SYR-009", category: "syringes" },
+        { name: "Soloshot 0.5ml Syringes", sku: "SYR-010", category: "syringes" },
+        { name: "Syringe 10ml With 21G x1.5\" Needle", sku: "SYR-011", category: "syringes" },
+        { name: "Syringe 10ml Without Needle", sku: "SYR-012", category: "syringes" },
+        { name: "Syringe 20ml Without Needle", sku: "SYR-013", category: "syringes" },
+        { name: "Syringe 2ml With 23G x 1'' Needle", sku: "SYR-014", category: "syringes" },
+        { name: "Syringe 2ml Without Needle", sku: "SYR-015", category: "syringes" },
+        { name: "Syringe 5ml With 21G x1.5\" Needle", sku: "SYR-016", category: "syringes" },
+        { name: "Syringe 5ml Without Needle", sku: "SYR-017", category: "syringes" },
+        { name: "Syringes 20ml with 21G x 1.5\" Needle", sku: "SYR-018", category: "syringes" },
+        { name: "Syringes 60ml with Catheter Tip", sku: "SYR-019", category: "syringes" }
+    ],
+    bandages: [
+        { name: "Adhesive Elastic Fabric Bandage Waterproof (76x19mm)", sku: "BAN-001", category: "bandages" },
+        { name: "Adhesive Non-Woven Wound Dressing 25x10cm", sku: "BAN-002", category: "bandages" },
+        { name: "Adhesive PU Wound Dressing 25x10cm", sku: "BAN-003", category: "bandages" },
+        { name: "Alcohol Pads/Swabs 65mm x 30mm 70% Isopropyl Alcohol", sku: "BAN-004", category: "bandages" },
+        { name: "Autoclave Tape 1\" x 50M", sku: "BAN-005", category: "bandages" },
+        { name: "Autoclave Tape 1/2\" x 50M", sku: "BAN-006", category: "bandages" },
+        { name: "Autoclave Tape 3/4\" x 50M", sku: "BAN-007", category: "bandages" },
+        { name: "Brain Swabs", sku: "BAN-008", category: "bandages" },
+        { name: "Cotton Balls (Sterile Packed)", sku: "BAN-009", category: "bandages" },
+        { name: "Cotton Wool - 100Gms", sku: "BAN-010", category: "bandages" },
+        { name: "Cotton Wool - 200Gms", sku: "BAN-011", category: "bandages" },
+        { name: "Cotton Wool - 400Gms", sku: "BAN-012", category: "bandages" },
+        { name: "Cotton Wool - 500Gms", sku: "BAN-013", category: "bandages" },
+        { name: "Cotton Wool - 50Gms", sku: "BAN-014", category: "bandages" },
+        { name: "Crepe Bandage 2\" x 4.5M", sku: "BAN-015", category: "bandages" },
+        { name: "Crepe Bandage 3\" x 4.5M", sku: "BAN-016", category: "bandages" },
+        { name: "Crepe Bandage 4\" x 4.5M", sku: "BAN-017", category: "bandages" },
+        { name: "Crepe Bandage 6\" x 4.5M", sku: "BAN-018", category: "bandages" },
+        { name: "Eye Pad (Sterile Packed)", sku: "BAN-019", category: "bandages" },
+        { name: "Gauze Roll 4 Ply 750gms", sku: "BAN-020", category: "bandages" },
+        { name: "Gauze Roll 4 Ply 1.5Kgs (Plain)", sku: "BAN-021", category: "bandages" },
+        { name: "Gauze Roll 4 Ply 1.5Kgs (Xray Detectable)", sku: "BAN-022", category: "bandages" },
+        { name: "Gauze Swabs 2'' x 2'' Non-Sterile", sku: "BAN-023", category: "bandages" },
+        { name: "Gauze Swabs 2'' x 2'' Sterile", sku: "BAN-024", category: "bandages" },
+        { name: "Gauze Swabs 3'' x 3'' Non-Sterile", sku: "BAN-025", category: "bandages" },
+        { name: "Gauze Swabs 3'' x 3'' Sterile", sku: "BAN-026", category: "bandages" },
+        { name: "Gauze Swabs 4'' x 4'' Non-Sterile", sku: "BAN-027", category: "bandages" },
+        { name: "Gauze Swabs 4'' x 4'' Sterile", sku: "BAN-028", category: "bandages" },
+        { name: "IV Fixation Dressing Waterproof 7cmx9cm", sku: "BAN-029", category: "bandages" },
+        { name: "Laparatomy Sponges Sterile 40cmx40cm", sku: "BAN-030", category: "bandages" },
+        { name: "Laparatomy Sponges Sterile 45cmx45cm", sku: "BAN-031", category: "bandages" },
+        { name: "Orthopaedic Padding 4''", sku: "BAN-032", category: "bandages" },
+        { name: "Orthopaedic Padding 6''", sku: "BAN-033", category: "bandages" },
+        { name: "Orthopaedic Padding 8''", sku: "BAN-034", category: "bandages" },
+        { name: "Otto-Tulle 10cm*10cm", sku: "BAN-035", category: "bandages" },
+        { name: "P.O.P China 4\"", sku: "BAN-036", category: "bandages" },
+        { name: "P.O.P China 6''", sku: "BAN-037", category: "bandages" },
+        { name: "P.O.P China 8''", sku: "BAN-038", category: "bandages" },
+        { name: "P.O.P Fiber Glass 3\"", sku: "BAN-039", category: "bandages" },
+        { name: "P.O.P Fiber Glass 4\"", sku: "BAN-040", category: "bandages" },
+        { name: "P.O.P Fiber Glass 5\"", sku: "BAN-041", category: "bandages" },
+        { name: "P.O.P Fiber Glass 6\"", sku: "BAN-042", category: "bandages" },
+        { name: "P.O.P Gypsona 4''", sku: "BAN-043", category: "bandages" },
+        { name: "P.O.P Gypsona 6''", sku: "BAN-044", category: "bandages" },
+        { name: "P.O.P Gypsona 8''", sku: "BAN-045", category: "bandages" },
+        { name: "Parafin Gauze 10cm x10cm", sku: "BAN-046", category: "bandages" },
+        { name: "Prolene Mesh 15*15", sku: "BAN-047", category: "bandages" },
+        { name: "Prolene Mesh 6*11", sku: "BAN-048", category: "bandages" },
+        { name: "Standard Dressing No. 7", sku: "BAN-049", category: "bandages" },
+        { name: "Standard Dressing No. 8", sku: "BAN-050", category: "bandages" },
+        { name: "Standard Dressing No. 9", sku: "BAN-051", category: "bandages" },
+        { name: "Transpore Tape 1'' x 5yds", sku: "BAN-052", category: "bandages" },
+        { name: "Transpore Tape 2'' x 5yds", sku: "BAN-053", category: "bandages" },
+        { name: "W.O.W Bandages 2''x 4yds", sku: "BAN-054", category: "bandages" },
+        { name: "W.O.W Bandages 3''x 4yds", sku: "BAN-055", category: "bandages" },
+        { name: "W.O.W Bandages 4''x 4yds", sku: "BAN-056", category: "bandages" },
+        { name: "W.O.W Bandages 6''x 4yds", sku: "BAN-057", category: "bandages" },
+        { name: "Zinc Oxide Plaster (ZOP) 1'' x 4yds", sku: "BAN-058", category: "bandages" },
+        { name: "Zinc Oxide Plaster (ZOP) 2'' x 4yds", sku: "BAN-059", category: "bandages" },
+        { name: "Zinc Oxide Plaster (ZOP) 3'' x 4yds", sku: "BAN-060", category: "bandages" },
+        { name: "Zinc Oxide Plaster (ZOP) 4'' x 4yds", sku: "BAN-061", category: "bandages" },
+        { name: "Zinc Oxide Plaster (ZOP) 6'' x 4yds", sku: "BAN-062", category: "bandages" }
+    ],
+    gloves: [
+        { name: "Gynaecological Gloves Powder-Free 7.5", sku: "GLV-001", category: "gloves" },
+        { name: "Gynaecological Gloves Pwd -7.5 Medium", sku: "GLV-002", category: "gloves" },
+        { name: "Latex Examination Gloves Pre-Powdered Large", sku: "GLV-003", category: "gloves" },
+        { name: "Latex Examination Gloves Pre-Powdered Medium", sku: "GLV-004", category: "gloves" },
+        { name: "Latex Examination Gloves Pre-Powdered Small", sku: "GLV-005", category: "gloves" },
+        { name: "Latex Examination Non-Powdered Gloves Large", sku: "GLV-006", category: "gloves" },
+        { name: "Latex Examination Non-Powdered Gloves Medium", sku: "GLV-007", category: "gloves" },
+        { name: "Latex Examination Non-Powdered Gloves Small", sku: "GLV-008", category: "gloves" },
+        { name: "Nitrile Examination Gloves Powder-Free Large", sku: "GLV-009", category: "gloves" },
+        { name: "Nitrile Examination Gloves Powder-Free Medium", sku: "GLV-010", category: "gloves" },
+        { name: "Nitrile Examination Gloves Powder-Free Small", sku: "GLV-011", category: "gloves" },
+        { name: "Plastic (PE) Gloves Large", sku: "GLV-012", category: "gloves" },
+        { name: "Plastic (PE) Gloves Medium", sku: "GLV-013", category: "gloves" },
+        { name: "Surgical Gloves Powder-Free 6.0", sku: "GLV-014", category: "gloves" },
+        { name: "Surgical Gloves Powder-Free 6.5", sku: "GLV-015", category: "gloves" },
+        { name: "Surgical Gloves Powder-Free 7.0", sku: "GLV-016", category: "gloves" },
+        { name: "Surgical Gloves Powder-Free 7.5", sku: "GLV-017", category: "gloves" },
+        { name: "Surgical Gloves Powder-Free 8.0", sku: "GLV-018", category: "gloves" },
+        { name: "Surgical Gloves PP 6.5", sku: "GLV-019", category: "gloves" },
+        { name: "Surgical Gloves PP 7.0", sku: "GLV-020", category: "gloves" },
+        { name: "Surgical Gloves PP 7.5", sku: "GLV-021", category: "gloves" },
+        { name: "Surgical Gloves PP 8.0", sku: "GLV-022", category: "gloves" }
+    ],
+    sutures: [
+        { name: "Chromic Catgut Sutures 2/0 RB", sku: "SUT-001", category: "sutures" },
+        { name: "Chromic Catgut Sutures 1 RB", sku: "SUT-002", category: "sutures" },
+        { name: "Chromic Catgut Sutures 1 RC", sku: "SUT-003", category: "sutures" },
+        { name: "Chromic Catgut Sutures 2 RB", sku: "SUT-004", category: "sutures" },
+        { name: "Chromic Catgut Sutures 2 RC", sku: "SUT-005", category: "sutures" },
+        { name: "Chromic Catgut Sutures 2/0 RC", sku: "SUT-006", category: "sutures" },
+        { name: "Chromic Catgut Sutures 3 RB", sku: "SUT-007", category: "sutures" },
+        { name: "Chromic Catgut Sutures 3 RC", sku: "SUT-008", category: "sutures" },
+        { name: "Chromic Catgut Sutures 3/0 RB", sku: "SUT-009", category: "sutures" },
+        { name: "Chromic Catgut Sutures 3/0 RC", sku: "SUT-010", category: "sutures" },
+        { name: "Chromic Catgut Sutures 4/0 RB", sku: "SUT-011", category: "sutures" },
+        { name: "Chromic Catgut Sutures 4/0 RC", sku: "SUT-012", category: "sutures" },
+        { name: "Chromic Catgut Sutures 4 RB", sku: "SUT-013", category: "sutures" },
+        { name: "Chromic Catgut Sutures 4 RC", sku: "SUT-014", category: "sutures" },
+        { name: "Monocryl 2/0 RC", sku: "SUT-015", category: "sutures" },
+        { name: "Monocryl 3/0 RC", sku: "SUT-016", category: "sutures" },
+        { name: "Nylon Monofilament Suture 1 RB", sku: "SUT-017", category: "sutures" },
+        { name: "Nylon Monofilament Suture 1 RC", sku: "SUT-018", category: "sutures" },
+        { name: "Nylon Monofilament Suture 2 RB", sku: "SUT-019", category: "sutures" },
+        { name: "Nylon Monofilament Suture 2 RC", sku: "SUT-020", category: "sutures" },
+        { name: "Nylon Monofilament Suture 2/0 RB", sku: "SUT-021", category: "sutures" },
+        { name: "Nylon Monofilament Suture 2/0 RC", sku: "SUT-022", category: "sutures" },
+        { name: "Nylon Monofilament Suture 3 RB", sku: "SUT-023", category: "sutures" },
+        { name: "Nylon Monofilament Suture 3 RC", sku: "SUT-024", category: "sutures" },
+        { name: "Nylon Monofilament Suture 3/0 RB", sku: "SUT-025", category: "sutures" },
+        { name: "Nylon Monofilament Suture 3/0 RC", sku: "SUT-026", category: "sutures" },
+        { name: "Nylon Monofilament Suture 4/0 RB", sku: "SUT-027", category: "sutures" },
+        { name: "Nylon Monofilament Suture 4/0 RC", sku: "SUT-028", category: "sutures" },
+        { name: "Nylon Monofilament Suture 4 RB", sku: "SUT-029", category: "sutures" },
+        { name: "Nylon Monofilament Suture 4 RC", sku: "SUT-030", category: "sutures" },
+        { name: "Polyglactin Suture 0 RB", sku: "SUT-031", category: "sutures" },
+        { name: "Polyglactin Suture 0 RC", sku: "SUT-032", category: "sutures" },
+        { name: "Polyglactin Suture 1 RB", sku: "SUT-033", category: "sutures" },
+        { name: "Polyglactin Suture 1 RC", sku: "SUT-034", category: "sutures" },
+        { name: "Polyglactin Suture 2 RB", sku: "SUT-035", category: "sutures" },
+        { name: "Polyglactin Suture 2 RC", sku: "SUT-036", category: "sutures" },
+        { name: "Polyglactin Suture 2/0 RB", sku: "SUT-037", category: "sutures" },
+        { name: "Polyglactin Suture 2/0 RC", sku: "SUT-038", category: "sutures" },
+        { name: "Polyglactin Suture 3 RB", sku: "SUT-039", category: "sutures" },
+        { name: "Polyglactin Suture 3 RC", sku: "SUT-040", category: "sutures" },
+        { name: "Polyglactin Suture 3/0 RB", sku: "SUT-041", category: "sutures" },
+        { name: "Polyglactin Suture 3/0 RC", sku: "SUT-042", category: "sutures" },
+        { name: "Polyglactin Suture 4/0 RB", sku: "SUT-043", category: "sutures" },
+        { name: "Polyglactin Suture 4/0 RC", sku: "SUT-044", category: "sutures" },
+        { name: "Silk 2RB 90cm 1/2 Circle 40mm Braided", sku: "SUT-045", category: "sutures" },
+        { name: "Surgical Blade Sz. 20", sku: "SUT-046", category: "sutures" },
+        { name: "Surgical Blade Sz. 21", sku: "SUT-047", category: "sutures" },
+        { name: "Surgical Blade Sz. 22", sku: "SUT-048", category: "sutures" },
+        { name: "Surgical Blade Sz.10", sku: "SUT-049", category: "sutures" },
+        { name: "Surgical Blade Sz.11", sku: "SUT-050", category: "sutures" },
+        { name: "Surgical Blade Sz.12", sku: "SUT-051", category: "sutures" },
+        { name: "Surgical Blade Sz.15", sku: "SUT-052", category: "sutures" },
+        { name: "Surgical Blade Sz.15 with Handle", sku: "SUT-053", category: "sutures" },
+        { name: "Surgical Blade Sz.23", sku: "SUT-054", category: "sutures" },
+        { name: "Surgical Blade Sz.23 with Handle", sku: "SUT-055", category: "sutures" },
+        { name: "Surgical Blade Sz.24", sku: "SUT-056", category: "sutures" }
+    ],
+    linen: [
+        { name: "Adult Diapers Large", sku: "LIN-001", category: "linen" },
+        { name: "Adult Diapers Medium", sku: "LIN-002", category: "linen" },
+        { name: "Adult Diapers X-Large", sku: "LIN-003", category: "linen" },
+        { name: "Clinelle Wet Wipes", sku: "LIN-004", category: "linen" },
+        { name: "Disposable Aprons (Green-Heavy Duty)", sku: "LIN-005", category: "linen" },
+        { name: "Disposable Aprons (White)", sku: "LIN-006", category: "linen" },
+        { name: "Disposable Aprons (Blue-Heavy Duty)", sku: "LIN-007", category: "linen" },
+        { name: "Disposable Cesarean Drape (160/230*305cm)", sku: "LIN-008", category: "linen" },
+        { name: "Disposable Cesarean Kit", sku: "LIN-009", category: "linen" },
+        { name: "Disposable Delivery Drape", sku: "LIN-010", category: "linen" },
+        { name: "Disposable Delivery Kit", sku: "LIN-011", category: "linen" },
+        { name: "Disposable sterile surgical gown - Reinforced (with hand towels)", sku: "LIN-012", category: "linen" },
+        { name: "Disposable sterile surgical gown - Reinforced (without hand towels)", sku: "LIN-013", category: "linen" },
+        { name: "Disposable sterile surgical gown - Standard (without hand towels)", sku: "LIN-014", category: "linen" },
+        { name: "Disposable sterile surgical gown - Fully Reinforced (with hand towels)", sku: "LIN-015", category: "linen" },
+        { name: "Disposable Surgical Gown-PE /Semi PE Coating", sku: "LIN-016", category: "linen" },
+        { name: "Doctors caps, blue color with ties", sku: "LIN-017", category: "linen" },
+        { name: "Dressing Pad/Underpad 180x90cm", sku: "LIN-018", category: "linen" },
+        { name: "Dressing Pad/Underpad 60x90cm", sku: "LIN-019", category: "linen" },
+        { name: "Maternity/Sanitary Pads", sku: "LIN-020", category: "linen" },
+        { name: "Medical Facemasks with loop 3ply (Blue)", sku: "LIN-021", category: "linen" },
+        { name: "Medical Facemasks with Ties 3ply (Blue)", sku: "LIN-022", category: "linen" },
+        { name: "Medical Shoe covers Non-wooven Type", sku: "LIN-023", category: "linen" },
+        { name: "Medical Shoe covers PE Type", sku: "LIN-024", category: "linen" },
+        { name: "Medispread", sku: "LIN-025", category: "linen" },
+        { name: "Nurses caps/Non-woven mob cap", sku: "LIN-026", category: "linen" },
+        { name: "Protective Coverall Suits", sku: "LIN-027", category: "linen" },
+        { name: "Surgical Drape Sterile with Adhesive 240x150cm type 2", sku: "LIN-028", category: "linen" },
+        { name: "Surgical Sterile Facemasks with loop 3ply (Blue)", sku: "LIN-029", category: "linen" },
+        { name: "Surgical Sterile Facemasks with Ties 3ply (Blue)", sku: "LIN-030", category: "linen" }
+    ],
+    catheters: [
+        { name: "Anaesthetic Mask PVC #0", sku: "CAT-001", category: "catheters" },
+        { name: "Anaesthetic Mask PVC #1,2,3,4,5", sku: "CAT-002", category: "catheters" },
+        { name: "Anaesthetic Mask SILICONE Round Type", sku: "CAT-003", category: "catheters" },
+        { name: "Bacterial Filters (Breathing Filters)", sku: "CAT-004", category: "catheters" },
+        { name: "Blood Collection Bag-450 ml single CPDA-1", sku: "CAT-005", category: "catheters" },
+        { name: "Blood Giving Set Vented", sku: "CAT-006", category: "catheters" },
+        { name: "Bougie (Endotracheal Tube Introducer)", sku: "CAT-007", category: "catheters" },
+        { name: "Breathing Bag 0.5,1,2,3 Ltrs", sku: "CAT-008", category: "catheters" },
+        { name: "Breathing Respirometer 800ml", sku: "CAT-009", category: "catheters" },
+        { name: "Catheter Mounts Double Swivel Elbow", sku: "CAT-010", category: "catheters" },
+        { name: "Chest Drainage Bottle", sku: "CAT-011", category: "catheters" },
+        { name: "Chest Drainage tubes with Trocar", sku: "CAT-012", category: "catheters" },
+        { name: "Chest Drainage tubes WITHOUT Trocar", sku: "CAT-013", category: "catheters" },
+        { name: "Closed Suction Catheters", sku: "CAT-014", category: "catheters" },
+        { name: "Colostomy Bag Two-Piece", sku: "CAT-015", category: "catheters" },
+        { name: "Colostomy Bags One Piece", sku: "CAT-016", category: "catheters" },
+        { name: "Disposable Breathing Circuit Adult Reinforced", sku: "CAT-017", category: "catheters" },
+        { name: "Disposable Breathing Circuit Extendable", sku: "CAT-018", category: "catheters" },
+        { name: "Double Barrel Tracheostomy tubes Cuffed", sku: "CAT-019", category: "catheters" },
+        { name: "ECG Electrodes", sku: "CAT-020", category: "catheters" },
+        { name: "Electrosurgical Pencil", sku: "CAT-021", category: "catheters" },
+        { name: "Endobronchial Tubes", sku: "CAT-022", category: "catheters" },
+        { name: "Endotracheal Tubes Cuffed", sku: "CAT-023", category: "catheters" },
+        { name: "Endotracheal Tubes Uncuffed", sku: "CAT-024", category: "catheters" },
+        { name: "External Drainage Catheter", sku: "CAT-025", category: "catheters" },
+        { name: "Feeding Tube", sku: "CAT-026", category: "catheters" },
+        { name: "Female Catheter", sku: "CAT-027", category: "catheters" },
+        { name: "Foley Catheter 2-Way (Silicon-Coated)", sku: "CAT-028", category: "catheters" },
+        { name: "Foley Catheter 3-Way (Silicon-Coated)", sku: "CAT-029", category: "catheters" },
+        { name: "Foley Catheter 2-Way (100% Silicon)", sku: "CAT-030", category: "catheters" },
+        { name: "Gastronomy Tube", sku: "CAT-031", category: "catheters" },
+        { name: "Guedel Airways", sku: "CAT-032", category: "catheters" },
+        { name: "High Pressure Extention Line", sku: "CAT-033", category: "catheters" },
+        { name: "HME Filter", sku: "CAT-034", category: "catheters" },
+        { name: "IV Giving Set", sku: "CAT-035", category: "catheters" },
+        { name: "IV Cannula", sku: "CAT-036", category: "catheters" },
+        { name: "Intubating Stylet", sku: "CAT-037", category: "catheters" },
+        { name: "Laryngeal Mask Airway (L.M.A)", sku: "CAT-038", category: "catheters" },
+        { name: "Manual Resuscitator", sku: "CAT-039", category: "catheters" },
+        { name: "Nasal Oxygen Cannula", sku: "CAT-040", category: "catheters" },
+        { name: "Nebulizer Kits", sku: "CAT-041", category: "catheters" },
+        { name: "Nebulizer Mask", sku: "CAT-042", category: "catheters" },
+        { name: "Nelaton Catheter", sku: "CAT-043", category: "catheters" },
+        { name: "Non-Rebreathing Mask", sku: "CAT-044", category: "catheters" },
+        { name: "Oxygen Mask", sku: "CAT-045", category: "catheters" },
+        { name: "Perfusor Lines", sku: "CAT-046", category: "catheters" },
+        { name: "Preformed Nasal ET Tubes", sku: "CAT-047", category: "catheters" },
+        { name: "Preformed Oral ET Tubes", sku: "CAT-048", category: "catheters" },
+        { name: "Reinforced ET Tubes Cuffed with stylet", sku: "CAT-049", category: "catheters" },
+        { name: "Reusable Silicone Breathing Circuit", sku: "CAT-050", category: "catheters" },
+        { name: "Romovac Set", sku: "CAT-051", category: "catheters" },
+        { name: "Scalp Vein Set", sku: "CAT-052", category: "catheters" },
+        { name: "Silicone Full Face CPAP Mask", sku: "CAT-053", category: "catheters" },
+        { name: "Silicone Nasal CPAP Mask", sku: "CAT-054", category: "catheters" },
+        { name: "Soluset 150ml", sku: "CAT-055", category: "catheters" },
+        { name: "Suction catheters with control", sku: "CAT-056", category: "catheters" },
+        { name: "Three Way Stop Cock", sku: "CAT-057", category: "catheters" },
+        { name: "Tracheostomy Tubes Cuffed", sku: "CAT-058", category: "catheters" },
+        { name: "Tracheostomy Tubes Uncuffed", sku: "CAT-059", category: "catheters" },
+        { name: "Uridom (U-Drain) Catheter", sku: "CAT-060", category: "catheters" },
+        { name: "Urine Bag 100ml Paediatric", sku: "CAT-061", category: "catheters" },
+        { name: "Urine Bags 2000ml", sku: "CAT-062", category: "catheters" },
+        { name: "Venturi Mask", sku: "CAT-063", category: "catheters" },
+        { name: "Yankauer suction", sku: "CAT-064", category: "catheters" }
+    ],
+    dialysis: [
+        { name: "AV Fistula Needle G15/G16/G17*26MM", sku: "DIA-001", category: "dialysis" },
+        { name: "Bloodlines for Dialysis", sku: "DIA-002", category: "dialysis" },
+        { name: "Dialyzer 1.8H/2.0H Polyethersulfone", sku: "DIA-003", category: "dialysis" },
+        { name: "Disposable Hemodialysis Catheter Kit double lumen 11.5Frx15cm", sku: "DIA-004", category: "dialysis" },
+        { name: "Disposable Hemodialysis Catheter Kit double lumen 11.5Frx20cm", sku: "DIA-005", category: "dialysis" }
+    ],
+    vascular: [
+        { name: "CVC mini-kit 7fr x20cm triple lumen without dressing", sku: "VAS-001", category: "vascular" },
+        { name: "CVC kits 7fr x20cm triple lumen with dressing", sku: "VAS-002", category: "vascular" },
+        { name: "CVC kits 7fr x20cm double lumen with dressing", sku: "VAS-003", category: "vascular" },
+        { name: "CVC kits 5.5fr x13cm triple lumen with dressing Paediatric", sku: "VAS-004", category: "vascular" },
+        { name: "CVC kits 5fr x13cm double lumen with dressing Paediatric", sku: "VAS-005", category: "vascular" },
+        { name: "CVC kits 4fr x 8cm triple lumen with dressing Infant", sku: "VAS-006", category: "vascular" },
+        { name: "CVC kits 4fr x 8cm triple lumen without dressing Infant", sku: "VAS-007", category: "vascular" },
+        { name: "CVC kits 4fr x 5cm triple with dressing Neonatal", sku: "VAS-008", category: "vascular" },
+        { name: "Disposable Pressure Transducer Single-DPI 248", sku: "VAS-009", category: "vascular" }
+    ],
+    "iv-fluids": [
+        { name: "Dextrose 10% 500ml", sku: "IVF-001", category: "iv-fluids" },
+        { name: "Dextrose 5% 500ml", sku: "IVF-002", category: "iv-fluids" },
+        { name: "Dextrose 5% In Normal Saline (DNS) 500ml", sku: "IVF-003", category: "iv-fluids" },
+        { name: "Dextrose 50% 100ml", sku: "IVF-004", category: "iv-fluids" },
+        { name: "Esomeprazole IV", sku: "IVF-005", category: "iv-fluids" },
+        { name: "Flucloxacillin IV", sku: "IVF-006", category: "iv-fluids" },
+        { name: "Fluconazole IV", sku: "IVF-007", category: "iv-fluids" },
+        { name: "Hartmanns Solution 500ml", sku: "IVF-008", category: "iv-fluids" },
+        { name: "Metronidazole IV", sku: "IVF-009", category: "iv-fluids" },
+        { name: "Normal Saline 500ml", sku: "IVF-010", category: "iv-fluids" },
+        { name: "Ondansetron IV 100ml", sku: "IVF-011", category: "iv-fluids" },
+        { name: "Paracetamol IV 100ml", sku: "IVF-012", category: "iv-fluids" },
+        { name: "Water For Injection 10ml", sku: "IVF-013", category: "iv-fluids" }
+    ],
+    cleaning: [
+        { name: "Absolute Methanol 99.9%", sku: "CLN-001", category: "cleaning" },
+        { name: "Acetic Acid (Vinegar) 4-6% w/v", sku: "CLN-002", category: "cleaning" },
+        { name: "Acetone", sku: "CLN-003", category: "cleaning" },
+        { name: "Benzyl Benzoate 25% Solution (Lotion)", sku: "CLN-004", category: "cleaning" },
+        { name: "Calamine Lotion 15%", sku: "CLN-005", category: "cleaning" },
+        { name: "Castor Oil", sku: "CLN-006", category: "cleaning" },
+        { name: "ChlorAlcohol 0.5% w/v & 70% v/v", sku: "CLN-007", category: "cleaning" },
+        { name: "Chlorhexidine 7.5%", sku: "CLN-008", category: "cleaning" },
+        { name: "Chlorhexidine BP 0.3% w/v+Cetrimide BP 3% w/v", sku: "CLN-009", category: "cleaning" },
+        { name: "Chlorhexidine BP 1.5% w/v+Cetrimide BP 15% w/v", sku: "CLN-010", category: "cleaning" },
+        { name: "Chlorhexidine BP 4% w/v", sku: "CLN-011", category: "cleaning" },
+        { name: "Chlorhexidine BP 5% w/v", sku: "CLN-012", category: "cleaning" },
+        { name: "Deionized Water", sku: "CLN-013", category: "cleaning" },
+        { name: "Denatured Absolute Ethanol 99%", sku: "CLN-014", category: "cleaning" },
+        { name: "Denatured Ethanol 96%", sku: "CLN-015", category: "cleaning" },
+        { name: "Eusol Solution", sku: "CLN-016", category: "cleaning" },
+        { name: "Farm Liniment BP", sku: "CLN-017", category: "cleaning" },
+        { name: "Formaline 40%", sku: "CLN-018", category: "cleaning" },
+        { name: "Gentian Violet 1% Solution", sku: "CLN-019", category: "cleaning" },
+        { name: "Glutaraldehyde 2.4% w/v+Benzalkonium Chloride 0.5% w/v", sku: "CLN-020", category: "cleaning" },
+        { name: "Hydrogen Peroxide 30% - 100 Vol", sku: "CLN-021", category: "cleaning" },
+        { name: "Hydrogen Peroxide 6% 20 Vol", sku: "CLN-022", category: "cleaning" },
+        { name: "Instant Hand Sanitizer", sku: "CLN-023", category: "cleaning" },
+        { name: "Liquid Paraffin BP", sku: "CLN-024", category: "cleaning" },
+        { name: "Lugos of Iodine (Iodine 5% w/v+KI 5% w/v)", sku: "CLN-025", category: "cleaning" },
+        { name: "Lysol Solution", sku: "CLN-026", category: "cleaning" },
+        { name: "Methylated Spirit 70%", sku: "CLN-027", category: "cleaning" },
+        { name: "Methylated Spirit 90%", sku: "CLN-028", category: "cleaning" },
+        { name: "Povidone Iodine 7.5% Antiseptic (Surgical Scrub)", sku: "CLN-029", category: "cleaning" },
+        { name: "Povidone Iodine 10% Antiseptic", sku: "CLN-030", category: "cleaning" },
+        { name: "Pure Glycerine BP", sku: "CLN-031", category: "cleaning" },
+        { name: "Sodium Hypochlorite Solution", sku: "CLN-032", category: "cleaning" },
+        { name: "Surgical Spirit 70%", sku: "CLN-033", category: "cleaning" },
+        { name: "Surgical Spirit 90%", sku: "CLN-034", category: "cleaning" },
+        { name: "Tincture of Iodine (Iodine 2.5% w/v+KI 2.5% w/v)", sku: "CLN-035", category: "cleaning" },
+        { name: "Ultra Sound Gel", sku: "CLN-036", category: "cleaning" },
+        { name: "White Spirit", sku: "CLN-037", category: "cleaning" },
+        { name: "Laundry Chlorine Bleach", sku: "CLN-038", category: "cleaning" },
+        { name: "Degreaser Heavy Duty", sku: "CLN-039", category: "cleaning" },
+        { name: "Laundry Oxygen Bleach", sku: "CLN-040", category: "cleaning" },
+        { name: "Laundry Booster", sku: "CLN-041", category: "cleaning" },
+        { name: "Hand Washing Gel (Antibacterial)", sku: "CLN-042", category: "cleaning" },
+        { name: "Multipurpose Liquid Detergent", sku: "CLN-043", category: "cleaning" },
+        { name: "Aqueous Cream 500g", sku: "CLN-044", category: "cleaning" },
+        { name: "Emulsifying Cream 500g", sku: "CLN-045", category: "cleaning" },
+        { name: "GV Powder 25g", sku: "CLN-046", category: "cleaning" },
+        { name: "GV Crystal 25g", sku: "CLN-047", category: "cleaning" },
+        { name: "Medicinal Boric Acid 500g", sku: "CLN-048", category: "cleaning" }
+    ],
+    surgical: [
+        { name: "Artery Forcep 6\" Curved", sku: "SUR-001", category: "surgical" },
+        { name: "Artery Forcep 6\" Straight", sku: "SUR-002", category: "surgical" },
+        { name: "Artery Forcep 7\" Curved", sku: "SUR-003", category: "surgical" },
+        { name: "Artery Forcep 7\" Straight", sku: "SUR-004", category: "surgical" },
+        { name: "Backhaus Towel Clamp", sku: "SUR-005", category: "surgical" },
+        { name: "Blade Holder Number 3\"", sku: "SUR-006", category: "surgical" },
+        { name: "Blade Holder Number 4\"", sku: "SUR-007", category: "surgical" },
+        { name: "Chetale Forceps 10\"", sku: "SUR-008", category: "surgical" },
+        { name: "Crocodile Forceps", sku: "SUR-009", category: "surgical" },
+        { name: "Toothed Dissecting Forceps", sku: "SUR-010", category: "surgical" },
+        { name: "Plain Dissecting Forceps", sku: "SUR-011", category: "surgical" },
+        { name: "Dressing Drum", sku: "SUR-012", category: "surgical" },
+        { name: "Dressing Forceps 6\"", sku: "SUR-013", category: "surgical" },
+        { name: "Dressing Set", sku: "SUR-014", category: "surgical" },
+        { name: "Ear Syringe", sku: "SUR-015", category: "surgical" },
+        { name: "Episiotomy Scissors 7\"", sku: "SUR-016", category: "surgical" },
+        { name: "Gallipot", sku: "SUR-017", category: "surgical" },
+        { name: "General Set Minor", sku: "SUR-018", category: "surgical" },
+        { name: "Gigli Saw Wire", sku: "SUR-019", category: "surgical" },
+        { name: "Gigli Saw Handle", sku: "SUR-020", category: "surgical" },
+        { name: "Instrument Set Minor Cesarean", sku: "SUR-021", category: "surgical" },
+        { name: "Instrument Tray", sku: "SUR-022", category: "surgical" },
+        { name: "Kidney Dish", sku: "SUR-023", category: "surgical" },
+        { name: "Kochers Artery Forceps", sku: "SUR-024", category: "surgical" },
+        { name: "Laryngoscope with Blades", sku: "SUR-025", category: "surgical" },
+        { name: "Mayo Scissors", sku: "SUR-026", category: "surgical" },
+        { name: "Mosquito Forcep", sku: "SUR-027", category: "surgical" },
+        { name: "Needle Holder", sku: "SUR-028", category: "surgical" },
+        { name: "Scissors", sku: "SUR-029", category: "surgical" },
+        { name: "Speculum", sku: "SUR-030", category: "surgical" },
+        { name: "Sponge Holding Forcep", sku: "SUR-031", category: "surgical" },
+        { name: "Tuning Fork", sku: "SUR-032", category: "surgical" },
+        { name: "Tweezers Precision Steel", sku: "SUR-033", category: "surgical" },
+        { name: "Uterine Dilators Set", sku: "SUR-034", category: "surgical" },
+        { name: "Uterine Sound Dilator", sku: "SUR-035", category: "surgical" },
+        { name: "Vesulum Forcep 10\"", sku: "SUR-036", category: "surgical" }
+    ],
+    consumables: [
+        { name: "Bin Liners (Black, Yellow and Red)", sku: "CON-001", category: "consumables" },
+        { name: "Blood Lancets", sku: "CON-002", category: "consumables" },
+        { name: "Bone Marrow Puncture Kit 16G", sku: "CON-003", category: "consumables" },
+        { name: "Bulb Sucker", sku: "CON-004", category: "consumables" },
+        { name: "Caustic Pencil", sku: "CON-005", category: "consumables" },
+        { name: "Cord Clamp", sku: "CON-006", category: "consumables" },
+        { name: "Dispensing Bottles 60ml", sku: "CON-007", category: "consumables" },
+        { name: "Disposable Body Bag", sku: "CON-008", category: "consumables" },
+        { name: "Disposable Dressing Set", sku: "CON-009", category: "consumables" },
+        { name: "Disposable Skin Stapler", sku: "CON-010", category: "consumables" },
+        { name: "Disposable Vaginal Speculum", sku: "CON-011", category: "consumables" },
+        { name: "Enema Kit Douche", sku: "CON-012", category: "consumables" },
+        { name: "Epidural Kit", sku: "CON-013", category: "consumables" },
+        { name: "Fetoscope", sku: "CON-014", category: "consumables" },
+        { name: "H. Pylori AG Test Strips", sku: "CON-015", category: "consumables" },
+        { name: "HCT 2 Test Strips", sku: "CON-016", category: "consumables" },
+        { name: "SAT AG Test Strips", sku: "CON-017", category: "consumables" },
+        { name: "SAT AB Test Strips", sku: "CON-018", category: "consumables" },
+        { name: "Hepatitis B Test Strips", sku: "CON-019", category: "consumables" },
+        { name: "VDRL Test Strips", sku: "CON-020", category: "consumables" },
+        { name: "Hot & Cold Pack", sku: "CON-021", category: "consumables" },
+        { name: "Hot Water Bag", sku: "CON-022", category: "consumables" },
+        { name: "Huber Needle", sku: "CON-023", category: "consumables" },
+        { name: "Identity Band", sku: "CON-024", category: "consumables" },
+        { name: "Infusion Pump", sku: "CON-025", category: "consumables" },
+        { name: "MVA Kit Double", sku: "CON-026", category: "consumables" },
+        { name: "Malaria Test Strip Kits", sku: "CON-027", category: "consumables" },
+        { name: "Masking Tape", sku: "CON-028", category: "consumables" },
+        { name: "Medical Envelopes", sku: "CON-029", category: "consumables" },
+        { name: "Microscope Cover Slips", sku: "CON-030", category: "consumables" },
+        { name: "Microscope Slides", sku: "CON-031", category: "consumables" },
+        { name: "Mindray Reagents", sku: "CON-032", category: "consumables" },
+        { name: "Mucus Extractor", sku: "CON-033", category: "consumables" },
+        { name: "Paper Tape", sku: "CON-034", category: "consumables" },
+        { name: "Pen Torch", sku: "CON-035", category: "consumables" },
+        { name: "Polypot Plastic 30ml", sku: "CON-036", category: "consumables" },
+        { name: "Pregnancy Test Strips", sku: "CON-037", category: "consumables" },
+        { name: "Probe Cleanser 50ml", sku: "CON-038", category: "consumables" },
+        { name: "Safety Box (5 liters)", sku: "CON-039", category: "consumables" },
+        { name: "Self-Sealing Sterilization Pouches", sku: "CON-040", category: "consumables" },
+        { name: "Skin Grafting Blade", sku: "CON-041", category: "consumables" },
+        { name: "Skin Grafting Handle", sku: "CON-042", category: "consumables" },
+        { name: "Skin Staple Remover", sku: "CON-043", category: "consumables" },
+        { name: "Skin Traction Kit", sku: "CON-044", category: "consumables" },
+        { name: "Sony Ultrasound Paper", sku: "CON-045", category: "consumables" },
+        { name: "Sterilization Bags", sku: "CON-046", category: "consumables" },
+        { name: "Stitching Set", sku: "CON-047", category: "consumables" },
+        { name: "Stool Container with Spoon", sku: "CON-048", category: "consumables" },
+        { name: "Wooden Tongue Depressors", sku: "CON-049", category: "consumables" },
+        { name: "Tourniquet (Adjustable and Elastic)", sku: "CON-050", category: "consumables" },
+        { name: "Trucut Biopsy Gun", sku: "CON-051", category: "consumables" },
+        { name: "Trucut Biopsy Needle", sku: "CON-052", category: "consumables" },
+        { name: "Twin Irrigation Set", sku: "CON-053", category: "consumables" },
+        { name: "Urine Containers 60ml", sku: "CON-054", category: "consumables" },
+        { name: "Vacuum blood collection tube", sku: "CON-055", category: "consumables" },
+        { name: "VP Shunt Chabra", sku: "CON-056", category: "consumables" }
+    ],
+    equipment: [
+        { name: "Autoclave Machine 18 liters", sku: "EQ-001", category: "equipment" },
+        { name: "Bathroom Scale", sku: "EQ-002", category: "equipment" },
+        { name: "BiPAP Ventmed Machine", sku: "EQ-003", category: "equipment" },
+        { name: "BP Machine", sku: "EQ-004", category: "equipment" },
+        { name: "Breast Pump Manual", sku: "EQ-005", category: "equipment" },
+        { name: "Cardiology IV Stethoscope", sku: "EQ-006", category: "equipment" },
+        { name: "Centrifuge Machine Electric", sku: "EQ-007", category: "equipment" },
+        { name: "Clinical Thermometer", sku: "EQ-008", category: "equipment" },
+        { name: "CPAP Ventmed Machine", sku: "EQ-009", category: "equipment" },
+        { name: "Diagnostic Set", sku: "EQ-010", category: "equipment" },
+        { name: "Digital Thermometer", sku: "EQ-011", category: "equipment" },
+        { name: "Doyen Retractor", sku: "EQ-012", category: "equipment" },
+        { name: "Drip Infusion Stand", sku: "EQ-013", category: "equipment" },
+        { name: "Dust Coat", sku: "EQ-014", category: "equipment" },
+        { name: "Examination Couch", sku: "EQ-015", category: "equipment" },
+        { name: "Examination Light", sku: "EQ-016", category: "equipment" },
+        { name: "Fetal Ultrasonic Doppler", sku: "EQ-017", category: "equipment" },
+        { name: "First Aid Box", sku: "EQ-018", category: "equipment" },
+        { name: "Fridge Thermometer", sku: "EQ-019", category: "equipment" },
+        { name: "HB Haemoglobin Machine", sku: "EQ-020", category: "equipment" },
+        { name: "Hospital Bed", sku: "EQ-021", category: "equipment" },
+        { name: "IUCD Set", sku: "EQ-022", category: "equipment" },
+        { name: "Microscope", sku: "EQ-023", category: "equipment" },
+        { name: "Nebulisation Compressor", sku: "EQ-024", category: "equipment" },
+        { name: "Nebulisation Mesh", sku: "EQ-025", category: "equipment" },
+        { name: "Nurses Watch Metal", sku: "EQ-026", category: "equipment" },
+        { name: "Oncall Plus Machine", sku: "EQ-027", category: "equipment" },
+        { name: "Otoscope Mini", sku: "EQ-028", category: "equipment" },
+        { name: "Oxygen Concentrator", sku: "EQ-029", category: "equipment" },
+        { name: "Oxygen Cylinder", sku: "EQ-030", category: "equipment" },
+        { name: "Oxygen Flow Meter", sku: "EQ-031", category: "equipment" },
+        { name: "Patella Hammer", sku: "EQ-032", category: "equipment" },
+        { name: "POP Cutter Manual", sku: "EQ-033", category: "equipment" },
+        { name: "Pulse Oximeter", sku: "EQ-034", category: "equipment" },
+        { name: "Ripple Mattress", sku: "EQ-035", category: "equipment" },
+        { name: "Stethoscope", sku: "EQ-036", category: "equipment" },
+        { name: "Suction Machine", sku: "EQ-037", category: "equipment" }
+    ],
+    orthopedics: [
+        { name: "Commode Chair", sku: "ORT-001", category: "orthopedics" },
+        { name: "Shower Chair", sku: "ORT-002", category: "orthopedics" },
+        { name: "Wheelchair", sku: "ORT-003", category: "orthopedics" },
+        { name: "Cerebral Palsy Wheelchair", sku: "ORT-004", category: "orthopedics" },
+        { name: "Electric Wheelchair", sku: "ORT-005", category: "orthopedics" },
+        { name: "Orthopaedic Wheelchair", sku: "ORT-006", category: "orthopedics" },
+        { name: "Paediatric Wheelchair", sku: "ORT-007", category: "orthopedics" },
+        { name: "Reclining Wheelchair", sku: "ORT-008", category: "orthopedics" },
+        { name: "Walking Stick", sku: "ORT-009", category: "orthopedics" },
+        { name: "Axillary Crutches", sku: "ORT-010", category: "orthopedics" },
+        { name: "Blind Canes", sku: "ORT-011", category: "orthopedics" },
+        { name: "Elbow Crutches", sku: "ORT-012", category: "orthopedics" },
+        { name: "Quadripod Walking Stick", sku: "ORT-013", category: "orthopedics" },
+        { name: "Rollator", sku: "ORT-014", category: "orthopedics" },
+        { name: "Walking Frame", sku: "ORT-015", category: "orthopedics" },
+        { name: "Cervical Collars", sku: "ORT-016", category: "orthopedics" },
+        { name: "Emergency Collars", sku: "ORT-017", category: "orthopedics" },
+        { name: "Hard Collars", sku: "ORT-018", category: "orthopedics" },
+        { name: "Philadelphia Collar", sku: "ORT-019", category: "orthopedics" },
+        { name: "Soft Cervical Collar", sku: "ORT-020", category: "orthopedics" },
+        { name: "Ankle Splint", sku: "ORT-021", category: "orthopedics" },
+        { name: "Wrist Splint", sku: "ORT-022", category: "orthopedics" },
+        { name: "Clavicle Brace", sku: "ORT-023", category: "orthopedics" },
+        { name: "Rib Belt", sku: "ORT-024", category: "orthopedics" },
+        { name: "Knee Brace", sku: "ORT-025", category: "orthopedics" },
+        { name: "Hip Support", sku: "ORT-026", category: "orthopedics" },
+        { name: "Ankle Support", sku: "ORT-027", category: "orthopedics" },
+        { name: "Arm Sling Pouch", sku: "ORT-028", category: "orthopedics" },
+        { name: "Elbow Support", sku: "ORT-029", category: "orthopedics" },
+        { name: "Shoulder Immobiliser", sku: "ORT-030", category: "orthopedics" },
+        { name: "Thumb Spica", sku: "ORT-031", category: "orthopedics" },
+        { name: "Triangular Bandages", sku: "ORT-032", category: "orthopedics" },
+        { name: "Compression Stockings", sku: "ORT-033", category: "orthopedics" },
+        { name: "Cervical Traction Kit", sku: "ORT-034", category: "orthopedics" },
+        { name: "Pelvic Traction Belt", sku: "ORT-035", category: "orthopedics" }
+    ]
+};
+            
+            // Populate category dropdown
+            const categorySelect = document.getElementById('modalCategorySelect');
+            const productsListDiv = document.getElementById('modalProductsList');
+            const productSearchInput = document.getElementById('productSearchInput');
+            let quoteItems = []; // { name, sku, qty }
+            
+            // Helper: escape HTML
+            function escapeHtml(str) { 
+                if(!str) return '';
+                return str.replace(/[&<>]/g, function(m){
+                    if(m==='&') return '&amp;'; 
+                    if(m==='<') return '&lt;'; 
+                    if(m==='>') return '&gt;'; 
+                    return m;
+                }); 
+            }
+            
+            // Helper: update quote UI
+            function updateQuoteUI() {
+                const quoteItemsList = document.getElementById('quoteItemsList');
+                const quoteItemCountSpan = document.getElementById('quoteItemCount');
+                const totalQty = quoteItems.reduce((sum, item) => sum + item.qty, 0);
+                quoteItemCountSpan.textContent = totalQty > 0 ? `(${totalQty} items)` : '';
+                const badge = document.getElementById('quoteBadge');
+                if(badge) {
+                    if(totalQty > 0) {
+                        badge.textContent = totalQty;
+                        badge.style.display = 'inline-flex';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                }
+                
+                if(quoteItems.length === 0) {
+                    quoteItemsList.innerHTML = '<div class="quote-empty"><i class="fas fa-cart-plus"></i><p>No products added yet.<br>Browse and add products from the left panel.</p></div>';
+                    return;
+                }
+                
+                let html = '';
+                quoteItems.forEach((item, idx) => {
+                    html += `
+                        <div class="quote-item" data-index="${idx}">
+                            <div class="quote-item-info">
+                                <div class="name">${escapeHtml(item.name)}</div>
+                                <div class="sku">${escapeHtml(item.sku)}</div>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-btn" data-action="decr" data-idx="${idx}">-</button>
+                                <input type="text" class="qty-input" value="${item.qty}" data-idx="${idx}" data-action="change">
+                                <button class="qty-btn" data-action="incr" data-idx="${idx}">+</button>
+                            </div>
+                            <button class="remove-item-btn" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    `;
+                });
+                quoteItemsList.innerHTML = html;
+                
+                // attach events
+                document.querySelectorAll('.qty-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const idx = parseInt(btn.dataset.idx);
+                        if(btn.dataset.action === 'incr') {
+                            quoteItems[idx].qty += 1;
+                        } else if(btn.dataset.action === 'decr') {
+                            if(quoteItems[idx].qty > 1) quoteItems[idx].qty -= 1;
+                        }
+                        updateQuoteUI();
+                    });
+                });
+                document.querySelectorAll('.qty-input').forEach(inp => {
+                    inp.addEventListener('change', (e) => {
+                        const idx = parseInt(inp.dataset.idx);
+                        let newQty = parseInt(inp.value);
+                        if(isNaN(newQty) || newQty < 1) newQty = 1;
+                        quoteItems[idx].qty = newQty;
+                        updateQuoteUI();
+                    });
+                });
+                document.querySelectorAll('.remove-item-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = parseInt(btn.dataset.idx);
+                        quoteItems.splice(idx, 1);
+                        updateQuoteUI();
+                    });
+                });
+            }
+            
+            // Render products for selected category
+            function renderProducts(category) {
+                if(!category || !productsDB[category]) {
+                    productsListDiv.innerHTML = '<div style="padding:20px;text-align:center;color:#94a3b8;font-size:13px"><i class="fas fa-box-open" style="font-size:28px;margin-bottom:8px;display:block"></i>No products in this category.</div>';
+                    productSearchInput.style.display = 'none';
+                    return;
+                }
+                productSearchInput.style.display = 'block';
+                const products = productsDB[category];
+                let html = '';
+                products.forEach(prod => {
+                    html += `
+                        <div class="product-list-item">
+                            <div><strong>${escapeHtml(prod.name)}</strong><br><span class="sku">${escapeHtml(prod.sku)}</span></div>
+                            <button class="add-to-quote-btn" data-name="${escapeHtml(prod.name)}" data-sku="${escapeHtml(prod.sku)}">Add</button>
+                        </div>
+                    `;
+                });
+                productsListDiv.innerHTML = html;
+                document.querySelectorAll('.add-to-quote-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const name = btn.dataset.name;
+                        const sku = btn.dataset.sku;
+                        const existing = quoteItems.find(i => i.sku === sku);
+                        if(existing) existing.qty += 1;
+                        else quoteItems.push({ name: name, sku: sku, qty: 1 });
+                        updateQuoteUI();
+                    });
+                });
+            }
+            
+            categorySelect.addEventListener('change', (e) => {
+                renderProducts(e.target.value);
+                // clear search when category changes
+                if(productSearchInput) productSearchInput.value = '';
+            });
+            
+            // Populate categories
+            for(let cat in productsDB) {
+                let option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ');
+                categorySelect.appendChild(option);
+            }
+            
+            // Search filter
+            if(productSearchInput) {
+                productSearchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const selectedCat = categorySelect.value;
+                    if(!selectedCat || !productsDB[selectedCat]) return;
+                    const filtered = productsDB[selectedCat].filter(p => p.name.toLowerCase().includes(searchTerm) || p.sku.toLowerCase().includes(searchTerm));
+                    let html = '';
+                    filtered.forEach(prod => {
+                        html += `<div class="product-list-item"><div><strong>${escapeHtml(prod.name)}</strong><br><span class="sku">${escapeHtml(prod.sku)}</span></div><button class="add-to-quote-btn" data-name="${escapeHtml(prod.name)}" data-sku="${escapeHtml(prod.sku)}">Add</button></div>`;
+                    });
+                    productsListDiv.innerHTML = html || '<div style="padding:20px;text-align:center;color:#94a3b8">No matching products</div>';
+                    document.querySelectorAll('.add-to-quote-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const name = btn.dataset.name;
+                            const sku = btn.dataset.sku;
+                            const existing = quoteItems.find(i => i.sku === sku);
+                            if(existing) existing.qty += 1;
+                            else quoteItems.push({ name: name, sku: sku, qty: 1 });
+                            updateQuoteUI();
+                        });
+                    });
+                });
+            }
+            
+            // Modal control
+            const modal = document.getElementById('quoteModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            function openModal() { if(modal) modal.classList.add('active'); }
+            function closeModal() { if(modal) modal.classList.remove('active'); }
+            
+            // Attach to all quote buttons
+            document.querySelectorAll('#quoteBtn, #quoteBtn2, #quoteBtn3, .btn-quote').forEach(btn => {
+                if(btn && btn.id !== 'quoteBadge') {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openModal();
+                    });
+                }
+            });
+            
+            if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            if(modal) modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+            
+            // Generate professional quote message with customer name and email
+            function generateQuoteMessage() {
+                const customerName = document.getElementById('quoteContactName')?.value.trim() || 'Valued Customer';
+                const customerEmail = document.getElementById('quoteContactEmail')?.value.trim() || '';
+                const customerPhone = document.getElementById('quoteContactPhone')?.value.trim() || '';
+                const notes = document.getElementById('quoteNotes')?.value.trim() || '';
+                
+                let itemsList = '';
+                quoteItems.forEach(item => {
+                    itemsList += `  • ${item.name} (SKU: ${item.sku}) - Quantity: ${item.qty}\n`;
+                });
+                
+                if(!itemsList) itemsList = '  • No items selected.';
+                
+                let msg = `🏥 QUOTE REQUEST\n`;
+                msg += `═══════════════════════════════════\n\n`;
+                msg += `📋 CUSTOMER INFORMATION:\n`;
+                msg += `   Name: ${customerName}\n`;
+                if(customerEmail) msg += `   Email: ${customerEmail}\n`;
+                if(customerPhone) msg += `   Phone: ${customerPhone}\n`;
+                msg += `   Date: ${new Date().toLocaleString()}\n\n`;
+                msg += `📦 PRODUCTS REQUESTED:\n`;
+                msg += itemsList;
+                msg += `\n`;
+                if(notes) {
+                    msg += `📝 ADDITIONAL NOTES:\n`;
+                    msg += `   ${notes}\n\n`;
+                }
+                msg += `✨ Thank you for choosing Conquerr Healthcare!\n`;
+                msg += `   Our team will respond to your quote within 24 hours.\n\n`;
+                msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+                msg += `Conquerr Healthcare - Reliable Supply. Stronger Healthcare.`;
+                
+                return msg;
+            }
+            
+            // EMAIL: send via email client
+            const sendEmailBtn = document.getElementById('sendEmailBtn');
+            if(sendEmailBtn) {
+                sendEmailBtn.addEventListener('click', () => {
+                    if(quoteItems.length === 0) {
+                        alert("⚠️ Please add at least one product to your quote list before sending.");
+                        return;
+                    }
+                    const customerName = document.getElementById('quoteContactName')?.value.trim();
+                    if(!customerName) {
+                        alert("⚠️ Please enter your name before sending the quote.");
+                        document.getElementById('quoteContactName')?.focus();
+                        return;
+                    }
+                    const customerEmail = document.getElementById('quoteContactEmail')?.value.trim();
+                    if(!customerEmail) {
+                        alert("⚠️ Please enter your email address before sending the quote.");
+                        document.getElementById('quoteContactEmail')?.focus();
+                        return;
+                    }
+                    if(!customerEmail.includes('@') || !customerEmail.includes('.')) {
+                        alert("⚠️ Please enter a valid email address.");
+                        return;
+                    }
+                    
+                    const msg = generateQuoteMessage();
+                    const subject = `Quote Request from ${customerName} - Conquerr Healthcare`;
+                    const mailtoLink = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
+                    window.location.href = mailtoLink;
+                    setTimeout(() => closeModal(), 500);
+                });
+            }
+            
+            // WHATSAPP: send via WhatsApp
+            const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+            if(sendWhatsappBtn) {
+                sendWhatsappBtn.addEventListener('click', () => {
+                    if(quoteItems.length === 0) {
+                        alert("⚠️ Please add at least one product to your quote list before sending.");
+                        return;
+                    }
+                    const customerName = document.getElementById('quoteContactName')?.value.trim();
+                    if(!customerName) {
+                        alert("⚠️ Please enter your name before sending the quote.");
+                        document.getElementById('quoteContactName')?.focus();
+                        return;
+                    }
+                    
+                    const msg = generateQuoteMessage();
+                    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+                    window.open(whatsappUrl, '_blank');
+                    setTimeout(() => closeModal(), 500);
+                });
+            }
+            
+            // Scroll to top
+            const scrollBtn = document.getElementById('scrollToTop');
+            if(scrollBtn) {
+                window.addEventListener('scroll', () => {
+                    if(window.scrollY > 300) scrollBtn.classList.add('show');
+                    else scrollBtn.classList.remove('show');
+                });
+                scrollBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+            }
+            
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            if(hamburger && navMenu) {
+                hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+            }
+            
+            // Initialize quote UI
+            updateQuoteUI();
+            
+            // Set default category if available
+            if(categorySelect.options.length > 1) {
+                categorySelect.selectedIndex = 1;
+                renderProducts(categorySelect.value);
+            }
+        })();
+    </script>
 </body>
 </html>
