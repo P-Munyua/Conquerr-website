@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Use - Conquerr Healthcare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-blue: #0052CC;
+            --light-blue: #1E90FF;
+            --dark-navy: #001a4d;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .logo-img { height: 120px; width: auto; }
+
+        .logo-text { display: flex; flex-direction: column; line-height: 1; }
+        .main-text { font-size: 20px; font-weight: 700; color: #0e2263; letter-spacing: -0.5px; }
+        .sub-text { font-size: 18px; font-weight: 500; color: #42A1CE; margin-top: 2px; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover { color: var(--primary-blue); }
+
+        .btn-back {
+            background: var(--primary-blue);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-back:hover { background: var(--dark-navy); transform: translateY(-2px); }
+
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--primary-blue); border-radius: 3px; }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            padding: 50px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            opacity: 0.85;
+        }
+
+        /* ── CONTENT ── */
+        .content-section {
+            padding: 60px 20px;
+        }
+
+        .content-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin: 40px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .content-section h2:first-of-type { margin-top: 0; }
+
+        .content-section p {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .content-section ul {
+            margin: 10px 0 20px 25px;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .content-section ul li { margin-bottom: 8px; }
+
+        .last-updated {
+            background: var(--light-gray);
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .content-section .highlight-box {
+            background: #f8f9fc;
+            border-left: 4px solid var(--primary-blue);
+            padding: 20px 25px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #f8f9fc;
+            padding: 50px 20px 25px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li { margin-bottom: 10px; }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .footer-section ul li a:hover { color: var(--primary-blue); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .footer-links { display: flex; gap: 25px; }
+        .footer-links a {
+            text-decoration: none;
+            color: #64748b;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        .footer-links a:hover { color: var(--primary-blue); }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #dbe3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: #2563eb;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px; left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; text-align: center; }
+            .nav-menu li a { display: block; padding: 12px; }
+            .hamburger { display: flex; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .page-header h1 { font-size: 28px; }
+            .content-section h2 { font-size: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header { padding: 30px 20px; }
+            .page-header h1 { font-size: 22px; }
+            .content-section { padding: 30px 20px; }
+            .content-section h2 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Conquerr Healthcare Logo" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span class="main-text">Conquerr</span>
+                    <span class="sub-text">Healthcare</span>
+                </div>
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About Us</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+                <li><a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Site</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Terms of Use</h1>
+            <p>Please read these terms carefully before using our website</p>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <section class="content-section">
+        <div class="container">
+
+            <div class="last-updated">
+                <i class="fas fa-calendar-alt" style="margin-right:8px;color:var(--primary-blue);"></i>
+                Last Updated: June 2025
+            </div>
+
+            <p>By accessing and using the Conquerr Healthcare website ("Site"), you agree to comply with and be bound by these Terms of Use. If you do not agree with these terms, please do not use our Site.</p>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>These Terms of Use govern your use of our website and services. By using this Site, you confirm that you have read, understood, and agree to be bound by these terms, including any updates or modifications we may make from time to time.</p>
+
+            <h2>2. Use of the Site</h2>
+            <p>You agree to use this Site only for lawful purposes and in a manner that does not infringe the rights of, or restrict the use of, this Site by any third party. Prohibited activities include:</p>
+            <ul>
+                <li>Using the Site for any unlawful purpose or in violation of any applicable laws.</li>
+                <li>Attempting to gain unauthorised access to our systems or data.</li>
+                <li>Interfering with the functionality or security of the Site.</li>
+                <li>Uploading or transmitting viruses, malware, or harmful code.</li>
+                <li>Engaging in any activity that disrupts the experience of other users.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>We reserve the right to terminate or suspend access</strong> to our Site for any user who violates these terms or engages in harmful activities.</p>
+            </div>
+
+            <h2>3. Intellectual Property</h2>
+            <p>All content on this Site, including text, graphics, logos, images, and software, is the property of Conquerr Healthcare or its licensors and is protected by copyright and intellectual property laws. You may not:</p>
+            <ul>
+                <li>Reproduce, distribute, or modify any content without our prior written consent.</li>
+                <li>Use our trademarks, logos, or branding without permission.</li>
+                <li>Frame or mirror any part of the Site on another website.</li>
+            </ul>
+
+            <h2>4. Product Information and Orders</h2>
+            <p>While we strive to ensure the accuracy of product information on our Site, we do not warrant that product descriptions, pricing, or availability are error-free. We reserve the right to correct any errors and to update product information at any time.</p>
+            <p>All orders are subject to our acceptance and availability. We reserve the right to refuse or cancel orders for any reason, including product availability, pricing errors, or suspected fraudulent activity.</p>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, Conquerr Healthcare shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of this Site or our products and services.</p>
+            <p>Our total liability for any claim arising from or related to this Site or our services shall not exceed the amount you have paid to us, if any, for the specific product or service giving rise to the claim.</p>
+
+            <div class="highlight-box">
+                <p><strong>Important:</strong> The information provided on this Site is for general informational purposes only and does not constitute professional medical advice. Always consult qualified healthcare professionals for medical decisions.</p>
+            </div>
+
+            <h2>6. Disclaimer</h2>
+            <p>This Site and its content are provided "as is" without warranties of any kind, either express or implied. We do not warrant that:</p>
+            <ul>
+                <li>The Site will be uninterrupted, secure, or error-free.</li>
+                <li>Information provided is complete, accurate, or current.</li>
+                <li>Any defects or errors will be corrected.</li>
+            </ul>
+
+            <h2>7. External Links</h2>
+            <p>Our Site may contain links to third-party websites for your convenience. We do not control or endorse these external sites and are not responsible for their content, privacy practices, or terms of use. You access third-party sites at your own risk.</p>
+
+            <h2>8. Indemnification</h2>
+            <p>You agree to indemnify and hold Conquerr Healthcare harmless from any claims, losses, damages, expenses, or liabilities arising from your use of our Site or your violation of these Terms of Use.</p>
+
+            <h2>9. Changes to Terms</h2>
+            <p>We may update these Terms of Use from time to time. Changes will be posted on this page with a revised "Last Updated" date. Your continued use of the Site after any changes constitutes your acceptance of the updated terms.</p>
+
+            <h2>10. Governing Law</h2>
+            <p>These Terms of Use shall be governed by and construed in accordance with the laws of the Republic of Kenya. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Kenya.</p>
+
+            <h2>11. Contact Us</h2>
+            <p>If you have any questions about these Terms of Use, please contact us:</p>
+            <ul>
+                <li><strong>Email:</strong> sales@conquerrhealthcare.com</li>
+                <li><strong>Phone:</strong> +254 743 642 093</li>
+                <li><strong>Address:</strong> Nairobi, Kenya</li>
+            </ul>
+
+            <div style="margin-top:40px;padding-top:20px;border-top:2px solid var(--light-gray);text-align:center;font-size:14px;color:var(--text-light);">
+                <i class="fas fa-file-contract" style="color:var(--primary-blue);font-size:20px;display:block;margin-bottom:10px;"></i>
+                <p>Thank you for choosing Conquerr Healthcare. We are committed to providing you with reliable products and transparent services.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div style="font-size:22px;font-weight:800;color:#0e2263;margin-bottom:10px;">Conquerr <span style="color:#42A1CE;">Healthcare</span></div>
+                <p>Trusted supplier of surgical and non-pharmaceutical consumables, committed to quality and customer satisfaction.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="products.html?category=Syringes%20%26%20Needles">Syringes & Needles</a></li>
+                    <li><a href="products.html?category=Bandages%20%26%20Dressings">Bandages & Dressings</a></li>
+                    <li><a href="products.html?category=Gloves">Gloves</a></li>
+                    <li><a href="products.html?category=Sutures%20%26%20Blades">Sutures & Blades</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><i class="fas fa-phone-alt" style="color:var(--primary-blue);margin-right:8px;"></i> +254 743 642 093</li>
+                    <li><i class="fas fa-envelope" style="color:var(--primary-blue);margin-right:8px;"></i> sales@conquerrhealthcare.com</li>
+                    <li><i class="fas fa-location-dot" style="color:var(--primary-blue);margin-right:8px;"></i> Nairobi, Kenya</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Conquerr Healthcare. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

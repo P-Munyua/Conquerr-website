@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Conquerr Healthcare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -38,6 +39,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -84,6 +86,17 @@
         }
 
         .nav-link:hover, .nav-link.active { color: var(--primary-blue); }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
 
         .btn-quote {
             background: var(--primary-blue);
@@ -255,7 +268,7 @@
             color: var(--text-light);
             margin-bottom: 40px;
             font-size: 16px;
-        }t
+        }
 
         .products-count {
             display: inline-block;
@@ -338,7 +351,7 @@
             background: var(--dark-navy);
         }
 
-        /* ====== QUOTE MODAL ====== */
+        /* ====== QUOTE MODAL - SAME AS INDEX.HTML ====== */
         .quote-modal-overlay {
             display: none;
             position: fixed;
@@ -358,8 +371,8 @@
             background: #fff;
             border-radius: 16px;
             width: 100%;
-            max-width: 800px;
-            max-height: 85vh;
+            max-width: 900px;
+            max-height: 90vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -375,93 +388,220 @@
         .quote-modal-header {
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
             color: white;
-            padding: 20px 25px;
+            padding: 24px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
         }
 
-        .quote-modal-header h2 { font-size: 20px; font-weight: 700; }
+        .quote-modal-header h2 { font-size: 22px; font-weight: 700; }
+        .quote-modal-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
         .close-modal-btn {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 34px; height: 34px;
+            width: 36px; height: 36px;
             border-radius: 50%;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .quote-modal-body {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            overflow: hidden;
-            padding: 20px 25px;
-        }
-
-        .quote-items-list {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 10px;
-        }
-
-        .quote-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px;
-            background: #f8faff;
-            border-radius: 8px;
-            margin-bottom: 8px;
-        }
-
-        .quote-item-info { flex: 1; }
-        .quote-item-info .name { font-size: 13px; font-weight: 600; color: var(--dark-navy); }
-        .quote-item-info .sku { font-size: 10px; color: var(--text-light); }
-
-        .qty-control { display: flex; align-items: center; gap: 6px; }
-        .qty-btn {
-            width: 26px; height: 26px;
-            border: 1px solid var(--border-light);
-            background: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .qty-input { width: 45px; text-align: center; border: 1px solid var(--border-light); border-radius: 4px; padding: 4px; }
-        .remove-item-btn { background: none; border: none; color: #ef4444; cursor: pointer; }
-
-        .quote-empty { text-align: center; padding: 40px; color: var(--text-light); }
-
-        .contact-field {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-
-        .send-buttons { display: flex; gap: 12px; margin-top: 10px; }
-        .send-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            transition: background 0.2s;
+            flex-shrink: 0;
         }
+
+        .close-modal-btn:hover { background: rgba(255,255,255,0.35); }
+
+        .quote-modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .quote-left {
+            padding: 25px 20px 25px 30px;
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+
+        .quote-right {
+            padding: 25px 30px 25px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quote-left h3, .quote-right h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef2ff;
+        }
+
+        .category-select, .product-search-input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-dark);
+            background: #fff;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .category-select:focus, .product-search-input:focus { border-color: var(--primary-blue); }
+
+        .products-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .product-list-item {
+            padding: 9px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f4f8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.15s;
+        }
+
+        .product-list-item:last-child { border-bottom: none; }
+        .product-list-item:hover { background: #eef2ff; }
+        .product-list-item .sku { font-size: 11px; color: #94a3b8; }
+
+        .add-to-quote-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .add-to-quote-btn:hover { background: var(--dark-navy); }
+
+        .quote-items-list { flex: 1; overflow-y: auto; margin-bottom: 15px; }
+
+        .quote-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8faff;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #e2eaff;
+        }
+
+        .quote-item-info { flex: 1; min-width: 0; }
+        .quote-item-info .name { font-size: 13px; font-weight: 600; color: var(--dark-navy); line-height: 1.3; }
+        .quote-item-info .sku { font-size: 11px; color: #94a3b8; }
+
+        .qty-control { display: flex; align-items: center; gap: 6px; }
+
+        .qty-btn {
+            width: 24px; height: 24px;
+            border: 1.5px solid #d1d9e6;
+            background: white;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            line-height: 1;
+        }
+
+        .qty-btn:hover { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+
+        .qty-input {
+            width: 40px;
+            text-align: center;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 4px;
+            font-size: 13px;
+            padding: 2px;
+            outline: none;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px 4px;
+            transition: color 0.15s;
+        }
+
+        .remove-item-btn:hover { color: #b91c1c; }
+
+        .quote-empty {
+            text-align: center;
+            padding: 30px 20px;
+            color: #94a3b8;
+        }
+
+        .quote-empty i { font-size: 36px; margin-bottom: 10px; display: block; }
+        .quote-empty p { font-size: 13px; }
+
+        .contact-fields { margin-bottom: 15px; }
+
+        .contact-field {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid #d1d9e6;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .contact-field:focus { border-color: var(--primary-blue); }
+
+        .send-buttons { display: flex; gap: 10px; }
+
+        .send-btn {
+            flex: 1;
+            padding: 11px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            transition: all 0.2s;
+        }
+
         .send-email-btn { background: var(--primary-blue); color: white; }
+        .send-email-btn:hover { background: var(--dark-navy); transform: translateY(-1px); }
+
         .send-whatsapp-btn { background: #25D366; color: white; }
+        .send-whatsapp-btn:hover { background: #128C7E; transform: translateY(-1px); }
 
         .quote-count-badge {
             background: #ef4444;
@@ -476,185 +616,135 @@
             margin-left: 4px;
         }
 
-        /* ====== FOOTER - UPDATED WITH BOLDER TEXT ====== */
-.footer {
-    background: #f8f9fc;
-    padding: 70px 20px 25px;
-    color: #1a1a2e;
-    border-top: 1px solid #e5e7eb;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 50px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.footer-logo {
-    margin-bottom: 18px;
-}
-
-.logo-img-footer {
-    width: 180px;
-    height: auto;
-}
-
-.footer-section p {
-    font-size: 14px;
-    line-height: 1.8;
-    color: #1a1a2e;
-    font-weight: 500;
-    margin-bottom: 25px;
-    max-width: 300px;
-}
-
-.footer-section h4 {
-    font-size: 17px;
-    font-weight: 800;
-    color: #0e2263;
-    margin-bottom: 22px;
-    letter-spacing: 0.5px;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 12px;
-}
-
-.footer-section ul li a {
-    text-decoration: none;
-    color: #1a1a2e;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.footer-section ul li a:hover {
-    color: var(--primary-blue);
-    padding-left: 5px;
-}
-
-.contact-info li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: #1a1a2e;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.6;
-    margin-bottom: 14px;
-}
-
-.contact-info i {
-    color: var(--primary-blue);
-    margin-top: 4px;
-    font-weight: 700;
-}
-
-.social-links {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.social-links a {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 1px solid #dbe3f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #0e2263;
-    font-size: 16px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    background: var(--primary-blue);
-    color: #fff;
-    transform: translateY(-3px);
-    border-color: var(--primary-blue);
-}
-
-.footer-bottom {
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: #1a1a2e;
-}
-
-.footer-links {
-    display: flex;
-    gap: 25px;
-}
-
-.footer-links a {
-    text-decoration: none;
-    color: #1a1a2e;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--primary-blue);
-}
-
-/* Responsive footer */
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-}
-
         /* ====== FOOTER ====== */
         .footer {
             background: #f8f9fc;
-            padding: 60px 20px 25px;
+            padding: 70px 20px 25px;
+            color: #1a1a2e;
             border-top: 1px solid #e5e7eb;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 40px;
+            gap: 50px;
             padding-bottom: 40px;
             border-bottom: 1px solid #e5e7eb;
         }
 
-        .footer-section p { font-size: 14px; color: #64748b; margin-bottom: 20px; }
-        .footer-section h4 { font-size: 16px; font-weight: 700; color: var(--primary-blue); margin-bottom: 20px; }
-        .footer-section ul { list-style: none; }
-        .footer-section ul li { margin-bottom: 10px; }
-        .footer-section ul li a { text-decoration: none; color: #475569; font-size: 13px; transition: 0.3s; }
-        .footer-section ul li a:hover { color: var(--primary-blue); }
+        .footer-logo { margin-bottom: 18px; }
+        .logo-img-footer { width: 180px; height: auto; }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #1a1a2e;
+            font-weight: 500;
+            margin-bottom: 25px;
+            max-width: 300px;
+        }
+
+        .footer-section h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #0e2263;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #1a1a2e;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-blue);
+            padding-left: 5px;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #1a1a2e;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .contact-info i {
+            color: var(--primary-blue);
+            margin-top: 4px;
+            font-weight: 700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #dbe3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0e2263;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-blue);
+            color: #fff;
+            transform: translateY(-3px);
+            border-color: var(--primary-blue);
+        }
 
         .footer-bottom {
             padding-top: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
-            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #1a1a2e;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
         }
 
         .scroll-to-top {
@@ -662,7 +752,7 @@
             bottom: 30px; right: 30px;
             width: 45px; height: 45px;
             background: var(--primary-blue);
-            color: white;
+            color: var(--white);
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -670,53 +760,58 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.3);
             z-index: 999;
         }
+
+        .scroll-to-top:hover { background: var(--dark-navy); transform: translateY(-3px); }
         .scroll-to-top.show { display: flex; }
 
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .quote-modal-body { grid-template-columns: 1fr; }
+            .quote-left { border-right: none; border-bottom: 1px solid #e5e7eb; max-height: 280px; }
+            .send-buttons { flex-direction: column; }
+        }
+
         @media (max-width: 768px) {
-            .nav-menu { display: none; position: absolute; top: 80px; left: 0; width: 100%; flex-direction: column; background: white; padding: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px; left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--white);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                gap: 0;
+                z-index: 999;
+            }
             .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; text-align: center; }
+            .nav-menu li a { display: block; padding: 12px; }
             .hamburger { display: flex; }
             .products-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; }
-            .category-nav-container { flex-wrap: nowrap; justify-content: flex-start; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
             .page-header h1 { font-size: 32px; }
-            .send-buttons { flex-direction: column; }
             .category-title { font-size: 24px; }
             .category-title i { font-size: 28px; }
+            .quote-modal-body { grid-template-columns: 1fr; }
+            .quote-left { border-right: none; border-bottom: 1px solid #e5e7eb; max-height: 280px; }
+            .send-buttons { flex-direction: column; }
+            .category-nav-container { flex-wrap: nowrap; justify-content: flex-start; }
+            .quote-modal-header h2 { font-size: 18px; }
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-       }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #ffffff;
-            border: 1px solid #dbe3f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #2563eb;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 24px; }
+            .products-grid { grid-template-columns: 1fr; }
+            .quote-modal { max-height: 95vh; }
+            .quote-left { padding: 15px; max-height: 200px; }
+            .quote-right { padding: 15px; }
         }
-
-        .social-links a:hover {
-            background: #2563eb;
-            color: #fff;
-            transform: translateY(-3px);
-            border-color: #2563eb;
-       }
-       .footer-logo { margin-bottom: 18px; }
-       .logo-img-footer { width: 180px; height: auto; }
     </style>
 </head>
 <body>
@@ -773,96 +868,128 @@
         </div>
     </section>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="logo.png" alt="Logo" class="logo-img-footer" onerror="this.style.display='none'">
-                    <div style="font-size:22px;font-weight:800;color:#0e2263;">Conquerr <span style="color:#42A1CE;">Healthcare</span></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Logo" class="logo-img-footer" onerror="this.style.display='none'">
+                        <div style="font-size:22px;font-weight:800;color:#0e2263;">Conquerr <span style="color:#42A1CE;">Healthcare</span></div>
+                    </div>
+                    <p>Conquerr Healthcare is a trusted supplier of surgical and non-pharmaceutical consumables, committed to quality, reliability, and customer satisfaction.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
                 </div>
-                <p>Conquerr Healthcare is a trusted supplier of surgical and non-pharmaceutical consumables, committed to quality, reliability, and customer satisfaction.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.instagram.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://twitter.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="index.html#manufacturing">Manufacturing</a></li>
+                        <li><a href="index.html#quality">Quality Assurance</a></li>
+                        <li><a href="index.html#resources">Resources</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html?category=Syringes%20%26%20Needles">Syringes & Needles</a></li>
+                        <li><a href="products.html?category=Bandages%20%26%20Dressings">Bandages & Dressings</a></li>
+                        <li><a href="products.html?category=Gloves">Gloves</a></li>
+                        <li><a href="products.html?category=Sutures%20%26%20Blades">Sutures & Blades</a></li>
+                        <li><a href="products.html?category=Hospital%20Linen">Hospital Linen</a></li>
+                        <li><a href="products.html?category=Catheters%20%26%20Airway">Catheters & Airway</a></li>
+                        <li><a href="products.html?category=Dialysis%20Products">Dialysis Products</a></li>
+                        <li><a href="products.html?category=Surgical%20Instruments">Surgical Instruments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone-alt"></i> +254 743 642 093</li>
+                        <li><i class="fas fa-envelope"></i> sales@conquerrhealthcare.com</li>
+                        <li><i class="fas fa-location-dot"></i> Nairobi, Kenya</li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="index.html#manufacturing">Manufacturing</a></li>
-                    <li><a href="index.html#quality">Quality Assurance</a></li>
-                    <li><a href="index.html#resources">Resources</a></li>
-                    <li><a href="index.html#contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Products</h4>
-                <ul>
-                    <li><a href="products.html?category=Syringes%20%26%20Needles">Syringes & Needles</a></li>
-                    <li><a href="products.html?category=Bandages%20%26%20Dressings">Bandages & Dressings</a></li>
-                    <li><a href="products.html?category=Gloves">Gloves</a></li>
-                    <li><a href="products.html?category=Sutures%20%26%20Blades">Sutures & Blades</a></li>
-                    <li><a href="products.html?category=Hospital%20Linen">Hospital Linen</a></li>
-                    <li><a href="products.html?category=Catheters%20%26%20Airway">Catheters & Airway</a></li>
-                    <li><a href="products.html?category=Dialysis%20Products">Dialysis Products</a></li>
-                    <li><a href="products.html?category=Surgical%20Instruments">Surgical Instruments</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <ul class="contact-info">
-                    <li><i class="fas fa-phone-alt"></i> +254 743 642 093</li>
-                    <li><i class="fas fa-envelope"></i> sales@conquerrhealthcare.com</li>
-                    <li><i class="fas fa-location-dot"></i> Nairobi, Kenya</li>
-                </ul>
+            <div class="footer-bottom">
+                <p>© 2026 Conquerr Healthcare. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Use</a>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Conquerr Healthcare. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Use</a>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <button class="scroll-to-top" id="scrollToTop"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- Quote Modal -->
+    <!-- Quote Modal - SAME AS INDEX.HTML -->
     <div class="quote-modal-overlay" id="quoteModal">
         <div class="quote-modal">
             <div class="quote-modal-header">
-                <div><h2><i class="fas fa-file-invoice"></i> Your Quote Request</h2></div>
+                <div>
+                    <h2><i class="fas fa-file-invoice" style="margin-right:8px"></i>Request a Quote</h2>
+                    <p>Select products and send your quote via Email or WhatsApp</p>
+                </div>
                 <button class="close-modal-btn" id="closeModal"><i class="fas fa-times"></i></button>
             </div>
             <div class="quote-modal-body">
-                <div class="quote-items-list" id="quoteItemsList">
-                    <div class="quote-empty"><i class="fas fa-cart-plus"></i><p>No products added yet. Click "Add to Quote" on any product.</p></div>
+                <div class="quote-left">
+                    <h3><i class="fas fa-search" style="margin-right:6px;color:var(--primary-blue)"></i>Browse &amp; Add Products</h3>
+                    <select class="category-select" id="modalCategorySelect">
+                        <option value="">— Select a Category —</option>
+                    </select>
+                    <input type="text" class="product-search-input" id="productSearchInput" placeholder="Search products by name or SKU..." style="display:none">
+                    <div class="products-list" id="modalProductsList">
+                        <div style="padding:20px;text-align:center;color:#94a3b8;font-size:13px">
+                            <i class="fas fa-list" style="font-size:28px;margin-bottom:8px;display:block"></i>
+                            Select a category to browse products
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <input type="text" class="contact-field" id="quoteContactName" placeholder="Your Name / Organisation">
-                    <input type="email" class="contact-field" id="quoteContactEmail" placeholder="Your Email Address">
-                    <input type="text" class="contact-field" id="quoteContactPhone" placeholder="Phone Number">
-                    <textarea class="contact-field" id="quoteNotes" placeholder="Additional notes..." rows="2"></textarea>
-                    <div class="send-buttons">
-                        <button class="send-btn send-email-btn" id="sendEmailBtn"><i class="fas fa-envelope"></i> Send via Email</button>
-                        <button class="send-btn send-whatsapp-btn" id="sendWhatsappBtn"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+                <div class="quote-right">
+                    <h3><i class="fas fa-clipboard-list" style="margin-right:6px;color:var(--primary-blue)"></i>Your Quote List <span id="quoteItemCount" style="font-size:12px;font-weight:400;color:#94a3b8"></span></h3>
+                    <div class="quote-items-list" id="quoteItemsList">
+                        <div class="quote-empty">
+                            <i class="fas fa-cart-plus"></i>
+                            <p>No products added yet.<br>Browse and add products from the left panel.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="border-top:2px solid #eef2ff;padding-top:14px;margin-bottom:10px">
+                            <i class="fas fa-user" style="margin-right:6px;color:var(--primary-blue)"></i>Your Details 
+                            <span style="font-size:11px;font-weight:400;color:#94a3b8">(required for quote)</span>
+                        </h3>
+                        <div class="contact-fields">
+                            <input type="text" class="contact-field" id="quoteContactName" placeholder="Your Full Name *" required>
+                            <input type="email" class="contact-field" id="quoteContactEmail" placeholder="Your Email Address *" required>
+                            <input type="text" class="contact-field" id="quoteContactPhone" placeholder="Phone Number (for WhatsApp)">
+                            <textarea class="contact-field" id="quoteNotes" placeholder="Additional notes or requirements..." rows="2" style="resize:vertical"></textarea>
+                        </div>
+                        <div class="send-buttons">
+                            <button class="send-btn send-email-btn" id="sendEmailBtn">
+                                <i class="fas fa-envelope"></i> Send via Email
+                            </button>
+                            <button class="send-btn send-whatsapp-btn" id="sendWhatsappBtn">
+                                <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -870,348 +997,947 @@
     </div>
 
     <script>
-        // ============================================
-        // PRODUCT DATABASE WITH CATEGORY-SPECIFIC ICONS
-        // ============================================
-        
-        // Icon mapping for each product category
-        const categoryIcons = {
-            "Syringes & Needles": "fas fa-syringe",
-            "Bandages & Dressings": "fas fa-band-aid",
-            "Gloves": "fas fa-hand-holding-medical",
-            "Sutures & Blades": "fas fa-cut",
-            "Hospital Linen": "fas fa-bed",
-            "Catheters & Airway": "fas fa-lungs",
-            "Dialysis Products": "fas fa-tint",
-            "Vascular Access": "fas fa-heartbeat",
-            "IV Fluids": "fas fa-flask",
-            "Cleaning Appliances": "fas fa-soap",
-            "Surgical Instruments": "fas fa-scalpel",
-            "General Consumables": "fas fa-boxes",
-            "Hospital Equipment": "fas fa-microscope",
-            "Orthopedics": "fas fa-bone"
-        };
+    // ============================================
+    // FULL PRODUCT DATABASE - SAME AS INDEX.HTML
+    // ============================================
+    const productsDB = {
+        syringes: [
+            { name: "Disposable Needles 18G x 1.5\"", sku: "SYR-001", category: "syringes" },
+            { name: "Disposable Needles 21G x 1.5\"", sku: "SYR-002", category: "syringes" },
+            { name: "Disposable Needles 23G x 1\"", sku: "SYR-003", category: "syringes" },
+            { name: "Microfine Syringes 1ml Unibody with 29G/30G Needle", sku: "SYR-004", category: "syringes" },
+            { name: "Microfine Syringes 0.5ml Unibody with 29G/30G Needle", sku: "SYR-005", category: "syringes" },
+            { name: "Plastipak Syringe 1 ML", sku: "SYR-006", category: "syringes" },
+            { name: "Spinal Needle Quinckle 90mm 22G", sku: "SYR-007", category: "syringes" },
+            { name: "Spinal Needle Quinckle 90mm 25G", sku: "SYR-008", category: "syringes" },
+            { name: "Soloshot 0.05ml Syringes", sku: "SYR-009", category: "syringes" },
+            { name: "Soloshot 0.5ml Syringes", sku: "SYR-010", category: "syringes" },
+            { name: "Syringe 10ml With 21G x1.5\" Needle", sku: "SYR-011", category: "syringes" },
+            { name: "Syringe 10ml Without Needle", sku: "SYR-012", category: "syringes" },
+            { name: "Syringe 20ml Without Needle", sku: "SYR-013", category: "syringes" },
+            { name: "Syringe 2ml With 23G x 1'' Needle", sku: "SYR-014", category: "syringes" },
+            { name: "Syringe 2ml Without Needle", sku: "SYR-015", category: "syringes" },
+            { name: "Syringe 5ml With 21G x1.5\" Needle", sku: "SYR-016", category: "syringes" },
+            { name: "Syringe 5ml Without Needle", sku: "SYR-017", category: "syringes" },
+            { name: "Syringes 20ml with 21G x 1.5\" Needle", sku: "SYR-018", category: "syringes" },
+            { name: "Syringes 60ml with Catheter Tip", sku: "SYR-019", category: "syringes" }
+        ],
+        bandages: [
+            { name: "Adhesive Elastic Fabric Bandage Waterproof (76x19mm)", sku: "BAN-001", category: "bandages" },
+            { name: "Adhesive Non-Woven Wound Dressing 25x10cm", sku: "BAN-002", category: "bandages" },
+            { name: "Adhesive PU Wound Dressing 25x10cm", sku: "BAN-003", category: "bandages" },
+            { name: "Alcohol Pads/Swabs 65mm x 30mm 70% Isopropyl Alcohol", sku: "BAN-004", category: "bandages" },
+            { name: "Autoclave Tape 1\" x 50M", sku: "BAN-005", category: "bandages" },
+            { name: "Autoclave Tape 1/2\" x 50M", sku: "BAN-006", category: "bandages" },
+            { name: "Autoclave Tape 3/4\" x 50M", sku: "BAN-007", category: "bandages" },
+            { name: "Brain Swabs", sku: "BAN-008", category: "bandages" },
+            { name: "Cotton Balls (Sterile Packed)", sku: "BAN-009", category: "bandages" },
+            { name: "Cotton Wool - 100Gms", sku: "BAN-010", category: "bandages" },
+            { name: "Cotton Wool - 200Gms", sku: "BAN-011", category: "bandages" },
+            { name: "Cotton Wool - 400Gms", sku: "BAN-012", category: "bandages" },
+            { name: "Cotton Wool - 500Gms", sku: "BAN-013", category: "bandages" },
+            { name: "Cotton Wool - 50Gms", sku: "BAN-014", category: "bandages" },
+            { name: "Crepe Bandage 2\" x 4.5M", sku: "BAN-015", category: "bandages" },
+            { name: "Crepe Bandage 3\" x 4.5M", sku: "BAN-016", category: "bandages" },
+            { name: "Crepe Bandage 4\" x 4.5M", sku: "BAN-017", category: "bandages" },
+            { name: "Crepe Bandage 6\" x 4.5M", sku: "BAN-018", category: "bandages" },
+            { name: "Eye Pad (Sterile Packed)", sku: "BAN-019", category: "bandages" },
+            { name: "Gauze Roll 4 Ply 750gms", sku: "BAN-020", category: "bandages" },
+            { name: "Gauze Roll 4 Ply 1.5Kgs (Plain)", sku: "BAN-021", category: "bandages" },
+            { name: "Gauze Roll 4 Ply 1.5Kgs (Xray Detectable)", sku: "BAN-022", category: "bandages" },
+            { name: "Gauze Swabs 2'' x 2'' Non-Sterile", sku: "BAN-023", category: "bandages" },
+            { name: "Gauze Swabs 2'' x 2'' Sterile", sku: "BAN-024", category: "bandages" },
+            { name: "Gauze Swabs 3'' x 3'' Non-Sterile", sku: "BAN-025", category: "bandages" },
+            { name: "Gauze Swabs 3'' x 3'' Sterile", sku: "BAN-026", category: "bandages" },
+            { name: "Gauze Swabs 4'' x 4'' Non-Sterile", sku: "BAN-027", category: "bandages" },
+            { name: "Gauze Swabs 4'' x 4'' Sterile", sku: "BAN-028", category: "bandages" },
+            { name: "IV Fixation Dressing Waterproof 7cmx9cm", sku: "BAN-029", category: "bandages" },
+            { name: "Laparatomy Sponges Sterile 40cmx40cm", sku: "BAN-030", category: "bandages" },
+            { name: "Laparatomy Sponges Sterile 45cmx45cm", sku: "BAN-031", category: "bandages" },
+            { name: "Orthopaedic Padding 4''", sku: "BAN-032", category: "bandages" },
+            { name: "Orthopaedic Padding 6''", sku: "BAN-033", category: "bandages" },
+            { name: "Orthopaedic Padding 8''", sku: "BAN-034", category: "bandages" },
+            { name: "Otto-Tulle 10cm*10cm", sku: "BAN-035", category: "bandages" },
+            { name: "P.O.P China 4\"", sku: "BAN-036", category: "bandages" },
+            { name: "P.O.P China 6''", sku: "BAN-037", category: "bandages" },
+            { name: "P.O.P China 8''", sku: "BAN-038", category: "bandages" },
+            { name: "P.O.P Fiber Glass 3\"", sku: "BAN-039", category: "bandages" },
+            { name: "P.O.P Fiber Glass 4\"", sku: "BAN-040", category: "bandages" },
+            { name: "P.O.P Fiber Glass 5\"", sku: "BAN-041", category: "bandages" },
+            { name: "P.O.P Fiber Glass 6\"", sku: "BAN-042", category: "bandages" },
+            { name: "P.O.P Gypsona 4''", sku: "BAN-043", category: "bandages" },
+            { name: "P.O.P Gypsona 6''", sku: "BAN-044", category: "bandages" },
+            { name: "P.O.P Gypsona 8''", sku: "BAN-045", category: "bandages" },
+            { name: "Parafin Gauze 10cm x10cm", sku: "BAN-046", category: "bandages" },
+            { name: "Prolene Mesh 15*15", sku: "BAN-047", category: "bandages" },
+            { name: "Prolene Mesh 6*11", sku: "BAN-048", category: "bandages" },
+            { name: "Standard Dressing No. 7", sku: "BAN-049", category: "bandages" },
+            { name: "Standard Dressing No. 8", sku: "BAN-050", category: "bandages" },
+            { name: "Standard Dressing No. 9", sku: "BAN-051", category: "bandages" },
+            { name: "Transpore Tape 1'' x 5yds", sku: "BAN-052", category: "bandages" },
+            { name: "Transpore Tape 2'' x 5yds", sku: "BAN-053", category: "bandages" },
+            { name: "W.O.W Bandages 2''x 4yds", sku: "BAN-054", category: "bandages" },
+            { name: "W.O.W Bandages 3''x 4yds", sku: "BAN-055", category: "bandages" },
+            { name: "W.O.W Bandages 4''x 4yds", sku: "BAN-056", category: "bandages" },
+            { name: "W.O.W Bandages 6''x 4yds", sku: "BAN-057", category: "bandages" },
+            { name: "Zinc Oxide Plaster (ZOP) 1'' x 4yds", sku: "BAN-058", category: "bandages" },
+            { name: "Zinc Oxide Plaster (ZOP) 2'' x 4yds", sku: "BAN-059", category: "bandages" },
+            { name: "Zinc Oxide Plaster (ZOP) 3'' x 4yds", sku: "BAN-060", category: "bandages" },
+            { name: "Zinc Oxide Plaster (ZOP) 4'' x 4yds", sku: "BAN-061", category: "bandages" },
+            { name: "Zinc Oxide Plaster (ZOP) 6'' x 4yds", sku: "BAN-062", category: "bandages" }
+        ],
+        gloves: [
+            { name: "Gynaecological Gloves Powder-Free 7.5", sku: "GLV-001", category: "gloves" },
+            { name: "Gynaecological Gloves Pwd -7.5 Medium", sku: "GLV-002", category: "gloves" },
+            { name: "Latex Examination Gloves Pre-Powdered Large", sku: "GLV-003", category: "gloves" },
+            { name: "Latex Examination Gloves Pre-Powdered Medium", sku: "GLV-004", category: "gloves" },
+            { name: "Latex Examination Gloves Pre-Powdered Small", sku: "GLV-005", category: "gloves" },
+            { name: "Latex Examination Non-Powdered Gloves Large", sku: "GLV-006", category: "gloves" },
+            { name: "Latex Examination Non-Powdered Gloves Medium", sku: "GLV-007", category: "gloves" },
+            { name: "Latex Examination Non-Powdered Gloves Small", sku: "GLV-008", category: "gloves" },
+            { name: "Nitrile Examination Gloves Powder-Free Large", sku: "GLV-009", category: "gloves" },
+            { name: "Nitrile Examination Gloves Powder-Free Medium", sku: "GLV-010", category: "gloves" },
+            { name: "Nitrile Examination Gloves Powder-Free Small", sku: "GLV-011", category: "gloves" },
+            { name: "Plastic (PE) Gloves Large", sku: "GLV-012", category: "gloves" },
+            { name: "Plastic (PE) Gloves Medium", sku: "GLV-013", category: "gloves" },
+            { name: "Surgical Gloves Powder-Free 6.0", sku: "GLV-014", category: "gloves" },
+            { name: "Surgical Gloves Powder-Free 6.5", sku: "GLV-015", category: "gloves" },
+            { name: "Surgical Gloves Powder-Free 7.0", sku: "GLV-016", category: "gloves" },
+            { name: "Surgical Gloves Powder-Free 7.5", sku: "GLV-017", category: "gloves" },
+            { name: "Surgical Gloves Powder-Free 8.0", sku: "GLV-018", category: "gloves" },
+            { name: "Surgical Gloves PP 6.5", sku: "GLV-019", category: "gloves" },
+            { name: "Surgical Gloves PP 7.0", sku: "GLV-020", category: "gloves" },
+            { name: "Surgical Gloves PP 7.5", sku: "GLV-021", category: "gloves" },
+            { name: "Surgical Gloves PP 8.0", sku: "GLV-022", category: "gloves" }
+        ],
+        sutures: [
+            { name: "Chromic Catgut Sutures 2/0 RB", sku: "SUT-001", category: "sutures" },
+            { name: "Chromic Catgut Sutures 1 RB", sku: "SUT-002", category: "sutures" },
+            { name: "Chromic Catgut Sutures 1 RC", sku: "SUT-003", category: "sutures" },
+            { name: "Chromic Catgut Sutures 2 RB", sku: "SUT-004", category: "sutures" },
+            { name: "Chromic Catgut Sutures 2 RC", sku: "SUT-005", category: "sutures" },
+            { name: "Chromic Catgut Sutures 2/0 RC", sku: "SUT-006", category: "sutures" },
+            { name: "Chromic Catgut Sutures 3 RB", sku: "SUT-007", category: "sutures" },
+            { name: "Chromic Catgut Sutures 3 RC", sku: "SUT-008", category: "sutures" },
+            { name: "Chromic Catgut Sutures 3/0 RB", sku: "SUT-009", category: "sutures" },
+            { name: "Chromic Catgut Sutures 3/0 RC", sku: "SUT-010", category: "sutures" },
+            { name: "Chromic Catgut Sutures 4/0 RB", sku: "SUT-011", category: "sutures" },
+            { name: "Chromic Catgut Sutures 4/0 RC", sku: "SUT-012", category: "sutures" },
+            { name: "Chromic Catgut Sutures 4 RB", sku: "SUT-013", category: "sutures" },
+            { name: "Chromic Catgut Sutures 4 RC", sku: "SUT-014", category: "sutures" },
+            { name: "Monocryl 2/0 RC", sku: "SUT-015", category: "sutures" },
+            { name: "Monocryl 3/0 RC", sku: "SUT-016", category: "sutures" },
+            { name: "Nylon Monofilament Suture 1 RB", sku: "SUT-017", category: "sutures" },
+            { name: "Nylon Monofilament Suture 1 RC", sku: "SUT-018", category: "sutures" },
+            { name: "Nylon Monofilament Suture 2 RB", sku: "SUT-019", category: "sutures" },
+            { name: "Nylon Monofilament Suture 2 RC", sku: "SUT-020", category: "sutures" },
+            { name: "Nylon Monofilament Suture 2/0 RB", sku: "SUT-021", category: "sutures" },
+            { name: "Nylon Monofilament Suture 2/0 RC", sku: "SUT-022", category: "sutures" },
+            { name: "Nylon Monofilament Suture 3 RB", sku: "SUT-023", category: "sutures" },
+            { name: "Nylon Monofilament Suture 3 RC", sku: "SUT-024", category: "sutures" },
+            { name: "Nylon Monofilament Suture 3/0 RB", sku: "SUT-025", category: "sutures" },
+            { name: "Nylon Monofilament Suture 3/0 RC", sku: "SUT-026", category: "sutures" },
+            { name: "Nylon Monofilament Suture 4/0 RB", sku: "SUT-027", category: "sutures" },
+            { name: "Nylon Monofilament Suture 4/0 RC", sku: "SUT-028", category: "sutures" },
+            { name: "Nylon Monofilament Suture 4 RB", sku: "SUT-029", category: "sutures" },
+            { name: "Nylon Monofilament Suture 4 RC", sku: "SUT-030", category: "sutures" },
+            { name: "Polyglactin Suture 0 RB", sku: "SUT-031", category: "sutures" },
+            { name: "Polyglactin Suture 0 RC", sku: "SUT-032", category: "sutures" },
+            { name: "Polyglactin Suture 1 RB", sku: "SUT-033", category: "sutures" },
+            { name: "Polyglactin Suture 1 RC", sku: "SUT-034", category: "sutures" },
+            { name: "Polyglactin Suture 2 RB", sku: "SUT-035", category: "sutures" },
+            { name: "Polyglactin Suture 2 RC", sku: "SUT-036", category: "sutures" },
+            { name: "Polyglactin Suture 2/0 RB", sku: "SUT-037", category: "sutures" },
+            { name: "Polyglactin Suture 2/0 RC", sku: "SUT-038", category: "sutures" },
+            { name: "Polyglactin Suture 3 RB", sku: "SUT-039", category: "sutures" },
+            { name: "Polyglactin Suture 3 RC", sku: "SUT-040", category: "sutures" },
+            { name: "Polyglactin Suture 3/0 RB", sku: "SUT-041", category: "sutures" },
+            { name: "Polyglactin Suture 3/0 RC", sku: "SUT-042", category: "sutures" },
+            { name: "Polyglactin Suture 4/0 RB", sku: "SUT-043", category: "sutures" },
+            { name: "Polyglactin Suture 4/0 RC", sku: "SUT-044", category: "sutures" },
+            { name: "Silk 2RB 90cm 1/2 Circle 40mm Braided", sku: "SUT-045", category: "sutures" },
+            { name: "Surgical Blade Sz. 20", sku: "SUT-046", category: "sutures" },
+            { name: "Surgical Blade Sz. 21", sku: "SUT-047", category: "sutures" },
+            { name: "Surgical Blade Sz. 22", sku: "SUT-048", category: "sutures" },
+            { name: "Surgical Blade Sz.10", sku: "SUT-049", category: "sutures" },
+            { name: "Surgical Blade Sz.11", sku: "SUT-050", category: "sutures" },
+            { name: "Surgical Blade Sz.12", sku: "SUT-051", category: "sutures" },
+            { name: "Surgical Blade Sz.15", sku: "SUT-052", category: "sutures" },
+            { name: "Surgical Blade Sz.15 with Handle", sku: "SUT-053", category: "sutures" },
+            { name: "Surgical Blade Sz.23", sku: "SUT-054", category: "sutures" },
+            { name: "Surgical Blade Sz.23 with Handle", sku: "SUT-055", category: "sutures" },
+            { name: "Surgical Blade Sz.24", sku: "SUT-056", category: "sutures" }
+        ],
+        linen: [
+            { name: "Adult Diapers Large", sku: "LIN-001", category: "linen" },
+            { name: "Adult Diapers Medium", sku: "LIN-002", category: "linen" },
+            { name: "Adult Diapers X-Large", sku: "LIN-003", category: "linen" },
+            { name: "Clinelle Wet Wipes", sku: "LIN-004", category: "linen" },
+            { name: "Disposable Aprons (Green-Heavy Duty)", sku: "LIN-005", category: "linen" },
+            { name: "Disposable Aprons (White)", sku: "LIN-006", category: "linen" },
+            { name: "Disposable Aprons (Blue-Heavy Duty)", sku: "LIN-007", category: "linen" },
+            { name: "Disposable Cesarean Drape (160/230*305cm)", sku: "LIN-008", category: "linen" },
+            { name: "Disposable Cesarean Kit", sku: "LIN-009", category: "linen" },
+            { name: "Disposable Delivery Drape", sku: "LIN-010", category: "linen" },
+            { name: "Disposable Delivery Kit", sku: "LIN-011", category: "linen" },
+            { name: "Disposable sterile surgical gown - Reinforced (with hand towels)", sku: "LIN-012", category: "linen" },
+            { name: "Disposable sterile surgical gown - Reinforced (without hand towels)", sku: "LIN-013", category: "linen" },
+            { name: "Disposable sterile surgical gown - Standard (without hand towels)", sku: "LIN-014", category: "linen" },
+            { name: "Disposable sterile surgical gown - Fully Reinforced (with hand towels)", sku: "LIN-015", category: "linen" },
+            { name: "Disposable Surgical Gown-PE /Semi PE Coating", sku: "LIN-016", category: "linen" },
+            { name: "Doctors caps, blue color with ties", sku: "LIN-017", category: "linen" },
+            { name: "Dressing Pad/Underpad 180x90cm", sku: "LIN-018", category: "linen" },
+            { name: "Dressing Pad/Underpad 60x90cm", sku: "LIN-019", category: "linen" },
+            { name: "Maternity/Sanitary Pads", sku: "LIN-020", category: "linen" },
+            { name: "Medical Facemasks with loop 3ply (Blue)", sku: "LIN-021", category: "linen" },
+            { name: "Medical Facemasks with Ties 3ply (Blue)", sku: "LIN-022", category: "linen" },
+            { name: "Medical Shoe covers Non-wooven Type", sku: "LIN-023", category: "linen" },
+            { name: "Medical Shoe covers PE Type", sku: "LIN-024", category: "linen" },
+            { name: "Medispread", sku: "LIN-025", category: "linen" },
+            { name: "Nurses caps/Non-woven mob cap", sku: "LIN-026", category: "linen" },
+            { name: "Protective Coverall Suits", sku: "LIN-027", category: "linen" },
+            { name: "Surgical Drape Sterile with Adhesive 240x150cm type 2", sku: "LIN-028", category: "linen" },
+            { name: "Surgical Sterile Facemasks with loop 3ply (Blue)", sku: "LIN-029", category: "linen" },
+            { name: "Surgical Sterile Facemasks with Ties 3ply (Blue)", sku: "LIN-030", category: "linen" }
+        ],
+        catheters: [
+            { name: "Anaesthetic Mask PVC #0", sku: "CAT-001", category: "catheters" },
+            { name: "Anaesthetic Mask PVC #1,2,3,4,5", sku: "CAT-002", category: "catheters" },
+            { name: "Anaesthetic Mask SILICONE Round Type", sku: "CAT-003", category: "catheters" },
+            { name: "Bacterial Filters (Breathing Filters)", sku: "CAT-004", category: "catheters" },
+            { name: "Blood Collection Bag-450 ml single CPDA-1", sku: "CAT-005", category: "catheters" },
+            { name: "Blood Giving Set Vented", sku: "CAT-006", category: "catheters" },
+            { name: "Bougie (Endotracheal Tube Introducer)", sku: "CAT-007", category: "catheters" },
+            { name: "Breathing Bag 0.5,1,2,3 Ltrs", sku: "CAT-008", category: "catheters" },
+            { name: "Breathing Respirometer 800ml", sku: "CAT-009", category: "catheters" },
+            { name: "Catheter Mounts Double Swivel Elbow", sku: "CAT-010", category: "catheters" },
+            { name: "Chest Drainage Bottle", sku: "CAT-011", category: "catheters" },
+            { name: "Chest Drainage tubes with Trocar", sku: "CAT-012", category: "catheters" },
+            { name: "Chest Drainage tubes WITHOUT Trocar", sku: "CAT-013", category: "catheters" },
+            { name: "Closed Suction Catheters", sku: "CAT-014", category: "catheters" },
+            { name: "Colostomy Bag Two-Piece", sku: "CAT-015", category: "catheters" },
+            { name: "Colostomy Bags One Piece", sku: "CAT-016", category: "catheters" },
+            { name: "Disposable Breathing Circuit Adult Reinforced", sku: "CAT-017", category: "catheters" },
+            { name: "Disposable Breathing Circuit Extendable", sku: "CAT-018", category: "catheters" },
+            { name: "Double Barrel Tracheostomy tubes Cuffed", sku: "CAT-019", category: "catheters" },
+            { name: "ECG Electrodes", sku: "CAT-020", category: "catheters" },
+            { name: "Electrosurgical Pencil", sku: "CAT-021", category: "catheters" },
+            { name: "Endobronchial Tubes", sku: "CAT-022", category: "catheters" },
+            { name: "Endotracheal Tubes Cuffed", sku: "CAT-023", category: "catheters" },
+            { name: "Endotracheal Tubes Uncuffed", sku: "CAT-024", category: "catheters" },
+            { name: "External Drainage Catheter", sku: "CAT-025", category: "catheters" },
+            { name: "Feeding Tube", sku: "CAT-026", category: "catheters" },
+            { name: "Female Catheter", sku: "CAT-027", category: "catheters" },
+            { name: "Foley Catheter 2-Way (Silicon-Coated)", sku: "CAT-028", category: "catheters" },
+            { name: "Foley Catheter 3-Way (Silicon-Coated)", sku: "CAT-029", category: "catheters" },
+            { name: "Foley Catheter 2-Way (100% Silicon)", sku: "CAT-030", category: "catheters" },
+            { name: "Gastronomy Tube", sku: "CAT-031", category: "catheters" },
+            { name: "Guedel Airways", sku: "CAT-032", category: "catheters" },
+            { name: "High Pressure Extention Line", sku: "CAT-033", category: "catheters" },
+            { name: "HME Filter", sku: "CAT-034", category: "catheters" },
+            { name: "IV Giving Set", sku: "CAT-035", category: "catheters" },
+            { name: "IV Cannula", sku: "CAT-036", category: "catheters" },
+            { name: "Intubating Stylet", sku: "CAT-037", category: "catheters" },
+            { name: "Laryngeal Mask Airway (L.M.A)", sku: "CAT-038", category: "catheters" },
+            { name: "Manual Resuscitator", sku: "CAT-039", category: "catheters" },
+            { name: "Nasal Oxygen Cannula", sku: "CAT-040", category: "catheters" },
+            { name: "Nebulizer Kits", sku: "CAT-041", category: "catheters" },
+            { name: "Nebulizer Mask", sku: "CAT-042", category: "catheters" },
+            { name: "Nelaton Catheter", sku: "CAT-043", category: "catheters" },
+            { name: "Non-Rebreathing Mask", sku: "CAT-044", category: "catheters" },
+            { name: "Oxygen Mask", sku: "CAT-045", category: "catheters" },
+            { name: "Perfusor Lines", sku: "CAT-046", category: "catheters" },
+            { name: "Preformed Nasal ET Tubes", sku: "CAT-047", category: "catheters" },
+            { name: "Preformed Oral ET Tubes", sku: "CAT-048", category: "catheters" },
+            { name: "Reinforced ET Tubes Cuffed with stylet", sku: "CAT-049", category: "catheters" },
+            { name: "Reusable Silicone Breathing Circuit", sku: "CAT-050", category: "catheters" },
+            { name: "Romovac Set", sku: "CAT-051", category: "catheters" },
+            { name: "Scalp Vein Set", sku: "CAT-052", category: "catheters" },
+            { name: "Silicone Full Face CPAP Mask", sku: "CAT-053", category: "catheters" },
+            { name: "Silicone Nasal CPAP Mask", sku: "CAT-054", category: "catheters" },
+            { name: "Soluset 150ml", sku: "CAT-055", category: "catheters" },
+            { name: "Suction catheters with control", sku: "CAT-056", category: "catheters" },
+            { name: "Three Way Stop Cock", sku: "CAT-057", category: "catheters" },
+            { name: "Tracheostomy Tubes Cuffed", sku: "CAT-058", category: "catheters" },
+            { name: "Tracheostomy Tubes Uncuffed", sku: "CAT-059", category: "catheters" },
+            { name: "Uridom (U-Drain) Catheter", sku: "CAT-060", category: "catheters" },
+            { name: "Urine Bag 100ml Paediatric", sku: "CAT-061", category: "catheters" },
+            { name: "Urine Bags 2000ml", sku: "CAT-062", category: "catheters" },
+            { name: "Venturi Mask", sku: "CAT-063", category: "catheters" },
+            { name: "Yankauer suction", sku: "CAT-064", category: "catheters" }
+        ],
+        dialysis: [
+            { name: "AV Fistula Needle G15/G16/G17*26MM", sku: "DIA-001", category: "dialysis" },
+            { name: "Bloodlines for Dialysis", sku: "DIA-002", category: "dialysis" },
+            { name: "Dialyzer 1.8H/2.0H Polyethersulfone", sku: "DIA-003", category: "dialysis" },
+            { name: "Disposable Hemodialysis Catheter Kit double lumen 11.5Frx15cm", sku: "DIA-004", category: "dialysis" },
+            { name: "Disposable Hemodialysis Catheter Kit double lumen 11.5Frx20cm", sku: "DIA-005", category: "dialysis" }
+        ],
+        vascular: [
+            { name: "CVC mini-kit 7fr x20cm triple lumen without dressing", sku: "VAS-001", category: "vascular" },
+            { name: "CVC kits 7fr x20cm triple lumen with dressing", sku: "VAS-002", category: "vascular" },
+            { name: "CVC kits 7fr x20cm double lumen with dressing", sku: "VAS-003", category: "vascular" },
+            { name: "CVC kits 5.5fr x13cm triple lumen with dressing Paediatric", sku: "VAS-004", category: "vascular" },
+            { name: "CVC kits 5fr x13cm double lumen with dressing Paediatric", sku: "VAS-005", category: "vascular" },
+            { name: "CVC kits 4fr x 8cm triple lumen with dressing Infant", sku: "VAS-006", category: "vascular" },
+            { name: "CVC kits 4fr x 8cm triple lumen without dressing Infant", sku: "VAS-007", category: "vascular" },
+            { name: "CVC kits 4fr x 5cm triple with dressing Neonatal", sku: "VAS-008", category: "vascular" },
+            { name: "Disposable Pressure Transducer Single-DPI 248", sku: "VAS-009", category: "vascular" }
+        ],
+        "iv-fluids": [
+            { name: "Dextrose 10% 500ml", sku: "IVF-001", category: "iv-fluids" },
+            { name: "Dextrose 5% 500ml", sku: "IVF-002", category: "iv-fluids" },
+            { name: "Dextrose 5% In Normal Saline (DNS) 500ml", sku: "IVF-003", category: "iv-fluids" },
+            { name: "Dextrose 50% 100ml", sku: "IVF-004", category: "iv-fluids" },
+            { name: "Esomeprazole IV", sku: "IVF-005", category: "iv-fluids" },
+            { name: "Flucloxacillin IV", sku: "IVF-006", category: "iv-fluids" },
+            { name: "Fluconazole IV", sku: "IVF-007", category: "iv-fluids" },
+            { name: "Hartmanns Solution 500ml", sku: "IVF-008", category: "iv-fluids" },
+            { name: "Metronidazole IV", sku: "IVF-009", category: "iv-fluids" },
+            { name: "Normal Saline 500ml", sku: "IVF-010", category: "iv-fluids" },
+            { name: "Ondansetron IV 100ml", sku: "IVF-011", category: "iv-fluids" },
+            { name: "Paracetamol IV 100ml", sku: "IVF-012", category: "iv-fluids" },
+            { name: "Water For Injection 10ml", sku: "IVF-013", category: "iv-fluids" }
+        ],
+        cleaning: [
+            { name: "Absolute Methanol 99.9%", sku: "CLN-001", category: "cleaning" },
+            { name: "Acetic Acid (Vinegar) 4-6% w/v", sku: "CLN-002", category: "cleaning" },
+            { name: "Acetone", sku: "CLN-003", category: "cleaning" },
+            { name: "Benzyl Benzoate 25% Solution (Lotion)", sku: "CLN-004", category: "cleaning" },
+            { name: "Calamine Lotion 15%", sku: "CLN-005", category: "cleaning" },
+            { name: "Castor Oil", sku: "CLN-006", category: "cleaning" },
+            { name: "ChlorAlcohol 0.5% w/v & 70% v/v", sku: "CLN-007", category: "cleaning" },
+            { name: "Chlorhexidine 7.5%", sku: "CLN-008", category: "cleaning" },
+            { name: "Chlorhexidine BP 0.3% w/v+Cetrimide BP 3% w/v", sku: "CLN-009", category: "cleaning" },
+            { name: "Chlorhexidine BP 1.5% w/v+Cetrimide BP 15% w/v", sku: "CLN-010", category: "cleaning" },
+            { name: "Chlorhexidine BP 4% w/v", sku: "CLN-011", category: "cleaning" },
+            { name: "Chlorhexidine BP 5% w/v", sku: "CLN-012", category: "cleaning" },
+            { name: "Deionized Water", sku: "CLN-013", category: "cleaning" },
+            { name: "Denatured Absolute Ethanol 99%", sku: "CLN-014", category: "cleaning" },
+            { name: "Denatured Ethanol 96%", sku: "CLN-015", category: "cleaning" },
+            { name: "Eusol Solution", sku: "CLN-016", category: "cleaning" },
+            { name: "Farm Liniment BP", sku: "CLN-017", category: "cleaning" },
+            { name: "Formaline 40%", sku: "CLN-018", category: "cleaning" },
+            { name: "Gentian Violet 1% Solution", sku: "CLN-019", category: "cleaning" },
+            { name: "Glutaraldehyde 2.4% w/v+Benzalkonium Chloride 0.5% w/v", sku: "CLN-020", category: "cleaning" },
+            { name: "Hydrogen Peroxide 30% - 100 Vol", sku: "CLN-021", category: "cleaning" },
+            { name: "Hydrogen Peroxide 6% 20 Vol", sku: "CLN-022", category: "cleaning" },
+            { name: "Instant Hand Sanitizer", sku: "CLN-023", category: "cleaning" },
+            { name: "Liquid Paraffin BP", sku: "CLN-024", category: "cleaning" },
+            { name: "Lugos of Iodine (Iodine 5% w/v+KI 5% w/v)", sku: "CLN-025", category: "cleaning" },
+            { name: "Lysol Solution", sku: "CLN-026", category: "cleaning" },
+            { name: "Methylated Spirit 70%", sku: "CLN-027", category: "cleaning" },
+            { name: "Methylated Spirit 90%", sku: "CLN-028", category: "cleaning" },
+            { name: "Povidone Iodine 7.5% Antiseptic (Surgical Scrub)", sku: "CLN-029", category: "cleaning" },
+            { name: "Povidone Iodine 10% Antiseptic", sku: "CLN-030", category: "cleaning" },
+            { name: "Pure Glycerine BP", sku: "CLN-031", category: "cleaning" },
+            { name: "Sodium Hypochlorite Solution", sku: "CLN-032", category: "cleaning" },
+            { name: "Surgical Spirit 70%", sku: "CLN-033", category: "cleaning" },
+            { name: "Surgical Spirit 90%", sku: "CLN-034", category: "cleaning" },
+            { name: "Tincture of Iodine (Iodine 2.5% w/v+KI 2.5% w/v)", sku: "CLN-035", category: "cleaning" },
+            { name: "Ultra Sound Gel", sku: "CLN-036", category: "cleaning" },
+            { name: "White Spirit", sku: "CLN-037", category: "cleaning" },
+            { name: "Laundry Chlorine Bleach", sku: "CLN-038", category: "cleaning" },
+            { name: "Degreaser Heavy Duty", sku: "CLN-039", category: "cleaning" },
+            { name: "Laundry Oxygen Bleach", sku: "CLN-040", category: "cleaning" },
+            { name: "Laundry Booster", sku: "CLN-041", category: "cleaning" },
+            { name: "Hand Washing Gel (Antibacterial)", sku: "CLN-042", category: "cleaning" },
+            { name: "Multipurpose Liquid Detergent", sku: "CLN-043", category: "cleaning" },
+            { name: "Aqueous Cream 500g", sku: "CLN-044", category: "cleaning" },
+            { name: "Emulsifying Cream 500g", sku: "CLN-045", category: "cleaning" },
+            { name: "GV Powder 25g", sku: "CLN-046", category: "cleaning" },
+            { name: "GV Crystal 25g", sku: "CLN-047", category: "cleaning" },
+            { name: "Medicinal Boric Acid 500g", sku: "CLN-048", category: "cleaning" }
+        ],
+        surgical: [
+            { name: "Artery Forcep 6\" Curved", sku: "SUR-001", category: "surgical" },
+            { name: "Artery Forcep 6\" Straight", sku: "SUR-002", category: "surgical" },
+            { name: "Artery Forcep 7\" Curved", sku: "SUR-003", category: "surgical" },
+            { name: "Artery Forcep 7\" Straight", sku: "SUR-004", category: "surgical" },
+            { name: "Backhaus Towel Clamp", sku: "SUR-005", category: "surgical" },
+            { name: "Blade Holder Number 3\"", sku: "SUR-006", category: "surgical" },
+            { name: "Blade Holder Number 4\"", sku: "SUR-007", category: "surgical" },
+            { name: "Chetale Forceps 10\"", sku: "SUR-008", category: "surgical" },
+            { name: "Crocodile Forceps", sku: "SUR-009", category: "surgical" },
+            { name: "Toothed Dissecting Forceps", sku: "SUR-010", category: "surgical" },
+            { name: "Plain Dissecting Forceps", sku: "SUR-011", category: "surgical" },
+            { name: "Dressing Drum", sku: "SUR-012", category: "surgical" },
+            { name: "Dressing Forceps 6\"", sku: "SUR-013", category: "surgical" },
+            { name: "Dressing Set", sku: "SUR-014", category: "surgical" },
+            { name: "Ear Syringe", sku: "SUR-015", category: "surgical" },
+            { name: "Episiotomy Scissors 7\"", sku: "SUR-016", category: "surgical" },
+            { name: "Gallipot", sku: "SUR-017", category: "surgical" },
+            { name: "General Set Minor", sku: "SUR-018", category: "surgical" },
+            { name: "Gigli Saw Wire", sku: "SUR-019", category: "surgical" },
+            { name: "Gigli Saw Handle", sku: "SUR-020", category: "surgical" },
+            { name: "Instrument Set Minor Cesarean", sku: "SUR-021", category: "surgical" },
+            { name: "Instrument Tray", sku: "SUR-022", category: "surgical" },
+            { name: "Kidney Dish", sku: "SUR-023", category: "surgical" },
+            { name: "Kochers Artery Forceps", sku: "SUR-024", category: "surgical" },
+            { name: "Laryngoscope with Blades", sku: "SUR-025", category: "surgical" },
+            { name: "Mayo Scissors", sku: "SUR-026", category: "surgical" },
+            { name: "Mosquito Forcep", sku: "SUR-027", category: "surgical" },
+            { name: "Needle Holder", sku: "SUR-028", category: "surgical" },
+            { name: "Scissors", sku: "SUR-029", category: "surgical" },
+            { name: "Speculum", sku: "SUR-030", category: "surgical" },
+            { name: "Sponge Holding Forcep", sku: "SUR-031", category: "surgical" },
+            { name: "Tuning Fork", sku: "SUR-032", category: "surgical" },
+            { name: "Tweezers Precision Steel", sku: "SUR-033", category: "surgical" },
+            { name: "Uterine Dilators Set", sku: "SUR-034", category: "surgical" },
+            { name: "Uterine Sound Dilator", sku: "SUR-035", category: "surgical" },
+            { name: "Vesulum Forcep 10\"", sku: "SUR-036", category: "surgical" }
+        ],
+        consumables: [
+            { name: "Bin Liners (Black, Yellow and Red)", sku: "CON-001", category: "consumables" },
+            { name: "Blood Lancets", sku: "CON-002", category: "consumables" },
+            { name: "Bone Marrow Puncture Kit 16G", sku: "CON-003", category: "consumables" },
+            { name: "Bulb Sucker", sku: "CON-004", category: "consumables" },
+            { name: "Caustic Pencil", sku: "CON-005", category: "consumables" },
+            { name: "Cord Clamp", sku: "CON-006", category: "consumables" },
+            { name: "Dispensing Bottles 60ml", sku: "CON-007", category: "consumables" },
+            { name: "Disposable Body Bag", sku: "CON-008", category: "consumables" },
+            { name: "Disposable Dressing Set", sku: "CON-009", category: "consumables" },
+            { name: "Disposable Skin Stapler", sku: "CON-010", category: "consumables" },
+            { name: "Disposable Vaginal Speculum", sku: "CON-011", category: "consumables" },
+            { name: "Enema Kit Douche", sku: "CON-012", category: "consumables" },
+            { name: "Epidural Kit", sku: "CON-013", category: "consumables" },
+            { name: "Fetoscope", sku: "CON-014", category: "consumables" },
+            { name: "H. Pylori AG Test Strips", sku: "CON-015", category: "consumables" },
+            { name: "HCT 2 Test Strips", sku: "CON-016", category: "consumables" },
+            { name: "SAT AG Test Strips", sku: "CON-017", category: "consumables" },
+            { name: "SAT AB Test Strips", sku: "CON-018", category: "consumables" },
+            { name: "Hepatitis B Test Strips", sku: "CON-019", category: "consumables" },
+            { name: "VDRL Test Strips", sku: "CON-020", category: "consumables" },
+            { name: "Hot & Cold Pack", sku: "CON-021", category: "consumables" },
+            { name: "Hot Water Bag", sku: "CON-022", category: "consumables" },
+            { name: "Huber Needle", sku: "CON-023", category: "consumables" },
+            { name: "Identity Band", sku: "CON-024", category: "consumables" },
+            { name: "Infusion Pump", sku: "CON-025", category: "consumables" },
+            { name: "MVA Kit Double", sku: "CON-026", category: "consumables" },
+            { name: "Malaria Test Strip Kits", sku: "CON-027", category: "consumables" },
+            { name: "Masking Tape", sku: "CON-028", category: "consumables" },
+            { name: "Medical Envelopes", sku: "CON-029", category: "consumables" },
+            { name: "Microscope Cover Slips", sku: "CON-030", category: "consumables" },
+            { name: "Microscope Slides", sku: "CON-031", category: "consumables" },
+            { name: "Mindray Reagents", sku: "CON-032", category: "consumables" },
+            { name: "Mucus Extractor", sku: "CON-033", category: "consumables" },
+            { name: "Paper Tape", sku: "CON-034", category: "consumables" },
+            { name: "Pen Torch", sku: "CON-035", category: "consumables" },
+            { name: "Polypot Plastic 30ml", sku: "CON-036", category: "consumables" },
+            { name: "Pregnancy Test Strips", sku: "CON-037", category: "consumables" },
+            { name: "Probe Cleanser 50ml", sku: "CON-038", category: "consumables" },
+            { name: "Safety Box (5 liters)", sku: "CON-039", category: "consumables" },
+            { name: "Self-Sealing Sterilization Pouches", sku: "CON-040", category: "consumables" },
+            { name: "Skin Grafting Blade", sku: "CON-041", category: "consumables" },
+            { name: "Skin Grafting Handle", sku: "CON-042", category: "consumables" },
+            { name: "Skin Staple Remover", sku: "CON-043", category: "consumables" },
+            { name: "Skin Traction Kit", sku: "CON-044", category: "consumables" },
+            { name: "Sony Ultrasound Paper", sku: "CON-045", category: "consumables" },
+            { name: "Sterilization Bags", sku: "CON-046", category: "consumables" },
+            { name: "Stitching Set", sku: "CON-047", category: "consumables" },
+            { name: "Stool Container with Spoon", sku: "CON-048", category: "consumables" },
+            { name: "Wooden Tongue Depressors", sku: "CON-049", category: "consumables" },
+            { name: "Tourniquet (Adjustable and Elastic)", sku: "CON-050", category: "consumables" },
+            { name: "Trucut Biopsy Gun", sku: "CON-051", category: "consumables" },
+            { name: "Trucut Biopsy Needle", sku: "CON-052", category: "consumables" },
+            { name: "Twin Irrigation Set", sku: "CON-053", category: "consumables" },
+            { name: "Urine Containers 60ml", sku: "CON-054", category: "consumables" },
+            { name: "Vacuum blood collection tube", sku: "CON-055", category: "consumables" },
+            { name: "VP Shunt Chabra", sku: "CON-056", category: "consumables" }
+        ],
+        equipment: [
+            { name: "Autoclave Machine 18 liters", sku: "EQ-001", category: "equipment" },
+            { name: "Bathroom Scale", sku: "EQ-002", category: "equipment" },
+            { name: "BiPAP Ventmed Machine", sku: "EQ-003", category: "equipment" },
+            { name: "BP Machine", sku: "EQ-004", category: "equipment" },
+            { name: "Breast Pump Manual", sku: "EQ-005", category: "equipment" },
+            { name: "Cardiology IV Stethoscope", sku: "EQ-006", category: "equipment" },
+            { name: "Centrifuge Machine Electric", sku: "EQ-007", category: "equipment" },
+            { name: "Clinical Thermometer", sku: "EQ-008", category: "equipment" },
+            { name: "CPAP Ventmed Machine", sku: "EQ-009", category: "equipment" },
+            { name: "Diagnostic Set", sku: "EQ-010", category: "equipment" },
+            { name: "Digital Thermometer", sku: "EQ-011", category: "equipment" },
+            { name: "Doyen Retractor", sku: "EQ-012", category: "equipment" },
+            { name: "Drip Infusion Stand", sku: "EQ-013", category: "equipment" },
+            { name: "Dust Coat", sku: "EQ-014", category: "equipment" },
+            { name: "Examination Couch", sku: "EQ-015", category: "equipment" },
+            { name: "Examination Light", sku: "EQ-016", category: "equipment" },
+            { name: "Fetal Ultrasonic Doppler", sku: "EQ-017", category: "equipment" },
+            { name: "First Aid Box", sku: "EQ-018", category: "equipment" },
+            { name: "Fridge Thermometer", sku: "EQ-019", category: "equipment" },
+            { name: "HB Haemoglobin Machine", sku: "EQ-020", category: "equipment" },
+            { name: "Hospital Bed", sku: "EQ-021", category: "equipment" },
+            { name: "IUCD Set", sku: "EQ-022", category: "equipment" },
+            { name: "Microscope", sku: "EQ-023", category: "equipment" },
+            { name: "Nebulisation Compressor", sku: "EQ-024", category: "equipment" },
+            { name: "Nebulisation Mesh", sku: "EQ-025", category: "equipment" },
+            { name: "Nurses Watch Metal", sku: "EQ-026", category: "equipment" },
+            { name: "Oncall Plus Machine", sku: "EQ-027", category: "equipment" },
+            { name: "Otoscope Mini", sku: "EQ-028", category: "equipment" },
+            { name: "Oxygen Concentrator", sku: "EQ-029", category: "equipment" },
+            { name: "Oxygen Cylinder", sku: "EQ-030", category: "equipment" },
+            { name: "Oxygen Flow Meter", sku: "EQ-031", category: "equipment" },
+            { name: "Patella Hammer", sku: "EQ-032", category: "equipment" },
+            { name: "POP Cutter Manual", sku: "EQ-033", category: "equipment" },
+            { name: "Pulse Oximeter", sku: "EQ-034", category: "equipment" },
+            { name: "Ripple Mattress", sku: "EQ-035", category: "equipment" },
+            { name: "Stethoscope", sku: "EQ-036", category: "equipment" },
+            { name: "Suction Machine", sku: "EQ-037", category: "equipment" }
+        ],
+        orthopedics: [
+            { name: "Commode Chair", sku: "ORT-001", category: "orthopedics" },
+            { name: "Shower Chair", sku: "ORT-002", category: "orthopedics" },
+            { name: "Wheelchair", sku: "ORT-003", category: "orthopedics" },
+            { name: "Cerebral Palsy Wheelchair", sku: "ORT-004", category: "orthopedics" },
+            { name: "Electric Wheelchair", sku: "ORT-005", category: "orthopedics" },
+            { name: "Orthopaedic Wheelchair", sku: "ORT-006", category: "orthopedics" },
+            { name: "Paediatric Wheelchair", sku: "ORT-007", category: "orthopedics" },
+            { name: "Reclining Wheelchair", sku: "ORT-008", category: "orthopedics" },
+            { name: "Walking Stick", sku: "ORT-009", category: "orthopedics" },
+            { name: "Axillary Crutches", sku: "ORT-010", category: "orthopedics" },
+            { name: "Blind Canes", sku: "ORT-011", category: "orthopedics" },
+            { name: "Elbow Crutches", sku: "ORT-012", category: "orthopedics" },
+            { name: "Quadripod Walking Stick", sku: "ORT-013", category: "orthopedics" },
+            { name: "Rollator", sku: "ORT-014", category: "orthopedics" },
+            { name: "Walking Frame", sku: "ORT-015", category: "orthopedics" },
+            { name: "Cervical Collars", sku: "ORT-016", category: "orthopedics" },
+            { name: "Emergency Collars", sku: "ORT-017", category: "orthopedics" },
+            { name: "Hard Collars", sku: "ORT-018", category: "orthopedics" },
+            { name: "Philadelphia Collar", sku: "ORT-019", category: "orthopedics" },
+            { name: "Soft Cervical Collar", sku: "ORT-020", category: "orthopedics" },
+            { name: "Ankle Splint", sku: "ORT-021", category: "orthopedics" },
+            { name: "Wrist Splint", sku: "ORT-022", category: "orthopedics" },
+            { name: "Clavicle Brace", sku: "ORT-023", category: "orthopedics" },
+            { name: "Rib Belt", sku: "ORT-024", category: "orthopedics" },
+            { name: "Knee Brace", sku: "ORT-025", category: "orthopedics" },
+            { name: "Hip Support", sku: "ORT-026", category: "orthopedics" },
+            { name: "Ankle Support", sku: "ORT-027", category: "orthopedics" },
+            { name: "Arm Sling Pouch", sku: "ORT-028", category: "orthopedics" },
+            { name: "Elbow Support", sku: "ORT-029", category: "orthopedics" },
+            { name: "Shoulder Immobiliser", sku: "ORT-030", category: "orthopedics" },
+            { name: "Thumb Spica", sku: "ORT-031", category: "orthopedics" },
+            { name: "Triangular Bandages", sku: "ORT-032", category: "orthopedics" },
+            { name: "Compression Stockings", sku: "ORT-033", category: "orthopedics" },
+            { name: "Cervical Traction Kit", sku: "ORT-034", category: "orthopedics" },
+            { name: "Pelvic Traction Belt", sku: "ORT-035", category: "orthopedics" }
+        ]
+    };
 
-        // Product icon mapping for individual product items (default fallback)
-        const productItemIcons = {
-            "Syringes & Needles": "fas fa-syringe",
-            "Bandages & Dressings": "fas fa-band-aid",
-            "Gloves": "fas fa-hand-holding-medical",
-            "Sutures & Blades": "fas fa-cut",
-            "Hospital Linen": "fas fa-bed",
-            "Catheters & Airway": "fas fa-lungs",
-            "Dialysis Products": "fas fa-tint",
-            "Vascular Access": "fas fa-heartbeat",
-            "IV Fluids": "fas fa-flask",
-            "Cleaning Appliances": "fas fa-soap",
-            "Surgical Instruments": "fas fa-scalpel",
-            "General Consumables": "fas fa-boxes",
-            "Hospital Equipment": "fas fa-microscope",
-            "Orthopedics": "fas fa-bone"
-        };
+    const categoryDisplayNames = {
+        syringes: "Syringes & Needles",
+        bandages: "Bandages & Dressings",
+        gloves: "Gloves",
+        sutures: "Sutures & Blades",
+        linen: "Hospital Linen",
+        catheters: "Catheters & Airway",
+        dialysis: "Dialysis Products",
+        vascular: "Vascular Access",
+        "iv-fluids": "IV Fluids",
+        cleaning: "Cleaning Appliances",
+        surgical: "Surgical Instruments",
+        consumables: "General Consumables",
+        equipment: "Hospital Equipment",
+        orthopedics: "Orthopedics"
+    };
 
-        const productsDB = {
-            "Syringes & Needles": [
-                "Disposable Needles 18G x 1.5\"", "Disposable Needles 21G x 1.5\"", "Disposable Needles 23G x 1\"",
-                "Microfine Syringes 1ml Unibody with 29G/30G Needle", "Microfine Syringes 0.5ml Unibody with 29G/30G Needle",
-                "Plastipak Syringe 1 ML", "Spinal Needle Quinckle 90mm 22G", "Spinal Needle Quinckle 90mm 25G",
-                "Soloshot 0.05ml Syringes", "Soloshot 0.5ml Syringes", "Syringe 10ml With 21G x1.5\" Needle",
-                "Syringe 10ml Without Needle", "Syringe 20ml Without Needle", "Syringe 2ml With 23G x 1'' Needle",
-                "Syringe 2ml Without Needle", "Syringe 5ml With 21G x1.5\" Needle", "Syringe 5ml Without Needle",
-                "Syringes 20ml with 21G x 1.5\" Needle", "Syringes 60ml with Catheter Tip"
-            ],
-            "Bandages & Dressings": [
-                "Adhesive Elastic Fabric Bandage Waterproof", "Adhesive Non-Woven Wound Dressing", "Adhesive PU Wound Dressing",
-                "Alcohol Pads/Swabs", "Autoclave Tape 1\"", "Autoclave Tape 1/2\"", "Autoclave Tape 3/4\"", "Brain Swabs",
-                "Cotton Balls Sterile", "Cotton Wool", "Crepe Bandage", "Gauze Swabs", "IV Fixation Dressing",
-                "Laparatomy Sponges", "Parafin Gauze", "Transpore Tape", "Zinc Oxide Plaster", "P.O.P Casting Bandages"
-            ],
-            "Gloves": [
-                "Gynaecological Gloves Powder-Free", "Latex Examination Gloves Pre-Powdered", "Latex Examination Non-Powdered",
-                "Nitrile Examination Gloves Powder-Free", "Plastic (PE) Gloves", "Surgical Gloves Powder-Free", "Surgical Gloves PP"
-            ],
-            "Sutures & Blades": [
-                "Chromic Catgut Sutures", "Monocryl Sutures", "Nylon Monofilament Suture", "Polyglactin Suture",
-                "Silk Sutures", "Surgical Blade Sz. 10", "Surgical Blade Sz. 11", "Surgical Blade Sz. 15",
-                "Surgical Blade Sz. 20", "Surgical Blade Sz. 22"
-            ],
-            "Hospital Linen": [
-                "Adult Diapers", "Clinelle Wet Wipes", "Disposable Aprons", "Disposable Cesarean Drape",
-                "Disposable Delivery Kit", "Disposable sterile surgical gown", "Doctors caps", "Dressing Pad",
-                "Medical Facemasks 3ply", "Protective Coverall Suits", "Surgical Facemasks Sterile"
-            ],
-            "Catheters & Airway": [
-                "Anaesthetic Mask", "Bacterial Filters", "Blood Giving Set", "Breathing Circuit", "Chest Drainage Bottle",
-                "Endotracheal Tubes Cuffed", "Foley Catheter 2-Way", "Guedel Airways", "IV Cannula",
-                "Laryngeal Mask Airway", "Nasal Oxygen Cannula", "Nebulizer Kits", "Suction catheters",
-                "Tracheostomy Tubes", "Urine Bags", "Yankauer suction"
-            ],
-            "Dialysis Products": [
-                "AV Fistula Needle", "Bloodlines for Dialysis", "Dialyzer Polyethersulfone", "Disposable Hemodialysis Catheter Kit"
-            ],
-            "Vascular Access": [
-                "CVC mini-kit", "CVC kits triple lumen", "CVC kits double lumen", "Disposable Pressure Transducer"
-            ],
-            "IV Fluids": [
-                "Dextrose 10%", "Dextrose 5%", "Dextrose 5% In Normal Saline", "Hartmanns Solution",
-                "Normal Saline", "Water For Injection", "Esomeprazole IV", "Flucloxacillin IV", "Metronidazole IV"
-            ],
-            "Cleaning Appliances": [
-                "Laundry Chlorine Bleach", "Degreaser Heavy Duty", "Laundry Oxygen Bleach", "Hand Washing Gel",
-                "Multipurpose Liquid Detergent", "Chlorhexidine Solutions", "Povidone Iodine", "Surgical Spirit"
-            ],
-            "Surgical Instruments": [
-                "Artery Forcep", "Backhaus Towel Clamp", "Blade Holder", "Dissecting Forceps", "Dressing Drum",
-                "Episiotomy Scissors", "Gigli Saw", "Kochers Artery Forceps", "Laryngoscope", "Mayo Scissors",
-                "Mosquito Forcep", "Needle Holder", "Scissors", "Speculum", "Sponge Holding Forcep"
-            ],
-            "General Consumables": [
-                "Bin Liners", "Blood Lancets", "Disposable Dressing Set", "Disposable Skin Stapler",
-                "Disposable Vaginal Speculum", "Epidural Kit", "Identity Band", "Infusion Pump", "Malaria Test Strips",
-                "Pregnancy Test Strips", "Safety Box", "Self-Sealing Sterilization Pouches", "Stitching Set",
-                "Tourniquet", "Vacuum blood collection tube"
-            ],
-            "Hospital Equipment": [
-                "Autoclave Machine", "BP Monitor", "Centrifuge Machine", "Clinical Thermometer", "Digital Thermometer",
-                "Examination Couch", "Hospital Bed", "Microscope", "Nebulisation Compressor", "Oxygen Concentrator",
-                "Pulse Oximeter", "Stethoscope", "Suction Machine"
-            ],
-            "Orthopedics": [
-                "Adjustable Walking Stick", "Axillary Crutches", "Cervical Collars", "Clavicle Brace", "Commode Chair",
-                "Compression Stockings", "Elbow Crutches", "Knee Brace", "Philadelphia Collar", "Quadripod Walking Stick",
-                "Rib Belt", "Walking Frame", "Wheelchair", "Wrist Splint"
-            ]
-        };
+    const categoryIcons = {
+        syringes: "fas fa-syringe",
+        bandages: "fas fa-band-aid",
+        gloves: "fas fa-hand-holding-medical",
+        sutures: "fas fa-cut",
+        linen: "fas fa-bed",
+        catheters: "fas fa-lungs",
+        dialysis: "fas fa-tint",
+        vascular: "fas fa-heartbeat",
+        "iv-fluids": "fas fa-flask",
+        cleaning: "fas fa-soap",
+        surgical: "fas fa-scalpel",
+        consumables: "fas fa-boxes",
+        equipment: "fas fa-microscope",
+        orthopedics: "fas fa-bone"
+    };
 
-        const categoryList = Object.keys(productsDB);
-        let currentCategory = categoryList[0];
-        let quoteItems = [];
+    // ============================================
+    // PRODUCTS PAGE RENDERING
+    // ============================================
+    const categoryKeys = Object.keys(productsDB);
+    let currentCategoryKey = categoryKeys[0];
+    let quoteItems = [];
 
-        // Helper to generate SKU
-        function generateSKU(category, index) {
-            let prefix = "";
-            if (category === "Syringes & Needles") prefix = "SYR";
-            else if (category === "Bandages & Dressings") prefix = "BAN";
-            else if (category === "Gloves") prefix = "GLV";
-            else if (category === "Sutures & Blades") prefix = "SUT";
-            else if (category === "Hospital Linen") prefix = "LIN";
-            else if (category === "Catheters & Airway") prefix = "CAT";
-            else if (category === "Dialysis Products") prefix = "DIA";
-            else if (category === "Vascular Access") prefix = "VAS";
-            else if (category === "IV Fluids") prefix = "IVF";
-            else if (category === "Cleaning Appliances") prefix = "CLN";
-            else if (category === "Surgical Instruments") prefix = "SUR";
-            else if (category === "General Consumables") prefix = "CON";
-            else if (category === "Hospital Equipment") prefix = "EQP";
-            else if (category === "Orthopedics") prefix = "ORT";
-            else prefix = category.substring(0, 3).toUpperCase();
-            return prefix + "-" + String(index + 1).padStart(3, '0');
-        }
-
-        // Render category navigation with icons
-        function renderCategoryNav() {
-            const container = document.getElementById('categoryNav');
-            container.innerHTML = categoryList.map(cat => {
-                const iconClass = categoryIcons[cat] || "fas fa-box";
-                return `<button class="category-btn ${cat === currentCategory ? 'active' : ''}" data-category="${cat}"><i class="${iconClass}"></i> ${cat}</button>`;
-            }).join('');
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentCategory = btn.dataset.category;
-                    renderCategoryNav();
-                    renderProducts();
-                });
+    function renderCategoryNav() {
+        const container = document.getElementById('categoryNav');
+        container.innerHTML = categoryKeys.map(key => {
+            const displayName = categoryDisplayNames[key] || key;
+            const icon = categoryIcons[key] || "fas fa-box";
+            return `<button class="category-btn ${key === currentCategoryKey ? 'active' : ''}" data-category="${key}"><i class="${icon}"></i> ${displayName}</button>`;
+        }).join('');
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentCategoryKey = btn.dataset.category;
+                renderCategoryNav();
+                renderProducts();
+                // Update URL parameter
+                const url = new URL(window.location);
+                url.searchParams.set('category', displayCategoryName(currentCategoryKey));
+                window.history.pushState({}, '', url);
             });
-        }
+        });
+    }
 
-        // Render products for current category with category-specific icon
-        function renderProducts() {
-            const products = productsDB[currentCategory];
-            const categoryIcon = categoryIcons[currentCategory] || "fas fa-box";
-            const contentDiv = document.getElementById('productsContent');
-            contentDiv.innerHTML = `
-                <div class="category-title">
-                    <i class="${categoryIcon}"></i>
-                    ${currentCategory} <span class="products-count">${products.length} products</span>
+    function displayCategoryName(key) {
+        return categoryDisplayNames[key] || key;
+    }
+
+    function renderProducts() {
+        const products = productsDB[currentCategoryKey] || [];
+        const displayName = displayCategoryName(currentCategoryKey);
+        const icon = categoryIcons[currentCategoryKey] || "fas fa-box";
+        const contentDiv = document.getElementById('productsContent');
+        
+        contentDiv.innerHTML = `
+            <div class="category-title">
+                <i class="${icon}"></i>
+                ${displayName} <span class="products-count">${products.length} products</span>
+            </div>
+            <div class="category-description">Browse our complete range of ${displayName.toLowerCase()} - high quality medical consumables for healthcare facilities.</div>
+            <div class="products-grid" id="productsGrid"></div>
+        `;
+        
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = products.map((product, idx) => `
+            <div class="product-item">
+                <div class="product-icon"><i class="${icon}"></i></div>
+                <div class="product-name">${escapeHtml(product.name)}</div>
+                <div class="product-sku">SKU: ${escapeHtml(product.sku)}</div>
+                <button class="add-to-quote" data-name="${escapeHtml(product.name)}" data-sku="${escapeHtml(product.sku)}">Add to Quote <i class="fas fa-plus"></i></button>
+            </div>
+        `).join('');
+        
+        document.querySelectorAll('.add-to-quote').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const name = btn.dataset.name;
+                const sku = btn.dataset.sku;
+                const existing = quoteItems.find(i => i.sku === sku);
+                if(existing) existing.qty += 1;
+                else quoteItems.push({ name, sku, qty: 1 });
+                updateQuoteUI();
+            });
+        });
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // ============================================
+    // QUOTE MODAL FUNCTIONALITY - SAME AS INDEX.HTML
+    // ============================================
+    const COMPANY_EMAIL = "sales@conquerrhealthcare.com";
+    const WHATSAPP_NUMBER = "254743642093";
+
+    // Populate category dropdown in modal
+    const modalCategorySelect = document.getElementById('modalCategorySelect');
+    const productsListDiv = document.getElementById('modalProductsList');
+    const productSearchInput = document.getElementById('productSearchInput');
+
+    function renderModalProducts(categoryKey) {
+        if(!categoryKey || !productsDB[categoryKey]) {
+            productsListDiv.innerHTML = '<div style="padding:20px;text-align:center;color:#94a3b8;font-size:13px"><i class="fas fa-box-open" style="font-size:28px;margin-bottom:8px;display:block"></i>No products in this category.</div>';
+            productSearchInput.style.display = 'none';
+            return;
+        }
+        productSearchInput.style.display = 'block';
+        const products = productsDB[categoryKey];
+        let html = '';
+        products.forEach(prod => {
+            html += `
+                <div class="product-list-item">
+                    <div><strong>${escapeHtml(prod.name)}</strong><br><span class="sku">${escapeHtml(prod.sku)}</span></div>
+                    <button class="add-to-quote-btn" data-name="${escapeHtml(prod.name)}" data-sku="${escapeHtml(prod.sku)}">Add</button>
                 </div>
-                <div class="category-description">Browse our complete range of ${currentCategory.toLowerCase()} - high quality medical consumables for healthcare facilities.</div>
-                <div class="products-grid" id="productsGrid"></div>
             `;
-            const grid = document.getElementById('productsGrid');
-            const itemIcon = productItemIcons[currentCategory] || "fas fa-box";
-            grid.innerHTML = products.map((product, idx) => `
-                <div class="product-item">
-                    <div class="product-icon"><i class="${itemIcon}"></i></div>
-                    <div class="product-name">${escapeHtml(product)}</div>
-                    <div class="product-sku">SKU: ${generateSKU(currentCategory, idx)}</div>
-                    <button class="add-to-quote" data-name="${escapeHtml(product)}" data-sku="${generateSKU(currentCategory, idx)}">Add to Quote <i class="fas fa-plus"></i></button>
-                </div>
-            `).join('');
-            document.querySelectorAll('.add-to-quote').forEach(btn => {
-                btn.addEventListener('click', () => {
+        });
+        productsListDiv.innerHTML = html;
+        document.querySelectorAll('.add-to-quote-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const name = btn.dataset.name;
+                const sku = btn.dataset.sku;
+                const existing = quoteItems.find(i => i.sku === sku);
+                if(existing) existing.qty += 1;
+                else quoteItems.push({ name, sku, qty: 1 });
+                updateQuoteUI();
+            });
+        });
+    }
+
+    // Populate modal category dropdown
+    for(let key in productsDB) {
+        let option = document.createElement('option');
+        option.value = key;
+        option.textContent = categoryDisplayNames[key] || key;
+        modalCategorySelect.appendChild(option);
+    }
+
+    modalCategorySelect.addEventListener('change', (e) => {
+        renderModalProducts(e.target.value);
+        if(productSearchInput) productSearchInput.value = '';
+    });
+
+    // Search filter in modal
+    if(productSearchInput) {
+        productSearchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const selectedCat = modalCategorySelect.value;
+            if(!selectedCat || !productsDB[selectedCat]) return;
+            const filtered = productsDB[selectedCat].filter(p => p.name.toLowerCase().includes(searchTerm) || p.sku.toLowerCase().includes(searchTerm));
+            let html = '';
+            filtered.forEach(prod => {
+                html += `<div class="product-list-item"><div><strong>${escapeHtml(prod.name)}</strong><br><span class="sku">${escapeHtml(prod.sku)}</span></div><button class="add-to-quote-btn" data-name="${escapeHtml(prod.name)}" data-sku="${escapeHtml(prod.sku)}">Add</button></div>`;
+            });
+            productsListDiv.innerHTML = html || '<div style="padding:20px;text-align:center;color:#94a3b8">No matching products</div>';
+            document.querySelectorAll('.add-to-quote-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
                     const name = btn.dataset.name;
                     const sku = btn.dataset.sku;
-                    const existing = quoteItems.find(i => i.name === name);
-                    if (existing) existing.qty++;
+                    const existing = quoteItems.find(i => i.sku === sku);
+                    if(existing) existing.qty += 1;
                     else quoteItems.push({ name, sku, qty: 1 });
-                    renderQuoteList();
+                    updateQuoteUI();
                 });
             });
-        }
+        });
+    }
 
-        function escapeHtml(str) {
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
-        }
-
-        // Render quote list
-        function renderQuoteList() {
-            const container = document.getElementById('quoteItemsList');
-            const badge = document.getElementById('quoteBadge');
-            const totalItems = quoteItems.reduce((s, i) => s + i.qty, 0);
-            if (totalItems > 0) {
+    function updateQuoteUI() {
+        const quoteItemsList = document.getElementById('quoteItemsList');
+        const quoteItemCountSpan = document.getElementById('quoteItemCount');
+        const totalQty = quoteItems.reduce((sum, item) => sum + item.qty, 0);
+        quoteItemCountSpan.textContent = totalQty > 0 ? `(${totalQty} items)` : '';
+        const badge = document.getElementById('quoteBadge');
+        if(badge) {
+            if(totalQty > 0) {
+                badge.textContent = totalQty;
                 badge.style.display = 'inline-flex';
-                badge.textContent = totalItems;
             } else {
                 badge.style.display = 'none';
             }
-            if (quoteItems.length === 0) {
-                container.innerHTML = '<div class="quote-empty"><i class="fas fa-cart-plus"></i><p>No products added yet. Click "Add to Quote" on any product.</p></div>';
-                return;
-            }
-            container.innerHTML = quoteItems.map((item, idx) => `
-                <div class="quote-item">
+        }
+        
+        if(quoteItems.length === 0) {
+            quoteItemsList.innerHTML = '<div class="quote-empty"><i class="fas fa-cart-plus"></i><p>No products added yet.<br>Browse and add products from the left panel.</p></div>';
+            return;
+        }
+        
+        let html = '';
+        quoteItems.forEach((item, idx) => {
+            html += `
+                <div class="quote-item" data-index="${idx}">
                     <div class="quote-item-info">
                         <div class="name">${escapeHtml(item.name)}</div>
                         <div class="sku">${escapeHtml(item.sku)}</div>
                     </div>
                     <div class="qty-control">
-                        <button class="qty-btn" data-idx="${idx}" data-delta="-1">-</button>
-                        <input type="text" class="qty-input" value="${item.qty}" data-idx="${idx}" style="width:45px;text-align:center;">
-                        <button class="qty-btn" data-idx="${idx}" data-delta="1">+</button>
-                        <button class="remove-item-btn" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+                        <button class="qty-btn" data-action="decr" data-idx="${idx}">-</button>
+                        <input type="text" class="qty-input" value="${item.qty}" data-idx="${idx}" data-action="change">
+                        <button class="qty-btn" data-action="incr" data-idx="${idx}">+</button>
                     </div>
+                    <button class="remove-item-btn" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
                 </div>
-            `).join('');
-            document.querySelectorAll('.qty-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const idx = parseInt(btn.dataset.idx);
-                    const delta = parseInt(btn.dataset.delta);
-                    if (!isNaN(idx)) {
-                        quoteItems[idx].qty = Math.max(1, quoteItems[idx].qty + delta);
-                        renderQuoteList();
-                    }
-                });
+            `;
+        });
+        quoteItemsList.innerHTML = html;
+        
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const idx = parseInt(btn.dataset.idx);
+                if(btn.dataset.action === 'incr') {
+                    quoteItems[idx].qty += 1;
+                } else if(btn.dataset.action === 'decr') {
+                    if(quoteItems[idx].qty > 1) quoteItems[idx].qty -= 1;
+                }
+                updateQuoteUI();
             });
-            document.querySelectorAll('.qty-input').forEach(inp => {
-                inp.addEventListener('change', (e) => {
-                    const idx = parseInt(inp.dataset.idx);
-                    let val = parseInt(inp.value);
-                    if (!isNaN(idx) && !isNaN(val) && val >= 1) quoteItems[idx].qty = val;
-                    renderQuoteList();
-                });
+        });
+        document.querySelectorAll('.qty-input').forEach(inp => {
+            inp.addEventListener('change', (e) => {
+                const idx = parseInt(inp.dataset.idx);
+                let newQty = parseInt(inp.value);
+                if(isNaN(newQty) || newQty < 1) newQty = 1;
+                quoteItems[idx].qty = newQty;
+                updateQuoteUI();
             });
-            document.querySelectorAll('.remove-item-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const idx = parseInt(btn.dataset.idx);
-                    quoteItems.splice(idx, 1);
-                    renderQuoteList();
-                });
+        });
+        document.querySelectorAll('.remove-item-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.dataset.idx);
+                quoteItems.splice(idx, 1);
+                updateQuoteUI();
             });
-        }
+        });
+    }
 
-        // Build professional quote message with customer name and email
-        function buildQuoteMessage() {
-            if (quoteItems.length === 0) return "No products selected.";
-            const customerName = document.getElementById('quoteContactName').value.trim() || 'Valued Customer';
-            const customerEmail = document.getElementById('quoteContactEmail').value.trim() || '';
-            const customerPhone = document.getElementById('quoteContactPhone').value.trim() || '';
-            const notes = document.getElementById('quoteNotes').value.trim() || '';
-            
-            let itemsList = '';
-            quoteItems.forEach(item => {
-                itemsList += `  • ${item.name} (SKU: ${item.sku}) - Quantity: ${item.qty}\n`;
-            });
-            
-            let msg = `🏥 QUOTE REQUEST\n`;
-            msg += `═══════════════════════════════════\n\n`;
-            msg += `📋 CUSTOMER INFORMATION:\n`;
-            msg += `   Name: ${customerName}\n`;
-            if (customerEmail) msg += `   Email: ${customerEmail}\n`;
-            if (customerPhone) msg += `   Phone: ${customerPhone}\n`;
-            msg += `   Date: ${new Date().toLocaleString()}\n\n`;
-            msg += `📦 PRODUCTS REQUESTED:\n`;
-            msg += itemsList;
-            msg += `\n`;
-            if (notes) {
-                msg += `📝 ADDITIONAL NOTES:\n`;
-                msg += `   ${notes}\n\n`;
+    function generateQuoteMessage() {
+        const customerName = document.getElementById('quoteContactName')?.value.trim() || 'Valued Customer';
+        const customerEmail = document.getElementById('quoteContactEmail')?.value.trim() || '';
+        const customerPhone = document.getElementById('quoteContactPhone')?.value.trim() || '';
+        const notes = document.getElementById('quoteNotes')?.value.trim() || '';
+        
+        let itemsList = '';
+        quoteItems.forEach(item => {
+            itemsList += `  • ${item.name} (SKU: ${item.sku}) - Quantity: ${item.qty}\n`;
+        });
+        
+        if(!itemsList) itemsList = '  • No items selected.';
+        
+        let msg = `🏥 QUOTE REQUEST\n`;
+        msg += `═══════════════════════════════════\n\n`;
+        msg += `📋 CUSTOMER INFORMATION:\n`;
+        msg += `   Name: ${customerName}\n`;
+        if(customerEmail) msg += `   Email: ${customerEmail}\n`;
+        if(customerPhone) msg += `   Phone: ${customerPhone}\n`;
+        msg += `   Date: ${new Date().toLocaleString()}\n\n`;
+        msg += `📦 PRODUCTS REQUESTED:\n`;
+        msg += itemsList;
+        msg += `\n`;
+        if(notes) {
+            msg += `📝 ADDITIONAL NOTES:\n`;
+            msg += `   ${notes}\n\n`;
+        }
+        msg += `✨ Thank you for choosing Conquerr Healthcare!\n`;
+        msg += `   Our team will respond to your quote within 24 hours.\n\n`;
+        msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        msg += `Conquerr Healthcare - Reliable Supply. Stronger Healthcare.`;
+        
+        return msg;
+    }
+
+    // Modal control
+    const modal = document.getElementById('quoteModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    function openModal() { if(modal) modal.classList.add('active'); }
+    function closeModal() { if(modal) modal.classList.remove('active'); }
+
+    document.getElementById('quoteBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if(modal) modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+
+    // Email send
+    const sendEmailBtn = document.getElementById('sendEmailBtn');
+    if(sendEmailBtn) {
+        sendEmailBtn.addEventListener('click', () => {
+            if(quoteItems.length === 0) {
+                alert("⚠️ Please add at least one product to your quote list before sending.");
+                return;
             }
-            msg += `✨ Thank you for choosing Conquerr Healthcare!\n`;
-            msg += `   Our team will respond to your quote within 24 hours.\n\n`;
-            msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-            msg += `Conquerr Healthcare - Reliable Supply. Stronger Healthcare.`;
+            const customerName = document.getElementById('quoteContactName')?.value.trim();
+            if(!customerName) {
+                alert("⚠️ Please enter your name before sending the quote.");
+                document.getElementById('quoteContactName')?.focus();
+                return;
+            }
+            const customerEmail = document.getElementById('quoteContactEmail')?.value.trim();
+            if(!customerEmail) {
+                alert("⚠️ Please enter your email address before sending the quote.");
+                document.getElementById('quoteContactEmail')?.focus();
+                return;
+            }
+            if(!customerEmail.includes('@') || !customerEmail.includes('.')) {
+                alert("⚠️ Please enter a valid email address.");
+                return;
+            }
             
-            return encodeURIComponent(msg);
-        }
+            const msg = generateQuoteMessage();
+            const subject = `Quote Request from ${customerName} - Conquerr Healthcare`;
+            const mailtoLink = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
+            window.location.href = mailtoLink;
+            setTimeout(() => closeModal(), 500);
+        });
+    }
 
-        // Modal functions
-        function openModal() { document.getElementById('quoteModal').classList.add('active'); }
-        function closeModal() { document.getElementById('quoteModal').classList.remove('active'); }
-
-        // Event listeners
-        document.getElementById('quoteBtn').addEventListener('click', (e) => { e.preventDefault(); openModal(); });
-        document.getElementById('closeModal').addEventListener('click', closeModal);
-        document.getElementById('quoteModal').addEventListener('click', (e) => { if(e.target === document.getElementById('quoteModal')) closeModal(); });
-        
-        document.getElementById('sendEmailBtn').addEventListener('click', () => {
-            if (quoteItems.length === 0) { alert("⚠️ Please add at least one product to your quote."); return; }
-            const customerName = document.getElementById('quoteContactName').value.trim();
-            if (!customerName) { alert("⚠️ Please enter your name."); document.getElementById('quoteContactName').focus(); return; }
-            const customerEmail = document.getElementById('quoteContactEmail').value.trim();
-            if (!customerEmail) { alert("⚠️ Please enter your email address."); document.getElementById('quoteContactEmail').focus(); return; }
-            if (!customerEmail.includes('@')) { alert("⚠️ Please enter a valid email address."); return; }
+    // WhatsApp send
+    const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+    if(sendWhatsappBtn) {
+        sendWhatsappBtn.addEventListener('click', () => {
+            if(quoteItems.length === 0) {
+                alert("⚠️ Please add at least one product to your quote list before sending.");
+                return;
+            }
+            const customerName = document.getElementById('quoteContactName')?.value.trim();
+            if(!customerName) {
+                alert("⚠️ Please enter your name before sending the quote.");
+                document.getElementById('quoteContactName')?.focus();
+                return;
+            }
             
-            const subject = encodeURIComponent(`Quote Request from ${customerName} - Conquerr Healthcare`);
-            window.location.href = `mailto:sales@conquerrhealthcare.com?subject=${subject}&body=${buildQuoteMessage()}`;
+            const msg = generateQuoteMessage();
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+            window.open(whatsappUrl, '_blank');
+            setTimeout(() => closeModal(), 500);
         });
-        
-        document.getElementById('sendWhatsappBtn').addEventListener('click', () => {
-            if (quoteItems.length === 0) { alert("⚠️ Please add at least one product to your quote."); return; }
-            const customerName = document.getElementById('quoteContactName').value.trim();
-            if (!customerName) { alert("⚠️ Please enter your name."); document.getElementById('quoteContactName').focus(); return; }
-            window.open(`https://wa.me/254743642093?text=${buildQuoteMessage()}`, '_blank');
-        });
+    }
 
-        // URL parameter handling
-        const urlParams = new URLSearchParams(window.location.search);
-        const categoryParam = urlParams.get('category');
-        if (categoryParam) {
-            const formattedCat = categoryList.find(cat => cat.toLowerCase().replace(/ & /g, '-') === categoryParam.toLowerCase() || cat === categoryParam);
-            if (formattedCat) currentCategory = formattedCat;
+    // ============================================
+    // INITIALIZATION
+    // ============================================
+    // URL parameter handling
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    if(categoryParam) {
+        // Find matching category key
+        for(let key in categoryDisplayNames) {
+            if(categoryDisplayNames[key].toLowerCase().replace(/ & /g, '-') === categoryParam.toLowerCase() || 
+               categoryDisplayNames[key] === categoryParam) {
+                currentCategoryKey = key;
+                break;
+            }
         }
+    }
 
-        // Populate dropdown with icons
-        const dropdown = document.getElementById('categoryDropdown');
-        dropdown.innerHTML = categoryList.map(cat => {
-            const iconClass = categoryIcons[cat] || "fas fa-box";
-            return `<a href="products.html?category=${encodeURIComponent(cat)}"><i class="${iconClass}" style="margin-right:8px;"></i> ${cat}</a>`;
-        }).join('');
+    // Populate dropdown in navbar
+    const dropdown = document.getElementById('categoryDropdown');
+    dropdown.innerHTML = categoryKeys.map(key => {
+        const displayName = categoryDisplayNames[key] || key;
+        const icon = categoryIcons[key] || "fas fa-box";
+        return `<a href="products.html?category=${encodeURIComponent(displayName)}"><i class="${icon}" style="margin-right:8px;"></i> ${displayName}</a>`;
+    }).join('');
 
-        // Initialize
-        renderCategoryNav();
-        renderProducts();
-        renderQuoteList();
+    // Initialize
+    renderCategoryNav();
+    renderProducts();
+    updateQuoteUI();
 
-        // Scroll to top & hamburger
-        const scrollBtn = document.getElementById('scrollToTop');
-        window.addEventListener('scroll', () => { if (window.scrollY > 300) scrollBtn.classList.add('show'); else scrollBtn.classList.remove('show'); });
-        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navMenu').classList.toggle('active'));
+    // Set modal default category
+    if(modalCategorySelect.options.length > 1) {
+        modalCategorySelect.selectedIndex = 1;
+        renderModalProducts(modalCategorySelect.value);
+    }
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollToTop');
+    if(scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 300) scrollBtn.classList.add('show');
+            else scrollBtn.classList.remove('show');
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+    }
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    if(hamburger && navMenu) {
+        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+    }
     </script>
 </body>
 </html>

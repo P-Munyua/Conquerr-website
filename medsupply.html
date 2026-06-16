@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MedSupply – Smarter Inventory. Smoother Operations.</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,6 +22,8 @@
       --gray-700: #334155;
       --gray-900: #0f172a;
       --white: #ffffff;
+      --primary-blue: #0052CC;
+      --dark-navy: #001a4d;
     }
 
     body {
@@ -62,6 +65,7 @@
       display: flex;
       gap: 36px;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -99,6 +103,31 @@
     .btn-portal:hover { background: var(--blue-dark); }
 
     .btn-portal svg { width: 14px; height: 14px; }
+
+    .btn-back {
+      background: var(--dark-navy);
+      color: var(--white);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .btn-back:hover { background: var(--primary-blue); }
+    .btn-back i { font-size: 14px; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -192,7 +221,6 @@
 
     .btn-secondary:hover { border-color: var(--blue); }
 
-    /* play icon */
     .play-icon {
       width: 28px; height: 28px;
       border-radius: 50%;
@@ -219,7 +247,6 @@
       font-size: 12px;
     }
 
-    /* dashboard top bar */
     .db-topbar {
       background: var(--blue);
       color: var(--white);
@@ -248,7 +275,6 @@
       grid-template-columns: 150px 1fr;
     }
 
-    /* sidebar */
     .db-sidebar {
       background: #fafbff;
       border-right: 1px solid var(--gray-100);
@@ -276,7 +302,6 @@
     .db-sidebar-item svg { width: 14px; height: 14px; opacity: .7; }
     .db-sidebar-item.active svg { opacity: 1; }
 
-    /* main content */
     .db-main {
       padding: 14px;
     }
@@ -331,7 +356,6 @@
 
     .db-chart-title { font-size: 10.5px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
 
-    /* mini bar chart */
     .mini-chart {
       display: flex;
       align-items: flex-end;
@@ -351,7 +375,6 @@
 
     .mini-chart .bar.light { background: #bfdbfe; }
 
-    /* legend */
     .chart-legend {
       display: flex; gap: 10px; margin-bottom: 6px;
     }
@@ -365,7 +388,6 @@
       width: 7px; height: 7px; border-radius: 50%;
     }
 
-    /* top products table */
     .db-table { width: 100%; border-collapse: collapse; }
     .db-table th {
       font-size: 9.5px; color: var(--gray-400); font-weight: 600;
@@ -489,6 +511,217 @@
       line-height: 1.65;
       text-align: center;
     }
+
+    /* ── MEDSUPPLY FOOTER ── */
+    .footer {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 70px 60px 25px;
+      border-top: 3px solid var(--blue);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo {
+      margin-bottom: 18px;
+    }
+
+    .footer-logo .logo-icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo .logo-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .footer-logo .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .footer-logo .logo-text span {
+      color: var(--blue);
+    }
+
+    .footer-section p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #94a3b8;
+      margin-bottom: 25px;
+      max-width: 320px;
+    }
+
+    .footer-section h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 22px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--blue);
+      padding-left: 5px;
+    }
+
+    .contact-info li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .contact-info i {
+      color: var(--blue);
+      margin-top: 4px;
+      width: 16px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: var(--blue);
+      color: #fff;
+      transform: translateY(-3px);
+      border-color: var(--blue);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #64748b;
+      transition: 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; padding: 50px 30px; }
+      .hero-visual { justify-content: center; }
+      .dashboard-card { width: 100%; max-width: 700px; }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        height: auto;
+        gap: 12px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .nav-links { 
+        flex-wrap: wrap; 
+        gap: 16px; 
+        justify-content: center;
+        width: 100%;
+        order: 3;
+      }
+      .nav-links li:first-child a { border-bottom: none; }
+      .nav-right { 
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+      }
+      .btn-back, .btn-portal { 
+        padding: 8px 14px; 
+        font-size: 12px; 
+      }
+      .btn-back span, .btn-portal span { display: none; }
+      .hero { padding: 40px 20px; }
+      .hero-headline { font-size: 32px; }
+      .hero-sub { max-width: 100%; }
+      .db-layout { grid-template-columns: 1fr; }
+      .db-sidebar { display: flex; flex-wrap: wrap; padding: 8px; border-right: none; border-bottom: 1px solid var(--gray-100); }
+      .db-sidebar-item { padding: 4px 10px; font-size: 10px; }
+      .db-stats { grid-template-columns: 1fr; }
+      .db-charts { grid-template-columns: 1fr; }
+      .trusted { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .trusted-logos { gap: 24px; }
+      .why { padding: 50px 20px; }
+      .why-title { font-size: 26px; }
+      .features { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .footer { padding: 40px 20px 20px; }
+      .footer-content { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 26px; }
+      .features { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; width: 100%; }
+      .hero-ctas a { width: 100%; justify-content: center; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 12px; }
+      .btn-back, .btn-portal { font-size: 11px; padding: 6px 12px; }
+    }
   </style>
 </head>
 <body>
@@ -514,12 +747,18 @@
     <li><a href="#">FAQs</a></li>
     <li><a href="#">Contact Us</a></li>
   </ul>
-  <a href="#" class="btn-portal">
-    Access VMI Portal
-    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M2 7h10M7 2l5 5-5 5"/>
-    </svg>
-  </a>
+  <div class="nav-right">
+    <a href="index.html" class="btn-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Conquerr Healthcare</span>
+    </a>
+    <a href="#" class="btn-portal">
+      <span>Access VMI Portal</span>
+      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 7h10M7 2l5 5-5 5"/>
+      </svg>
+    </a>
+  </div>
 </nav>
 
 <!-- ── HERO ── -->
@@ -754,6 +993,61 @@
     </div>
   </div>
 </section>
+
+<!-- ── MEDSUPPLY FOOTER ── -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <div class="footer-logo">
+        <div class="logo-icon">
+                    <img src="medsupplylogo.png" alt="MedSupply Logo" style="height:45px; width:auto;" onerror="this.style.display='none'; this.parentElement.innerHTML='<svg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'40\' height=\'40\' rx=\'10\' fill=\'#2563eb\'/><path d=\'M13 20h14M20 13v14\' stroke=\'white\' stroke-width=\'3\' stroke-linecap=\'round\'/></svg><span class=\'logo-text\' style=\'margin-left:10px;\'>Med<span>Supply</span></span>'">
+        </div>
+      </div>
+      <p>MedSupply is a Vendor Managed Inventory (VMI) platform that uses AI to predict demand, automate ordering and ensure you never run out of what matters.</p>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Forecasting</a></li>
+        <li><a href="#">LPO Automation</a></li>
+        <li><a href="#">Inventory Management</a></li>
+        <li><a href="#">Reports &amp; Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About MedSupply</a></li>
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <ul class="contact-info">
+        <li><i class="fas fa-envelope"></i> support@medsupply.com</li>
+        <li><i class="fas fa-phone-alt"></i> +254 743 642 093</li>
+        <li><i class="fas fa-location-dot"></i> Nairobi, Kenya</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MedSupply. All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
