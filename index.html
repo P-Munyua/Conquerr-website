@@ -1091,6 +1091,217 @@
     width: 20px;
     color: #2563eb;
 }
+
+/* ====== MEDSUPPLY SECTION ====== */
+        .medsupply-section {
+            padding: 90px 20px;
+            background: linear-gradient(160deg, #f0f6ff 0%, #e8f0fe 50%, #f5f8ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .medsupply-section::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0,82,204,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .medsupply-section::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0,184,148,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .medsupply-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .medsupply-visual {
+            position: relative;
+        }
+
+        .medsupply-img {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 30px 80px rgba(0,82,204,0.18);
+            transition: transform 0.4s ease;
+        }
+
+        .medsupply-img:hover { transform: scale(1.02) translateY(-4px); }
+
+        .medsupply-visual::before {
+            content: '';
+            position: absolute;
+            inset: -14px;
+            background: linear-gradient(135deg, rgba(0,82,204,0.1), rgba(0,184,148,0.1));
+            border-radius: 24px;
+            z-index: -1;
+        }
+
+        .medsupply-content { padding: 0 10px; }
+
+        .ms-intro-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ms-logo { height: 32px; }
+
+        .ms-introducing {
+            font-size: 13px;
+            font-weight: 700;
+            color: #4a67c7;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .ms-title {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .ms-brand {
+            background: linear-gradient(135deg, #0052CC, #1a6fd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ms-vmi {
+            font-size: 22px;
+            font-weight: 600;
+            color: #6b7a99;
+            -webkit-text-fill-color: #6b7a99;
+        }
+
+        .ms-desc {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            max-width: 480px;
+        }
+
+        .ms-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+            margin-bottom: 28px;
+        }
+
+        .ms-feat {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .ms-feat i { color: #00B894; font-size: 15px; }
+
+        .ms-built-for {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,82,204,0.1);
+            box-shadow: 0 4px 16px rgba(0,82,204,0.06);
+        }
+
+        .ms-built-for strong {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #6b7a99;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .ms-built-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .ms-built-tags span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f0f6ff;
+            color: #0052CC;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,82,204,0.15);
+        }
+
+        .ms-built-tags span i { font-size: 13px; }
+
+        .ms-cta-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-ms-primary {
+            background: linear-gradient(135deg, #0052CC, #1a6fd4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0,82,204,0.3);
+        }
+
+        .btn-ms-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0,82,204,0.4);
+        }
+
+        .ms-url {
+            font-size: 13px;
+            color: #4a67c7;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .medsupply-inner { grid-template-columns: 1fr; gap: 40px; }
+            .ms-title { font-size: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .medsupply-section { padding: 60px 20px; }
+            .ms-title { font-size: 34px; }
+            .ms-features-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -1264,6 +1475,49 @@
         <a href="products.html?category=Orthopedics" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
 </div>
+        </div>
+    </section>
+
+    <!-- MedSupply VMI Section -->
+    <section class="medsupply-section" id="manufacturing">
+        <div class="container">
+            <div class="medsupply-inner">
+                <div class="medsupply-visual">
+                    <img src="medsupply.png" alt="MedSupply VMI Platform" class="medsupply-img" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#dce9ff,#e8f3ff)';this.parentElement.style.minHeight='360px';this.parentElement.style.borderRadius='18px';this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;min-height:360px;flex-direction:column;gap:16px\'><i class=\'fas fa-desktop\' style=\'font-size:80px;color:#0052CC;opacity:0.3\'></i><span style=\'color:#4a67c7;font-weight:600\'>MedSupply Dashboard</span></div>'">
+                </div>
+                <div class="medsupply-content">
+                    <div class="ms-intro-label">
+                        <img src="medsupplylogo.png" alt="MedSupply" class="ms-logo" onerror="this.style.display='none'">
+                        <span class="ms-introducing">Introducing</span>
+                    </div>
+                    <h2 class="ms-title">
+                        <span class="ms-brand">MedSupply</span>
+                        <span class="ms-vmi">(VMI)</span>
+                    </h2>
+                    <p class="ms-desc">Our Vendor Managed Inventory platform that uses AI to predict demand, automate ordering and ensure you never run out of what matters.</p>
+                    <div class="ms-features-grid">
+                        <div class="ms-feat"><i class="fas fa-check-circle"></i> AI demand forecasting</div>
+                        <div class="ms-feat"><i class="fas fa-check-circle"></i> Low stock &amp; expiry alerts</div>
+                        <div class="ms-feat"><i class="fas fa-check-circle"></i> Auto-created LPOs</div>
+                        <div class="ms-feat"><i class="fas fa-check-circle"></i> Smarter, faster, simpler ordering</div>
+                        <div class="ms-feat"><i class="fas fa-check-circle"></i> Real-time inventory visibility</div>
+                    </div>
+                    <div class="ms-built-for">
+                        <strong>Built for:</strong>
+                        <div class="ms-built-tags">
+                            <span><i class="fas fa-hospital-alt"></i> Hospitals</span>
+                            <span><i class="fas fa-clinic-medical"></i> Clinics</span>
+                            <span><i class="fas fa-prescription-bottle-alt"></i> Pharmacies</span>
+                            <span><i class="fas fa-flask"></i> Labs</span>
+                            <span><i class="fas fa-hands-helping"></i> NGOs &amp; Projects</span>
+                        </div>
+                    </div>
+                    <div class="ms-cta-row">
+                        <a href="medsupply.html" class="btn-ms-primary">Visit MedSupply Intro Site <i class="fas fa-external-link-alt"></i></a>
+                        <span class="ms-url">medsupply.conquerrhealthcare.com</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

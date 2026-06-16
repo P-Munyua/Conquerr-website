@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedSupply – Smarter Inventory. Smoother Operations.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-light: #eff6ff;
+      --blue-mid: #3b82f6;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 68px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 70px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--gray-700);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-links li:first-child a {
+      color: var(--blue);
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 2px;
+    }
+
+    .btn-portal {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .btn-portal:hover { background: var(--blue-dark); }
+
+    .btn-portal svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #eef4ff 0%, #f0f7ff 40%, #e8f0ff 100%);
+      padding: 70px 60px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: rgba(191, 219, 254, 0.35);
+    }
+
+    .hero-eyebrow {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-headline {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--gray-900);
+      margin-bottom: 22px;
+    }
+
+    .hero-sub {
+      font-size: 15.5px;
+      color: var(--gray-500);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      padding: 12px 26px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: background .2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover { background: var(--blue-dark); }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--gray-700);
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border: 1.5px solid var(--gray-200);
+      transition: border-color .2s;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover { border-color: var(--blue); }
+
+    /* play icon */
+    .play-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .play-icon svg { width: 10px; height: 10px; fill: var(--blue); margin-left: 2px; }
+
+    /* ── DASHBOARD MOCKUP ── */
+    .hero-visual {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dashboard-card {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(37,99,235,.15), 0 4px 16px rgba(0,0,0,.08);
+      width: 800px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+
+    /* dashboard top bar */
+    .db-topbar {
+      background: var(--blue);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+    }
+
+    .db-topbar-logo {
+      display: flex; align-items: center; gap: 6px;
+      font-weight: 700; font-size: 13px;
+    }
+
+    .db-topbar-logo .dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .db-topbar-right { display: flex; gap: 14px; align-items: center; }
+    .db-topbar-right svg { width: 16px; height: 16px; opacity: .9; }
+
+    .db-layout {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+    }
+
+    /* sidebar */
+    .db-sidebar {
+      background: #fafbff;
+      border-right: 1px solid var(--gray-100);
+      padding: 12px 0;
+    }
+
+    .db-sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      font-size: 11.5px;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-radius: 6px;
+      margin: 0 6px;
+    }
+
+    .db-sidebar-item.active {
+      background: #eff6ff;
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .db-sidebar-item svg { width: 14px; height: 14px; opacity: .7; }
+    .db-sidebar-item.active svg { opacity: 1; }
+
+    /* main content */
+    .db-main {
+      padding: 14px;
+    }
+
+    .db-title { font-weight: 700; font-size: 14px; margin-bottom: 12px; color: var(--gray-900); }
+
+    .db-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .db-stat-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .db-stat-label { font-size: 10px; color: var(--gray-500); margin-bottom: 4px; }
+    .db-stat-value { font-size: 18px; font-weight: 800; color: var(--gray-900); }
+    .db-stat-unit { font-size: 9px; color: var(--gray-400); margin-bottom: 2px; }
+    .db-stat-badge {
+      font-size: 9.5px;
+      color: #16a34a;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .db-stat-card.lpo { background: #eff6ff; border-color: #bfdbfe; }
+    .db-stat-card.lpo .db-stat-value { font-size: 24px; color: var(--blue); }
+    .db-stat-lpo-icon {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; color: var(--gray-500); margin-bottom: 4px;
+    }
+
+    .db-stat-card.val .db-stat-value { font-size: 18px; color: var(--gray-900); }
+
+    .db-charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .db-chart-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .db-chart-title { font-size: 10.5px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
+
+    /* mini bar chart */
+    .mini-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 54px;
+    }
+
+    .mini-chart .bar-group {
+      display: flex; gap: 2px; align-items: flex-end;
+    }
+
+    .mini-chart .bar {
+      width: 10px;
+      border-radius: 2px 2px 0 0;
+      background: var(--blue);
+    }
+
+    .mini-chart .bar.light { background: #bfdbfe; }
+
+    /* legend */
+    .chart-legend {
+      display: flex; gap: 10px; margin-bottom: 6px;
+    }
+
+    .chart-legend span {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 9px; color: var(--gray-500);
+    }
+
+    .legend-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+    }
+
+    /* top products table */
+    .db-table { width: 100%; border-collapse: collapse; }
+    .db-table th {
+      font-size: 9.5px; color: var(--gray-400); font-weight: 600;
+      text-align: left; padding: 0 0 6px; border-bottom: 1px solid var(--gray-100);
+    }
+    .db-table th:last-child { text-align: right; }
+    .db-table td {
+      font-size: 10.5px; color: var(--gray-700); padding: 5px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .db-table td:last-child { text-align: right; font-weight: 600; color: var(--gray-900); }
+    .db-table tr:last-child td { border-bottom: none; }
+
+    .view-all {
+      text-align: right;
+      font-size: 9.5px;
+      color: var(--blue);
+      margin-top: 6px;
+      cursor: pointer;
+    }
+
+    /* ── TRUSTED BY ── */
+    .trusted {
+      padding: 32px 60px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      border-bottom: 1px solid var(--gray-100);
+      flex-wrap: wrap;
+    }
+
+    .trusted-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--gray-500);
+      white-space: nowrap;
+    }
+
+    .trusted-logos {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .trusted-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray-500);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .trusted-logo .logo-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .trusted-logo .logo-icon svg { width: 18px; height: 18px; }
+    .trusted-logo .logo-sub { font-size: 10.5px; font-weight: 400; color: var(--gray-400); }
+
+    /* ── WHY CHOOSE ── */
+    .why {
+      padding: 70px 60px;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .why-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--gray-900);
+    }
+
+    .why-title span { color: var(--blue); }
+
+    .why-sub {
+      font-size: 15px;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin: 0 auto 54px;
+      line-height: 1.65;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .feature-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #eff6ff;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .feature-icon svg { width: 26px; height: 26px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.65;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="medsupplylogo.png" alt="MedSupply logo" onerror="this.style.display='none'; this.nextSibling.style.display='flex'" />
+    <span style="display:none; align-items:center; gap:6px;">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="7" fill="#2563eb"/>
+        <path d="M9 14h10M14 9v10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      MedSupply
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Benefits</a></li>
+    <li><a href="#">How It Works</a></li>
+    <li><a href="#">Testimonials</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <a href="#" class="btn-portal">
+    Access VMI Portal
+    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 7h10M7 2l5 5-5 5"/>
+    </svg>
+  </a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Introducing</p>
+    <h1 class="hero-headline">Smarter Inventory.<br>Smoother Operations.</h1>
+    <p class="hero-sub">MedSupply's VMI Web App simplifies your LPO process by predicting your needs and automating LPO creation so you can focus on what matters most.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">
+        Access VMI Portal
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M6.5 2l4.5 4.5L6.5 11"/></svg>
+      </a>
+      <a href="#" class="btn-secondary">
+        <span class="play-icon">
+          <svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3V2z"/></svg>
+        </span>
+        Watch Overview
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dashboard-card">
+      <!-- top bar -->
+      <div class="db-topbar">
+        <div class="db-topbar-logo">
+          <div class="dot">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"><path d="M2 6h8M6 2v8"/></svg>
+          </div>
+          MedSupply
+        </div>
+        <div class="db-topbar-right">
+          <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round"><path d="M8 2a5 5 0 015 5v2l1 2H2l1-2V7a5 5 0 015-5zM6 13a2 2 0 004 0"/></svg>
+          <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5"/></svg>
+        </div>
+      </div>
+
+      <div class="db-layout">
+        <!-- sidebar -->
+        <div class="db-sidebar">
+          <div class="db-sidebar-item active">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+            Dashboard
+          </div>
+          <div class="db-sidebar-item">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><polyline points="2,12 5,7 8,9 11,4 14,4"/></svg>
+            Forecast
+          </div>
+          <div class="db-sidebar-item">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 2h8l2 3v9H2V5l2-3z"/><path d="M6 8h4"/></svg>
+            LPOs
+          </div>
+          <div class="db-sidebar-item">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 2v1M8 13v1M2 8h1M13 8h1"/></svg>
+            Consumption
+          </div>
+          <div class="db-sidebar-item">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 3V2M11 3V2"/></svg>
+            Inventory
+          </div>
+          <div class="db-sidebar-item">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2 12l4-4 3 3 5-6"/></svg>
+            Reports
+          </div>
+          <div class="db-sidebar-item">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 2v1M8 13v1M2 8h1M13 8h1M3.6 3.6l.7.7M11.7 11.7l.7.7M3.6 12.4l.7-.7M11.7 4.3l.7-.7"/></svg>
+            Settings
+          </div>
+        </div>
+
+        <!-- main -->
+        <div class="db-main">
+          <div class="db-title">Dashboard</div>
+
+          <div class="db-stats">
+            <!-- predicted consumption -->
+            <div class="db-stat-card">
+              <div class="db-stat-label">Predicted Consumption</div>
+              <div class="db-stat-value">12,450</div>
+              <div class="db-stat-unit">Units</div>
+              <div class="db-stat-badge">+8.5% vs last month</div>
+            </div>
+            <!-- auto-created LPOs -->
+            <div class="db-stat-card lpo">
+              <div class="db-stat-lpo-icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round"><path d="M2 2h8l1 2v6H1V4l1-2z"/><path d="M4 5h4"/></svg>
+                Auto-Created LPOs
+              </div>
+              <div class="db-stat-value">8</div>
+              <div class="db-stat-unit">This Month</div>
+              <div class="db-stat-badge" style="color:#2563eb;">+2 vs last month</div>
+            </div>
+            <!-- inventory value -->
+            <div class="db-stat-card val">
+              <div class="db-stat-label">Inventory Value</div>
+              <div class="db-stat-value" style="font-size:16px;">$320,450</div>
+              <div class="db-stat-unit">Total Value</div>
+            </div>
+          </div>
+
+          <!-- charts row -->
+          <div class="db-charts">
+            <!-- consumption trend -->
+            <div class="db-chart-card">
+              <div class="db-chart-title">Consumption Trend</div>
+              <div class="chart-legend">
+                <span><span class="legend-dot" style="background:#2563eb;"></span> Actual</span>
+                <span><span class="legend-dot" style="background:#bfdbfe;"></span> Forecast</span>
+              </div>
+              <div class="mini-chart">
+                <div class="bar-group"><div class="bar" style="height:28px;"></div><div class="bar light" style="height:22px;"></div></div>
+                <div class="bar-group"><div class="bar" style="height:34px;"></div><div class="bar light" style="height:26px;"></div></div>
+                <div class="bar-group"><div class="bar" style="height:26px;"></div><div class="bar light" style="height:32px;"></div></div>
+                <div class="bar-group"><div class="bar" style="height:40px;"></div><div class="bar light" style="height:36px;"></div></div>
+                <div class="bar-group"><div class="bar" style="height:32px;"></div><div class="bar light" style="height:28px;"></div></div>
+                <div class="bar-group"><div class="bar" style="height:46px;"></div><div class="bar light" style="height:50px;"></div></div>
+                <div class="bar-group"><div class="bar" style="height:38px;"></div><div class="bar light" style="height:42px;"></div></div>
+              </div>
+            </div>
+            <!-- top products -->
+            <div class="db-chart-card">
+              <div class="db-chart-title">Top Products</div>
+              <table class="db-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Predicted Demand</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Surgical Gloves</td><td>2,450</td></tr>
+                  <tr><td>Face Masks</td><td>1,850</td></tr>
+                  <tr><td>IV Fluids</td><td>1,200</td></tr>
+                  <tr><td>Syringes</td><td>950</td></tr>
+                </tbody>
+              </table>
+              <div class="view-all">View All</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUSTED BY ── -->
+<section class="trusted">
+  <span class="trusted-label">Trusted by Healthcare Providers</span>
+  <div class="trusted-logos">
+    <div class="trusted-logo">
+      <div class="logo-icon" style="background:#eff6ff;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#2563eb" stroke-width="1.7" stroke-linecap="round"><path d="M10 2v16M2 10h16"/></svg>
+      </div>
+      <div>
+        <div>CityCore</div>
+        <div class="logo-sub">Hospital</div>
+      </div>
+    </div>
+    <div class="trusted-logo">
+      <div class="logo-icon" style="background:#f0fdf4;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M7 10l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <div>LifeHealth</div>
+        <div class="logo-sub">Medical Center</div>
+      </div>
+    </div>
+    <div class="trusted-logo">
+      <div class="logo-icon" style="background:#fdf2f8;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#db2777" stroke-width="1.7" stroke-linecap="round"><path d="M10 17s-7-4.5-7-9a7 7 0 0114 0c0 4.5-7 9-7 9z"/></svg>
+      </div>
+      <div>
+        <div>Wellness</div>
+        <div class="logo-sub">Clinic</div>
+      </div>
+    </div>
+    <div class="trusted-logo">
+      <div class="logo-icon" style="background:#fff7ed;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-linecap="round"><path d="M4 17V7l6-4 6 4v10"/><rect x="8" y="11" width="4" height="6"/></svg>
+      </div>
+      <div>
+        <div>PrimeCare</div>
+        <div class="logo-sub">Solutions</div>
+      </div>
+    </div>
+    <div class="trusted-logo">
+      <div class="logo-icon" style="background:#f5f3ff;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M8 10h4M10 8v4"/></svg>
+      </div>
+      <div>
+        <div>Metro Health</div>
+        <div class="logo-sub">Group</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE ── -->
+<section class="why">
+  <h2 class="why-title">Why Choose <span>MedSupply VMI?</span></h2>
+  <p class="why-sub">Our VMI solution is designed to optimize your inventory management and streamline your procurement process.</p>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 26 26"><polyline points="2,18 7,10 11,13 16,6 24,6"/><polyline points="19,6 24,6 24,11"/></svg>
+      </div>
+      <div class="feature-title">Predictive Intelligence</div>
+      <p class="feature-desc">We analyze your historical consumption to predict future demand with high accuracy.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 26 26"><polygon points="13,2 16,10 24,10 18,15 20,23 13,18 6,23 8,15 2,10 10,10"/></svg>
+      </div>
+      <div class="feature-title">Auto-Create LPOs</div>
+      <p class="feature-desc">LPOs are automatically generated based on forecasted needs and inventory levels.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 26 26"><path d="M13 2a11 11 0 100 22A11 11 0 0013 2z"/><path d="M9 13l3 3 5-5"/></svg>
+      </div>
+      <div class="feature-title">Reduce Stockouts</div>
+      <p class="feature-desc">Ensure availability of critical items while minimizing overstock and waste.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">
+        <svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="10"/><polyline points="13,7 13,13 17,16"/></svg>
+      </div>
+      <div class="feature-title">Save Time &amp; Effort</div>
+      <p class="feature-desc">Automate manual processes and free up time for your team to focus on patient care.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
