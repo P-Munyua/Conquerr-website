@@ -1,0 +1,14 @@
+# robots.txt for Conquerr Healthcare
+# https://conquerrhealthcare.com/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Sitemap location
+Sitemap: https://conquerrhealthcare.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 5

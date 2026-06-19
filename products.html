@@ -2011,6 +2011,46 @@
         });
     }
 
+
+    // Add to products.html after your existing JavaScript
+(function() {
+    // Update page title and description based on category
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+    
+    if (category) {
+        const titles = {
+            "Syringes & Needles": "Buy Syringes & Needles - Medical Supplies Kenya",
+            "Bandages & Dressings": "Bandages, Tapes & Dressings - Conquerr Healthcare",
+            "Gloves": "Medical Gloves - Examination & Surgical Gloves Kenya",
+            "Sutures & Blades": "Sutures and Surgical Blades - Quality Medical Supplies",
+            "Hospital Linen": "Hospital Linen & Disposable Garments - Kenya",
+            "Catheters & Airway": "Catheters and Airway Management Supplies",
+            "Dialysis Products": "Dialysis Products - Medical Consumables Kenya",
+            "Surgical Instruments": "Surgical Instruments - Quality Medical Equipment"
+        };
+        
+        const descriptions = {
+            "Syringes & Needles": "High-quality syringes and needles for medical use. Available in various sizes including insulin syringes, spinal needles, and disposable needles.",
+            "Bandages & Dressings": "Medical bandages, wound dressings, tapes, and gauze for healthcare facilities. Quality wound care products.",
+            "Gloves": "Medical gloves including latex, nitrile, and surgical gloves. Powder-free and pre-powdered options available.",
+            "Sutures & Blades": "Surgical sutures and blades. Includes catgut, nylon, polyglactin sutures, and surgical blades in various sizes.",
+            "Hospital Linen": "Disposable hospital linen, surgical gowns, face masks, and protective apparel for healthcare facilities."
+        };
+        
+        if (titles[category]) {
+            document.title = titles[category] + " - Conquerr Healthcare";
+        }
+        
+        if (descriptions[category]) {
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.content = descriptions[category] + " Quality medical supplies from Conquerr Healthcare.";
+            }
+        }
+    }
+})();
+
     // ============================================
     // INITIALIZATION
     // ============================================
