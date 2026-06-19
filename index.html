@@ -1,11 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ====== BASIC META ====== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conquerr Healthcare - Reliable Supply. Stronger Healthcare.</title>
+
+    <!-- ====== PRIMARY TITLE TAG (Most Important for SEO) ====== -->
+    <title>Conquerr Healthcare - Trusted Medical Supplies &amp; Surgical Consumables in Kenya</title>
+
+    <!-- ====== META DESCRIPTION (Shows in Search Results) ====== -->
+    <meta name="description" content="Conquerr Healthcare is a leading supplier of surgical and non-pharmaceutical consumables in Kenya. We supply syringes, bandages, gloves, sutures, IV fluids, and hospital equipment to healthcare facilities nationwide. Reliable Supply. Stronger Healthcare.">
+
+    <!-- ====== KEYWORDS ====== -->
+    <meta name="keywords" content="medical supplies Kenya, surgical consumables, hospital equipment, syringes, gloves, bandages, IV fluids, healthcare supplier, medical distributor, Conquerr Healthcare, medical consumables, surgical instruments, healthcare products Kenya">
+
+    <!-- ====== ROBOTS (Tells search engines what to index) ====== -->
+    <meta name="robots" content="index, follow">
+
+    <!-- ====== AUTHOR ====== -->
+    <meta name="author" content="Conquerr Healthcare">
+
+    <!-- ====== CANONICAL URL (Prevents duplicate content issues) ====== -->
+    <link rel="canonical" href="https://conquerrhealthcare.com/">
+
+    <!-- ====== OPEN GRAPH (Social Media Sharing - Facebook, LinkedIn) ====== -->
+    <meta property="og:title" content="Conquerr Healthcare - Trusted Medical Supplies &amp; Surgical Consumables in Kenya">
+    <meta property="og:description" content="Leading supplier of surgical and non-pharmaceutical consumables in Kenya. Quality medical supplies for hospitals, clinics, and healthcare facilities nationwide.">
+    <meta property="og:url" content="https://conquerrhealthcare.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Conquerr Healthcare">
+    <meta property="og:image" content="https://conquerrhealthcare.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- ====== TWITTER CARDS (Twitter Sharing) ====== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conquerr Healthcare - Trusted Medical Supplies in Kenya">
+    <meta name="twitter:description" content="Quality surgical consumables and medical supplies for healthcare facilities. Nationwide delivery across Kenya.">
+    <meta name="twitter:image" content="https://conquerrhealthcare.com/twitter-image.jpg">
+
+    <!-- ====== GEO META TAGS (Local SEO for Kenya) ====== -->
+    <meta name="geo.region" content="KE">
+    <meta name="geo.placename" content="Nairobi">
+    <meta name="geo.position" content="-1.292066;36.821946">
+    <meta name="ICBM" content="-1.292066, 36.821946">
+
+    <!-- ====== STRUCTURED DATA - Organization Schema (JSON-LD) ====== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalOrganization",
+      "name": "Conquerr Healthcare",
+      "description": "Leading supplier of surgical and non-pharmaceutical consumables in Kenya.",
+      "url": "https://conquerrhealthcare.com",
+      "logo": "https://conquerrhealthcare.com/logo.png",
+      "telephone": "+254743642093",
+      "email": "sales@conquerrhealthcare.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nairobi",
+        "addressCountry": "KE"
+      },
+      "sameAs": [
+        "https://www.facebook.com/conquerrhealthcare",
+        "https://www.instagram.com/conquerrhealth",
+        "https://www.linkedin.com/company/conquerrhealthcare",
+        "https://twitter.com/conquerrhealth"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+254743642093",
+        "contactType": "sales",
+        "availableLanguage": ["English", "Swahili"]
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Kenya"
+      }
+    }
+    </script>
+
+    <!-- ====== STRUCTURED DATA - Website Schema ====== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Conquerr Healthcare",
+      "url": "https://conquerrhealthcare.com",
+      "description": "Reliable Supply. Stronger Healthcare. - Trusted medical supplies and surgical consumables in Kenya.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://conquerrhealthcare.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- ====== STRUCTURED DATA - BreadcrumbList Schema ====== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://conquerrhealthcare.com/"
+        }
+      ]
+    }
+    </script>
+
+    <!-- ====== FAVICON ====== -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- ====== PRELOAD (Performance) ====== -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- ====== STYLESHEETS ====== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1307,10 +1426,10 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo.png" alt="Conquerr Healthcare Logo" class="logo-img">
+                <img src="logo.png" alt="Conquerr Healthcare Logo - Trusted Medical Supplies in Kenya" class="logo-img">
                 <div class="logo-text">
                     <span class="main-text">Conquerr</span>
                     <span class="sub-text">Healthcare</span>
@@ -1352,15 +1471,15 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-labelledby="hero-title">
         <div class="hero-background">
             <div class="hero-gradient-overlay"></div>
-             <img src="bike.png" alt="Delivery Bike" class="hero-bike-image">
+             <img src="bike.png" alt="Conquerr Healthcare medical delivery bike - reliable medical supplies delivery across Kenya" class="hero-bike-image" loading="eager">
         </div>
         <div class="hero-content">
             <div class="hero-text-wrapper">
-                <h1 class="hero-title">Reliable Supply.<br><span class="highlight">Stronger Healthcare.</span></h1>
-                <p class="hero-subtitle">Your trusted partner in the wholesale and distribution of surgical and non-pharmaceutical consumables.</p>
+                <h1 class="hero-title" id="hero-title">Reliable Supply.<br><span class="highlight">Stronger Healthcare.</span></h1>
+                <p class="hero-subtitle">Your trusted partner in the wholesale and distribution of surgical and non-pharmaceutical consumables across Kenya.</p>
                 <div class="hero-features">
                     <div class="feature-item"><i class="fas fa-shield-alt"></i><span>Quality<br>You Can Trust</span></div>
                     <div class="feature-item"><i class="fas fa-truck"></i><span>Timely<br>Deliveries</span></div>
@@ -1376,101 +1495,101 @@
     </section>
 
     <!-- Products Section -->
-    <section class="products-section" id="products">
+    <section class="products-section" id="products" aria-labelledby="products-title">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">OUR PRODUCT CATEGORIES</span>
-                <h2>Quality Medical Consumables for <span class="highlight">Every Need</span></h2>
+                <h2 id="products-title">Quality Medical Consumables for <span class="highlight">Every Need</span></h2>
                 <p>We supply a comprehensive range of high-quality medical consumables to hospitals, clinics, healthcare facilities, and distributors across the region.</p>
             </div>
             <div class="products-grid">
     <!-- 15 product cards with correct category names -->
     <div class="product-card">
-        <div class="product-image"><img src="syringes.png" alt="Syringes and Needles" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-syringe\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="syringes.png" alt="Syringes and Needles - Medical supplies from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-syringe\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Syringes and Needles</h3>
         <a href="products.html?category=Syringes%20%26%20Needles" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="bandages.png" alt="Bandages" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-band-aid\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="bandages.png" alt="Bandages, Tapes and Dressings - Wound care products from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-band-aid\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Bandages, Tapes and Dressings</h3>
         <a href="products.html?category=Bandages%20%26%20Dressings" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="gloves.png" alt="Gloves" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-hand-paper\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="gloves.png" alt="Medical Gloves - Examination and surgical gloves from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-hand-paper\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Gloves</h3>
         <a href="products.html?category=Gloves" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="sutures.png" alt="Sutures" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-cut\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="sutures.png" alt="Sutures and Blades - Surgical sutures and blades from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-cut\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Sutures and Blades</h3>
         <a href="products.html?category=Sutures%20%26%20Blades" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="linen.png" alt="Hospital Linen" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-bed\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="linen.png" alt="Hospital Linen - Disposable hospital linen and surgical gowns from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-bed\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Hospital Linen</h3>
         <a href="products.html?category=Hospital%20Linen" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="catheters.png" alt="Catheters" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-lungs\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="catheters.png" alt="Catheters and Airway Management - Medical catheters and airway products from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-lungs\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Catheters and Airway Management</h3>
         <a href="products.html?category=Catheters%20%26%20Airway" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="dialysis.png" alt="Dialysis" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-droplet\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="dialysis.png" alt="Dialysis Products - Dialysis consumables from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-droplet\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Dialysis Products</h3>
         <a href="products.html?category=Dialysis%20Products" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="vascular.png" alt="Vascular Access" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-heartbeat\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="vascular.png" alt="Vascular Access - Vascular access products from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-heartbeat\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Vascular Access</h3>
         <a href="products.html?category=Vascular%20Access" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="cannulas.png" alt="IV Fluids" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-flask\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="cannulas.png" alt="IV Fluids - Intravenous fluids and solutions from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-flask\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>IV Fluids</h3>
         <a href="products.html?category=IV%20Fluids" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="cleaning.png" alt="Cleaning Appliances" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-soap\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="cleaning.png" alt="Cleaning Appliances - Medical cleaning and disinfectant products from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-soap\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Cleaning Appliances</h3>
         <a href="products.html?category=Cleaning%20Appliances" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="other.png" alt="Other Appliances" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-vial\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="other.png" alt="Other Appliances - Medical appliances and consumables from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-vial\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Other Appliances</h3>
         <a href="products.html?category=Other%20Appliances" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="instruments.png" alt="Surgical Instruments" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-scalpel\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="instruments.png" alt="Surgical Instruments - Quality surgical instruments from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-scalpel\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Surgical Instruments</h3>
         <a href="products.html?category=Surgical%20Instruments" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="consumables.png" alt="General Consumables" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-boxes\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="consumables.png" alt="General Consumables - Medical consumables and supplies from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-boxes\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>General Consumables</h3>
         <a href="products.html?category=General%20Consumables" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="hospital.png" alt="Hospital Equipment" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-microchip\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="hospital.png" alt="Hospital Equipment - Hospital equipment and devices from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-microchip\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Hospital Equipment</h3>
         <a href="products.html?category=Hospital%20Equipment" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
     
     <div class="product-card">
-        <div class="product-image"><img src="othorpedics.png" alt="Orthopedics" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-wheelchair\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
+        <div class="product-image"><img src="othorpedics.png" alt="Orthopedics - Orthopedic products and mobility aids from Conquerr Healthcare" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-wheelchair\' style=\'font-size:60px;color:#1E90FF\'></i>'"></div>
         <h3>Orthopedics</h3>
         <a href="products.html?category=Orthopedics" class="view-products">View Products <i class="fas fa-arrow-right"></i></a>
     </div>
@@ -1479,18 +1598,18 @@
     </section>
 
     <!-- MedSupply VMI Section -->
-    <section class="medsupply-section" id="manufacturing">
+    <section class="medsupply-section" id="manufacturing" aria-labelledby="medsupply-title">
         <div class="container">
             <div class="medsupply-inner">
                 <div class="medsupply-visual">
-                    <img src="medsupply.png" alt="MedSupply VMI Platform" class="medsupply-img" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#dce9ff,#e8f3ff)';this.parentElement.style.minHeight='360px';this.parentElement.style.borderRadius='18px';this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;min-height:360px;flex-direction:column;gap:16px\'><i class=\'fas fa-desktop\' style=\'font-size:80px;color:#0052CC;opacity:0.3\'></i><span style=\'color:#4a67c7;font-weight:600\'>MedSupply Dashboard</span></div>'">
+                    <img src="medsupply.png" alt="MedSupply VMI Platform Dashboard - Vendor Managed Inventory solution from Conquerr Healthcare" class="medsupply-img" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#dce9ff,#e8f3ff)';this.parentElement.style.minHeight='360px';this.parentElement.style.borderRadius='18px';this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;min-height:360px;flex-direction:column;gap:16px\'><i class=\'fas fa-desktop\' style=\'font-size:80px;color:#0052CC;opacity:0.3\'></i><span style=\'color:#4a67c7;font-weight:600\'>MedSupply Dashboard</span></div>'">
                 </div>
                 <div class="medsupply-content">
                     <div class="ms-intro-label">
-                        <img src="medsupplylogo.png" alt="MedSupply" class="ms-logo" onerror="this.style.display='none'">
+                        <img src="medsupplylogo.png" alt="MedSupply Logo - Vendor Managed Inventory solution" class="ms-logo" loading="lazy" onerror="this.style.display='none'">
                         <span class="ms-introducing">Introducing</span>
                     </div>
-                    <h2 class="ms-title">
+                    <h2 class="ms-title" id="medsupply-title">
                         <span class="ms-brand">MedSupply</span>
                         <span class="ms-vmi">(VMI)</span>
                     </h2>
@@ -1522,11 +1641,11 @@
     </section>
 
     <!-- Why Partner Section -->
-    <section class="why-partner" id="quality">
+    <section class="why-partner" id="quality" aria-labelledby="why-title">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">WHY PARTNER WITH US</span>
-                <h2>More Than <span class="highlight">Just a Supplier</span></h2>
+                <h2 id="why-title">More Than <span class="highlight">Just a Supplier</span></h2>
             </div>
             <div class="partners-grid">
                 <div class="partner-card"><div class="partner-icon"><i class="fas fa-shield-alt"></i></div><h3>Consistent Quality</h3><p>We source and supply only certified, high-quality products you can trust.</p></div>
@@ -1539,12 +1658,12 @@
     </section>
 
     <!-- About Section -->
-    <section class="about-section" id="about">
+    <section class="about-section" id="about" aria-labelledby="about-title">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
                     <span class="section-label">ABOUT CONQUERR HEALTHCARE</span>
-                    <h2>Empowering Healthcare<br><span class="highlight">Through Reliable Supply</span></h2>
+                    <h2 id="about-title">Empowering Healthcare<br><span class="highlight">Through Reliable Supply</span></h2>
                     <p>Conquerr Healthcare is a leading wholesale and distribution company specializing in surgical and non-pharmaceutical consumables.</p>
                     <p>Our mission is to ensure that healthcare facilities across the region have access to high-quality medical consumables—backed by exceptional service, efficient logistics, and a commitment to excellence.</p>
                     <button class="btn btn-primary">Learn More About Us</button>
@@ -1562,10 +1681,10 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section" id="contact" aria-labelledby="cta-title">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Partner With a Trusted Supplier?</h2>
+                <h2 id="cta-title">Ready to Partner With a Trusted Supplier?</h2>
                 <p>Let's power healthcare together.</p>
                 <div class="cta-buttons">
                     <button class="btn btn-secondary-light" onclick="document.getElementById('quoteModal').classList.add('active');">Request a Quote <i class="fas fa-arrow-right"></i></button>
@@ -1576,26 +1695,26 @@
     </section>
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer" role="contentinfo">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Logo" class="logo-img-footer" onerror="this.style.display='none'">
+                    <img src="logo.png" alt="Conquerr Healthcare Logo - Trusted Medical Supplies in Kenya" class="logo-img-footer" loading="lazy" onerror="this.style.display='none'">
                     <div style="font-size:22px;font-weight:800;color:#0e2263;">Conquerr <span style="color:#42A1CE;">Healthcare</span></div>
                 </div>
                 <p>Conquerr Healthcare is a trusted supplier of surgical and non-pharmaceutical consumables, committed to quality, reliability, and customer satisfaction.</p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <a href="https://www.facebook.com/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="Facebook - Conquerr Healthcare">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.instagram.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <a href="https://www.instagram.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram - Conquerr Healthcare">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.linkedin.com/company/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/conquerrhealthcare" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn - Conquerr Healthcare">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://twitter.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                    <a href="https://twitter.com/conquerrhealth" target="_blank" rel="noopener noreferrer" aria-label="X Twitter - Conquerr Healthcare">
                         <i class="fab fa-x-twitter"></i>
                     </a>
                 </div>
@@ -1644,7 +1763,7 @@
     </div>
 </footer>
     <!-- Scroll to Top -->
-    <button class="scroll-to-top" id="scrollToTop"><i class="fas fa-arrow-up"></i></button>
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- Quote Modal -->
     <!-- Quote Modal - UPDATED VERSION -->
@@ -1655,7 +1774,7 @@
                 <h2><i class="fas fa-file-invoice" style="margin-right:8px"></i>Request a Quote</h2>
                 <p>Select products and send your quote via Email or WhatsApp</p>
             </div>
-            <button class="close-modal-btn" id="closeModal"><i class="fas fa-times"></i></button>
+            <button class="close-modal-btn" id="closeModal" aria-label="Close quote modal"><i class="fas fa-times"></i></button>
         </div>
         <div class="quote-modal-body">
             <div class="quote-left">
