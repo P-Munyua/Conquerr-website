@@ -3,7 +3,7 @@
 <head>
     <!-- ====== BASIC META ====== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 
     <!-- ====== PRIMARY TITLE TAG (Most Important for SEO) ====== -->
     <title>Conquerr Healthcare - Trusted Medical Supplies &amp; Surgical Consumables in Kenya</title>
@@ -794,7 +794,7 @@
         .scroll-to-top:hover { background: var(--dark-navy); transform: translateY(-3px); }
         .scroll-to-top.show { display: flex; }
 
-        /* ====== QUOTE MODAL ====== */
+        /* ====== QUOTE MODAL - FIXED FOR MOBILE ====== */
         .quote-modal-overlay {
             display: none;
             position: fixed;
@@ -802,10 +802,11 @@
             width: 100%; height: 100%;
             background: rgba(0,26,77,0.6);
             z-index: 9999;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
             backdrop-filter: blur(4px);
+            overflow-y: auto;
         }
 
         .quote-modal-overlay.active { display: flex; }
@@ -815,7 +816,8 @@
             border-radius: 16px;
             width: 100%;
             max-width: 900px;
-            max-height: 90vh;
+            max-height: 95vh;
+            margin: 10px auto;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -824,30 +826,32 @@
         }
 
         @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-30px) scale(0.97); }
+            from { opacity: 0; transform: translateY(-20px) scale(0.97); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .quote-modal-header {
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
             color: white;
-            padding: 24px 30px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .quote-modal-header h2 { font-size: 22px; font-weight: 700; }
-        .quote-modal-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+        .quote-modal-header h2 { font-size: 18px; font-weight: 700; }
+        .quote-modal-header p { font-size: 12px; opacity: 0.85; margin-top: 2px; }
 
         .close-modal-btn {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 36px; height: 36px;
+            width: 34px; height: 34px;
             border-radius: 50%;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -864,56 +868,63 @@
             gap: 0;
             flex: 1;
             overflow: hidden;
+            max-height: calc(95vh - 80px);
         }
 
         .quote-left {
-            padding: 25px 20px 25px 30px;
+            padding: 16px 14px 16px 18px;
             border-right: 1px solid #e5e7eb;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .quote-right {
-            padding: 25px 30px 25px 20px;
+            padding: 16px 18px 16px 14px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
         }
 
         .quote-left h3, .quote-right h3 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--dark-navy);
-            margin-bottom: 14px;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #eef2ff;
+            flex-shrink: 0;
         }
 
         /* Category & Product selector */
         .category-select, .product-search-input {
             width: 100%;
-            padding: 9px 12px;
+            padding: 8px 10px;
             border: 1.5px solid #d1d9e6;
             border-radius: 8px;
             font-size: 13px;
             color: var(--text-dark);
             background: #fff;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             outline: none;
             transition: border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .category-select:focus, .product-search-input:focus { border-color: var(--primary-blue); }
 
         .products-list {
-            max-height: 200px;
+            max-height: 180px;
             overflow-y: auto;
             border: 1.5px solid #d1d9e6;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
         }
 
         .product-list-item {
-            padding: 9px 12px;
+            padding: 8px 10px;
             font-size: 13px;
             cursor: pointer;
             border-bottom: 1px solid #f0f4f8;
@@ -921,6 +932,7 @@
             justify-content: space-between;
             align-items: center;
             transition: background 0.15s;
+            gap: 8px;
         }
 
         .product-list-item:last-child { border-bottom: none; }
@@ -931,36 +943,44 @@
             background: var(--primary-blue);
             color: white;
             border: none;
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             transition: background 0.2s;
+            flex-shrink: 0;
         }
 
         .add-to-quote-btn:hover { background: var(--dark-navy); }
 
         /* Quote items list */
-        .quote-items-list { flex: 1; overflow-y: auto; margin-bottom: 15px; }
+        .quote-items-list { 
+            flex: 1; 
+            overflow-y: auto; 
+            margin-bottom: 10px;
+            min-height: 80px;
+            max-height: 180px;
+        }
 
         .quote-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px;
+            gap: 8px;
+            padding: 8px 10px;
             background: #f8faff;
             border-radius: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             border: 1px solid #e2eaff;
+            flex-wrap: wrap;
         }
 
-        .quote-item-info { flex: 1; min-width: 0; }
-        .quote-item-info .name { font-size: 13px; font-weight: 600; color: var(--dark-navy); line-height: 1.3; }
-        .quote-item-info .sku { font-size: 11px; color: #94a3b8; }
+        .quote-item-info { flex: 1; min-width: 60px; }
+        .quote-item-info .name { font-size: 12px; font-weight: 600; color: var(--dark-navy); line-height: 1.3; }
+        .quote-item-info .sku { font-size: 10px; color: #94a3b8; }
 
-        .qty-control { display: flex; align-items: center; gap: 6px; }
+        .qty-control { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 
         .qty-btn {
             width: 24px; height: 24px;
@@ -974,12 +994,13 @@
             justify-content: center;
             transition: all 0.15s;
             line-height: 1;
+            touch-action: manipulation;
         }
 
         .qty-btn:hover { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
         .qty-input {
-            width: 40px;
+            width: 32px;
             text-align: center;
             border: 1.5px solid #d1d9e6;
             border-radius: 4px;
@@ -996,42 +1017,46 @@
             font-size: 14px;
             padding: 2px 4px;
             transition: color 0.15s;
+            touch-action: manipulation;
         }
 
         .remove-item-btn:hover { color: #b91c1c; }
 
         .quote-empty {
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px 10px;
             color: #94a3b8;
         }
 
-        .quote-empty i { font-size: 36px; margin-bottom: 10px; display: block; }
-        .quote-empty p { font-size: 13px; }
+        .quote-empty i { font-size: 28px; margin-bottom: 8px; display: block; }
+        .quote-empty p { font-size: 12px; }
 
         /* Contact info fields */
-        .contact-fields { margin-bottom: 15px; }
+        .contact-fields { margin-bottom: 10px; }
 
         .contact-field {
             width: 100%;
-            padding: 8px 12px;
+            padding: 8px 10px;
             border: 1.5px solid #d1d9e6;
             border-radius: 8px;
             font-size: 13px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             outline: none;
             transition: border-color 0.2s;
             font-family: inherit;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .contact-field:focus { border-color: var(--primary-blue); }
 
         /* Send buttons */
-        .send-buttons { display: flex; gap: 10px; }
+        .send-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
 
         .send-btn {
             flex: 1;
-            padding: 11px 14px;
+            min-width: 100px;
+            padding: 10px 12px;
             border: none;
             border-radius: 8px;
             font-size: 13px;
@@ -1040,8 +1065,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
+            gap: 6px;
             transition: all 0.2s;
+            touch-action: manipulation;
         }
 
         .send-email-btn { background: var(--primary-blue); color: white; }
@@ -1110,9 +1136,42 @@
             .footer-content { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
             .scroll-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
-            .quote-modal-body { grid-template-columns: 1fr; }
-            .quote-left { border-right: none; border-bottom: 1px solid #e5e7eb; max-height: 280px; }
+            
+            /* MODAL MOBILE FIXES */
+            .quote-modal-overlay {
+                padding: 5px;
+                align-items: flex-start;
+            }
+            .quote-modal {
+                max-height: 98vh;
+                margin: 5px auto;
+                border-radius: 12px;
+            }
+            .quote-modal-body {
+                grid-template-columns: 1fr;
+                max-height: calc(98vh - 70px);
+            }
+            .quote-left {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+                max-height: 240px;
+                padding: 12px 14px;
+            }
+            .quote-right {
+                padding: 12px 14px;
+                max-height: 400px;
+            }
+            .quote-modal-header h2 { font-size: 16px; }
+            .quote-modal-header p { font-size: 11px; }
+            .products-list { max-height: 120px; }
+            .quote-items-list { max-height: 120px; min-height: 60px; }
             .send-buttons { flex-direction: column; }
+            .send-btn { min-width: auto; }
+            .quote-item { padding: 6px 8px; }
+            .quote-item-info .name { font-size: 11px; }
+            .qty-input { width: 28px; font-size: 12px; }
+            .qty-btn { width: 22px; height: 22px; font-size: 12px; }
+            .contact-field { font-size: 12px; padding: 7px 8px; }
         }
 
         @media (max-width: 480px) {
@@ -1130,6 +1189,18 @@
             .cta-content h2 { font-size: 22px; }
             .cta-content p { font-size: 14px; }
             .why-partner .section-header h2 { font-size: 32px; }
+            
+            /* MODAL TINY SCREEN FIXES */
+            .quote-modal-body { max-height: calc(98vh - 60px); }
+            .quote-left { max-height: 180px; padding: 10px 10px; }
+            .quote-right { padding: 10px 10px; max-height: 350px; }
+            .products-list { max-height: 100px; }
+            .quote-items-list { max-height: 100px; min-height: 50px; }
+            .quote-modal-header { padding: 12px 14px; }
+            .quote-modal-header h2 { font-size: 14px; }
+            .close-modal-btn { width: 30px; height: 30px; font-size: 14px; }
+            .product-list-item { font-size: 12px; padding: 6px 8px; }
+            .add-to-quote-btn { font-size: 11px; padding: 4px 10px; }
         }
         .social-links {
     display: flex;
@@ -1765,8 +1836,7 @@
     <!-- Scroll to Top -->
     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- Quote Modal -->
-    <!-- Quote Modal - UPDATED VERSION -->
+    <!-- Quote Modal - FIXED FOR MOBILE -->
 <div class="quote-modal-overlay" id="quoteModal">
     <div class="quote-modal">
         <div class="quote-modal-header">
