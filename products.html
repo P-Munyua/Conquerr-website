@@ -139,15 +139,19 @@
             --text-dark: #333333;
             --text-light: #666666;
             --border-light: #e0e0e0;
+            --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-base);
             line-height: 1.6;
             color: var(--text-dark);
             background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -173,15 +177,20 @@
         }
 
         .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    flex-shrink: 0;
+}
 
-        .logo-img { height: 120px; width: auto; }
+.logo-img { 
+    height: 160px; 
+    width: auto; 
+    max-width: 200px;
+    object-fit: contain;
+}
 
         .logo-text { display: flex; flex-direction: column; line-height: 1; }
         .main-text { font-size: 20px; font-weight: 700; color: #0e2263; letter-spacing: -0.5px; }
@@ -283,6 +292,7 @@
             font-size: 48px;
             font-weight: 800;
             margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
         .page-header p {
@@ -345,6 +355,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-family: inherit;
         }
 
         .category-btn i {
@@ -377,6 +388,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            letter-spacing: -0.3px;
         }
 
         .category-title i {
@@ -465,6 +477,7 @@
             transition: all 0.3s ease;
             width: 100%;
             margin-top: 10px;
+            font-family: inherit;
         }
 
         .add-to-quote:hover {
@@ -583,6 +596,7 @@
             transition: border-color 0.2s;
             -webkit-appearance: none;
             appearance: none;
+            font-family: inherit;
         }
 
         .category-select:focus, .product-search-input:focus { border-color: var(--primary-blue); }
@@ -624,6 +638,7 @@
             white-space: nowrap;
             transition: background 0.2s;
             flex-shrink: 0;
+            font-family: inherit;
         }
 
         .add-to-quote-btn:hover { background: var(--dark-navy); }
@@ -666,6 +681,7 @@
             justify-content: center;
             transition: all 0.15s;
             line-height: 1;
+            font-family: inherit;
         }
 
         .qty-btn:hover { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
@@ -678,6 +694,7 @@
             font-size: 12px;
             padding: 2px;
             outline: none;
+            font-family: inherit;
         }
 
         .remove-item-btn {
@@ -733,6 +750,7 @@
             gap: 6px;
             transition: all 0.2s;
             min-width: 80px;
+            font-family: inherit;
         }
 
         .send-email-btn { background: var(--primary-blue); color: white; }
@@ -1002,10 +1020,7 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="Conquerr Healthcare Logo - Trusted Medical Supplies in Kenya" class="logo-img" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    <span class="main-text">Conquerr</span>
-                    <span class="sub-text">Healthcare</span>
-                </div>
+               
             </a>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
@@ -1017,7 +1032,7 @@
                     <a href="products.html" class="nav-link active">Products <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu" id="categoryDropdown"></div>
                 </li>
-                <li><a href="index.html#quality" class="nav-link">Quality Assurance</a></li>
+            
                 <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
                 <li><a href="#" class="btn-quote" id="quoteBtn">Request a Quote <span class="quote-count-badge" id="quoteBadge" style="display:none">0</span></a></li>
             </ul>
